@@ -288,22 +288,22 @@ export class Register extends Component {
     formData.append('latitude',this.props.route.params?.latitude),
     formData.append('longitude',this.props.route.params?.longitude),
     formData.append('photo_ktp', {
-      name: this.state.photo_ktp?.path.split('/').pop(),
+      name: this.state.photo_ktp?.path?.split('/').pop(),
       type: this.state.photo_ktp?.mime,
       uri: this.state.photo_ktp?.path,
     });
     formData.append('selfie_ktp', {
-      name: this.state.selfie_ktp?.path.split('/').pop(),
+      name: this.state.selfie_ktp?.path?.split('/').pop(),
       type: this.state.selfie_ktp?.mime,
       uri: this.state.selfie_ktp?.path,
     });
     formData.append('photo_toko', {
-      name: this.state.photo_toko?.path.split('/').pop(),
+      name: this.state.photo_toko?.path?.split('/').pop(),
       type: this.state.photo_toko?.mime,
       uri: this.state.photo_toko?.path,
     });
     formData.append('photo_npwp', {
-      name: this.state.photo_npwp?.path.split('/').pop(),
+      name: this.state.photo_npwp?.path?.split('/').pop(),
       type: this.state.photo_npwp?.mime,
       uri: this.state.photo_npwp?.path,
     });
@@ -399,7 +399,7 @@ export class Register extends Component {
           this.setState(prevState => ({
             file: {
               ...prevState.file,
-              ktp: image?.path.split('/').pop(),
+              ktp: image?.path?.split('/').pop(),
             },
           }));
         } else if (this.state.param === 'photo_npwp') {
@@ -407,7 +407,7 @@ export class Register extends Component {
           this.setState(prevState => ({
             file: {
               ...prevState.file,
-              npwp: image?.path.split('/').pop(),
+              npwp: image?.path?.split('/').pop(),
             },
           }));
         } else if (this.state.param === 'photo_toko') {
@@ -415,7 +415,7 @@ export class Register extends Component {
           this.setState(prevState => ({
             file: {
               ...prevState.file,
-              toko: image?.path.split('/').pop(),
+              toko: image?.path?.split('/').pop(),
             },
           }));
         } else if (this.state.param === 'selfie_ktp') {
@@ -423,7 +423,7 @@ export class Register extends Component {
           this.setState(prevState => ({
             file: {
               ...prevState.file,
-              selfie: image?.path.split('/').pop(),
+              selfie: image?.path?.split('/').pop(),
             },
           }));
         }
@@ -452,7 +452,7 @@ export class Register extends Component {
             this.setState(prevState => ({
               file: {
                 ...prevState.file,
-                ktp: image?.path.split('/').pop(),
+                ktp: image?.path?.split('/').pop(),
               },
             }));
           } else if (this.state.param === 'photo_npwp') {
@@ -460,7 +460,7 @@ export class Register extends Component {
             this.setState(prevState => ({
               file: {
                 ...prevState.file,
-                npwp: image?.path.split('/').pop(),
+                npwp: image?.path?.split('/').pop(),
               },
             }));
           } else if (this.state.param === 'photo_toko') {
@@ -468,7 +468,7 @@ export class Register extends Component {
             this.setState(prevState => ({
               file: {
                 ...prevState.file,
-                toko: image?.path.split('/').pop(),
+                toko: image?.path?.split('/').pop(),
               },
             }));
           } else if (this.state.param === 'selfie_ktp') {
@@ -476,7 +476,7 @@ export class Register extends Component {
             this.setState(prevState => ({
               file: {
                 ...prevState.file,
-                selfie: image?.path.split('/').pop(),
+                selfie: image?.path?.split('/').pop(),
               },
             }));
           }
@@ -573,7 +573,7 @@ export class Register extends Component {
     };
   };
   render() {
-    console.log("long "+this.props.route.params?.longitude+" lat "+this.props.route.params?.latitude);
+    //console.log("long "+this.props.route.params?.longitude+" lat "+this.props.route.params?.latitude);
     const {refreshing, linkShareLoc, loadingApi, nextBtn} = this.state;
     return (
       <View style={styles.container}>
