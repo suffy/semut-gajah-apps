@@ -198,7 +198,7 @@ export class Login extends Component {
         formData,
       );
       const data = response.data;
-      // console.log('data', data);
+      //console.log('data', data);
       console.log(data !== '' && data['success'] == true);
       if (data !== '' && data['success'] == true) {
         this.props.loginAct(data?.data?.user, 'dataUser');
@@ -215,6 +215,7 @@ export class Login extends Component {
         let userReg = 'User not have site code';
         let password = 'Password not match';
         let approved = 'User not approved';
+        let verified = 'User not verified';
         if (message === user) {
           this.setState({
             alertData: 'Nomor telepon/email tidak ditemukan',
@@ -236,6 +237,11 @@ export class Login extends Component {
             modalAlert: !this.state.modalAlert,
           });
         } else if (message === approved) {
+          this.setState({
+            alertData: 'Mohon menunggu untuk verifikasi data di sistem kami',
+            modalAlert: !this.state.modalAlert,
+          });
+        } else if (message === verified) {
           this.setState({
             alertData: 'Mohon menunggu untuk verifikasi data di sistem kami',
             modalAlert: !this.state.modalAlert,
