@@ -1481,7 +1481,7 @@ export class Home extends Component {
                 contentContainerStyle={styles.viewButtonRecomen}
                 // columnWrapperStyle={{backgroundColor: 'white'}}
                 // ListHeaderStyle={styles.headerStyle}
-                numColumns={3}
+                numColumns={2}
                 keyExtractor={(item, index) => `${index}`}
                 data={this.state.recomenProduct}
                 refreshControl={
@@ -1502,7 +1502,7 @@ export class Home extends Component {
                 ListHeaderComponent={this.flatListHeader}
                 ListHeaderComponentStyle={{
                   backgroundColor: '#ddd',
-                  // marginHorizontal: wp('-5%'),
+                  marginHorizontal: wp('-2%'),
                 }}
                 renderItem={({item, index}) => {
                   return (
@@ -1632,7 +1632,7 @@ export class Home extends Component {
                             </View>
                           </View>
                         )}
-                        {item.cart ? (
+                        {/* {item.cart ? (
                           <Pressable
                             style={styles.buttonKeranjang}
                             onPress={() => {
@@ -1648,7 +1648,7 @@ export class Home extends Component {
                             }}>
                             <Text style={styles.textKeranjang}>{'Beli'}</Text>
                           </Pressable>
-                        )}
+                        )} */}
                       </TouchableOpacity>
                       {/* </View> */}
                     </View>
@@ -1982,10 +1982,10 @@ const styles = StyleSheet.create({
   buttonViewProdukRecomen: {
     // flex: 1,
     marginTop: hp('1%'),
-    width: wp('30%'),
+    width: wp('45%'),
     height: hp('31%'),
     marginHorizontal: wp('2%'),
-    marginBottom: hp('5%'),
+    marginBottom: hp('2%'),
     borderRadius: hp('2%'),
     backgroundColor: '#F4F4F4',
   },

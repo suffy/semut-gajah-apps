@@ -155,7 +155,7 @@ export class CardProduk extends Component {
                 </View>
               </View>
             )}
-            <Pressable
+            {/* <Pressable
               style={styles.buttonKeranjang}
               onPress={() => {
                 postShoppingCart(item);
@@ -165,7 +165,7 @@ export class CardProduk extends Component {
               ) : (
                 <Text style={styles.textKeranjang}>{'Beli'}</Text>
               )}
-            </Pressable>
+            </Pressable> */}
           </TouchableOpacity>
         ))}
         {qtyTotal > 10 ? (
@@ -184,7 +184,7 @@ export class CardProduk extends Component {
 const styles = StyleSheet.create({
   buttonViewProdukTerbaru: {
     marginTop: hp('2%'),
-    width: wp('30%'),
+    width: wp('45%'),
     height: hp('37%'),
     marginHorizontal: wp('2%'),
     marginBottom: hp('10%'),

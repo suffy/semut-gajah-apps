@@ -2092,7 +2092,7 @@ const styles = StyleSheet.create({
     // backgroundColor: '#f4f4f4',
     backgroundColor: '#F4F4F4',
     elevation: 5,
-    marginHorizontal: wp('-5%'),
+    marginHorizontal: wp('-8%'),
     marginBottom: wp('1%'),
   },
   scroll: {

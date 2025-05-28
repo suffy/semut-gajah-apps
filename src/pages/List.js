@@ -231,7 +231,7 @@ export class List extends Component {
                       </View>
                     </View>
                   )}
-                  {item.cart ? (
+                  {/* {item.cart ? (
                     <Pressable
                       style={styles.buttonKeranjang}
                       onPress={async () => {
@@ -247,7 +247,7 @@ export class List extends Component {
                       }}>
                       <Text style={styles.textKeranjang}>{'Beli'}</Text>
                     </Pressable>
-                  )}
+                  )} */}
                 </TouchableOpacity>
                 // </View>
               ))}
@@ -404,7 +404,7 @@ export class List extends Component {
                         </View>
                       </View>
                     )}
-                    {item.cart ? (
+                    {/* {item.cart ? (
                       <Pressable
                         style={styles.buttonKeranjang}
                         onPress={async () => {
@@ -420,7 +420,7 @@ export class List extends Component {
                         }}>
                         <Text style={styles.textKeranjang}>{'Beli'}</Text>
                       </Pressable>
-                    )}
+                    )} */}
                   </TouchableOpacity>
                 );
               })}
@@ -590,7 +590,7 @@ export class List extends Component {
                       </View>
                     </View>
                   )}
-                  {item.cart ? (
+                  {/* {item.cart ? (
                     <Pressable
                       style={styles.buttonKeranjang}
                       onPress={async () => {
@@ -606,7 +606,7 @@ export class List extends Component {
                       }}>
                       <Text style={styles.textKeranjang}>{'Beli'}</Text>
                     </Pressable>
-                  )}
+                  )} */}
                 </TouchableOpacity>
                 // </View>
               ))}
@@ -787,7 +787,7 @@ export class List extends Component {
                       </View>
                     </View>
                   )}
-                  {item.cart ? (
+                  {/* {item.cart ? (
                     <Pressable
                       style={styles.buttonKeranjang}
                       onPress={async () => {
@@ -803,7 +803,7 @@ export class List extends Component {
                       }}>
                       <Text style={styles.textKeranjang}>{'Beli'}</Text>
                     </Pressable>
-                  )}
+                  )} */}
                 </TouchableOpacity>
               ))}
               {qtyTotalPopular > 10 ? (
@@ -857,8 +857,8 @@ const styles = StyleSheet.create({
     height,
   },
   list: {
-    width: wp('25%'),
-    height: wp('25%'),
+    width: wp('45%'),
+    height: wp('30%'),
     backgroundColor: '#FFF',
     alignSelf: 'center',
     borderRadius: wp('1%'),
@@ -883,12 +883,11 @@ const styles = StyleSheet.create({
     paddingLeft: wp('5%'),
   },
   buttonNext: {
-    margin: 20,
-    height: wp('62.8%'),
+    margin: 15,
+    height: wp('59%'),
     marginRight: wp('5%'),
     marginLeft: wp('0.5%'),
     width: wp('35%'),
-    backgroundColor: 'white',
     alignItems: 'center',
     justifyContent: 'center',
     borderRadius: hp('2%'),
@@ -926,7 +925,7 @@ const styles = StyleSheet.create({
   },
   buttonViewProdukTerbaru: {
     margin: 20,
-    width: wp('33%'),
+    width: wp('45%'),
     marginRight: wp('3%'),
     marginLeft: wp('0.5%'),
     alignItems: 'flex-start',
