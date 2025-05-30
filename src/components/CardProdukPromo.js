@@ -184,16 +184,16 @@ export class CardProdukPromo extends Component {
 const styles = StyleSheet.create({
   buttonViewProdukTerbaru: {
     marginTop: hp('2%'),
-    width: wp('30%'),
-    height: hp('45%'),
+    width: wp('45%'),
+    //height: hp('45%'),
     marginHorizontal: wp('2%'),
     marginBottom: hp('10%'),
     borderRadius: hp('2%'),
     backgroundColor: '#F4F4F4',
   },
   list: {
-    width: wp('27%'),
-    height: wp('27%'),
+    width: wp('40%'),
+    height: wp('40%'),
     backgroundColor: '#FFFFFF',
     alignSelf: 'center',
     borderRadius: wp('1%'),
@@ -258,8 +258,8 @@ const styles = StyleSheet.create({
     width: '100%',
     alignItems: 'center',
     justifyContent: 'center',
-    paddingHorizontal: wp('3%'),
-    paddingVertical: wp('5%'),
+    paddingHorizontal: wp('1%'),
+    paddingVertical: wp('1%'),
     borderRadius: wp('5%'),
   },
   scroll: {

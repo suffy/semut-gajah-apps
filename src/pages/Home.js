@@ -1910,8 +1910,8 @@ const styles = StyleSheet.create({
 
   // bagian LIST
   list: {
-    width: wp('27%'),
-    height: wp('27%'),
+    width: wp('40%'),
+    height: wp('40%'),
     backgroundColor: '#FFFFFF',
     // paddingHorizontal: hp('3%'),
     alignSelf: 'center',
@@ -1983,9 +1983,9 @@ const styles = StyleSheet.create({
     // flex: 1,
     marginTop: hp('1%'),
     width: wp('45%'),
-    height: hp('31%'),
+    //height: hp('35%'),
     marginHorizontal: wp('2%'),
-    marginBottom: hp('2%'),
+    //marginBottom: hp('2%'),
     borderRadius: hp('2%'),
     backgroundColor: '#F4F4F4',
   },
@@ -1994,8 +1994,8 @@ const styles = StyleSheet.create({
     width: '100%',
     alignItems: 'center',
     justifyContent: 'center',
-    paddingHorizontal: wp('3%'),
-    paddingVertical: wp('5%'),
+    paddingHorizontal: wp('1%'),
+    paddingVertical: wp('1%'),
     borderRadius: wp('5%'),
   },
   // View Modal

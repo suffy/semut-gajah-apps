@@ -857,8 +857,8 @@ const styles = StyleSheet.create({
     height,
   },
   list: {
-    width: wp('45%'),
-    height: wp('30%'),
+    width: wp('40%'),
+    height: wp('40%'),
     backgroundColor: '#FFF',
     alignSelf: 'center',
     borderRadius: wp('1%'),
@@ -919,8 +919,8 @@ const styles = StyleSheet.create({
     width: '100%',
     alignItems: 'center',
     justifyContent: 'center',
-    paddingHorizontal: wp('3%'),
-    paddingVertical: wp('5%'),
+    paddingHorizontal: wp('1%'),
+    paddingVertical: wp('1%'),
     borderRadius: wp('5%'),
   },
   buttonViewProdukTerbaru: {
