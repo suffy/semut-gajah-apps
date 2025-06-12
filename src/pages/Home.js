@@ -1076,21 +1076,42 @@ export class Home extends Component {
   };
 
   getNavigasi = item => {
+    console.log(item, 'pilih')
     if (item.id == 1) {
       this.props.navigation.navigate('Produk', {
-        screen: 'DetailHerbal',
+        screen: 'masukAngin',
       });
     } else if (item.id == 2) {
       this.props.navigation.navigate('Produk', {
-        screen: 'DetailSupMul',
+        screen: 'obatBatuk',
       });
     } else if (item.id == 3) {
       this.props.navigation.navigate('Produk', {
-        screen: 'DetailFoodBev',
+        screen: 'sariawanPanasDalam',
       });
     } else if (item.id == 4) {
       this.props.navigation.navigate('Produk', {
-        screen: 'DetailMinyak',
+        screen: 'pegalLinuStamina',
+      });
+    } else if (item.id == 5) {
+      this.props.navigation.navigate('Produk', {
+        screen: 'produkWanita',
+      });
+    } else if (item.id == 6) {
+      this.props.navigation.navigate('Produk', {
+        screen: 'permen',
+      });
+    } else if (item.id == 7) {
+      this.props.navigation.navigate('Produk', {
+        screen: 'herbaMojo',
+      });
+    } else if (item.id == 8) {
+      this.props.navigation.navigate('Produk', {
+        screen: 'herbana',
+      });
+    } else if (item.id == 9) {
+      this.props.navigation.navigate('Produk', {
+        screen: 'madu',
       });
     }
   };
@@ -1256,7 +1277,7 @@ export class Home extends Component {
       });
       // console.log('response===>', JSON.stringify(response, null, 2));
       const data = response.data;
-      console.log('data', data);
+      //console.log('data', data);
       if (data.data !== '' && data['success'] == true) {
         this.setState({numberWASub: data.data[0]});
       } else {
@@ -1783,7 +1804,7 @@ const style = {
 };
 
 const customSvgPath = ({position, size, canvasSize}) => {
-  console.log('position, size, canvasSize', position, size, canvasSize);
+  //console.log('position, size, canvasSize', position, size, canvasSize);
   if (langkahStep == 'notification') {
     return `M0,0H${canvasSize.x}V${canvasSize.y}H0V0ZM${position.x._value},${position.y._value}Za25 25 0 1 0 25 0 25 25 0 0 0-25 0`;
   } else if (langkahStep == 'cart-notification') {

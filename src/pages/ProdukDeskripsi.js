@@ -1174,7 +1174,7 @@ export class ProdukDeskripsi extends Component {
       inputRange: [0, 1, 2, 3, 4, 5],
       outputRange: ['0deg', '-15deg', '15deg', '-15deg', '15deg', '0deg'],
     });
-    console.log('data props item ' + JSON.stringify(this.props.item));
+    //console.log('data props item ' + JSON.stringify(this.props.item));
     return (
       <View style={{flex: 1, backgroundColor: '#FFF'}}>
         <Header

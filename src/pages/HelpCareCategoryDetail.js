@@ -43,7 +43,7 @@ export class HelpCareCategoryDetail extends Component {
     super(props);
     if (Text.defaultProps == null) Text.defaultProps = {};
     Text.defaultProps.allowFontScaling = false;
-    console.log('route navigation===', this.props.route.params);
+    //console.log('route navigation===', this.props.route.params);
     this.state = {
       helpcare: helpcare,
       search: '',

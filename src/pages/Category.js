@@ -35,7 +35,7 @@ const category = [
     id: '1',
     navigate: 'Produk',
     name: 'Herbal',
-    image: <IconHerbal width={wp('13%')} height={wp('13%')} />,
+    image: <IconHerbal width={wp('10%')} height={wp('10%')} />,
     icon: IconHerbal,
   },
   {
@@ -62,36 +62,47 @@ const category = [
 ];
 
 export class Category extends Component {
+  
   render() {
     const {categories, getNavigasi} = this.props;
+
+    const chunkArray = (arr, size) => {
+      const result = [];
+      for (let i = 0; i < arr.length; i += size) {
+        result.push(arr.slice(i, i + size));
+      }
+      return result;
+    };
+
     return (
       <View>
-        {category?.length > 0 && (
+        {categories?.length > 0 && (
           <View style={styles.container}>
             <Text style={styles.judul}>{'Kategori'}</Text>
             <View style={styles.containerButton}>
-              <ScrollView
-                horizontal={true}
-                showsHorizontalScrollIndicator={false}>
-                {category?.map((item, index) => (
-                  <TouchableWithoutFeedback
-                    key={item.id}
-                    // style={styles.buttonCategory}
-                    onPress={() => getNavigasi(item)}>
-                    <View style={styles.card}>
-                      <View style={styles.viewCategory}>
-                        {item.image}
-                        {/* <Image
+              <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
+              {chunkArray(
+                categories[0]?.sort((a, b) => a.menu_order - b.menu_order).slice(0, 10),
+                2
+              ).map((group, columnIndex) => (
+                <View key={columnIndex} style={styles.containerColumn}>
+                  {group.map((item, rowIndex) => (
+                    <TouchableWithoutFeedback key={item.id ?? rowIndex} onPress={() => getNavigasi(item)}>
+                      <View style={styles.card}>
+                        <View style={styles.viewCategory}>
+                          <Image
                             resizeMode="contain"
-                            source={{uri: CONFIG.BASE_URL + item.icon}}
+                            source={{ uri: CONFIG.BASE_URL + item.icon }}
                             style={styles.image}
-                          /> */}
-                        <Text style={styles.title}>{item.name}</Text>
+                          />
+                          <Text style={styles.title}>{item.name}</Text>
+                        </View>
                       </View>
-                    </View>
-                  </TouchableWithoutFeedback>
-                ))}
-              </ScrollView>
+                    </TouchableWithoutFeedback>
+                  ))}
+                </View>
+              ))}
+            </ScrollView>
             </View>
           </View>
         )}
@@ -121,19 +132,19 @@ const styles = StyleSheet.create({
   },
   viewCategory: {
     backgroundColor: '#FFF',
-    height: wp('27%'),
-    width: wp('27%'),
+    height: wp('20%'),
+    width: wp('20%'),
     alignItems: 'center',
     justifyContent: 'center',
-    borderRadius:20,
-    shadowColor: "#000",
+    borderRadius: 10,
+    shadowColor: '#000',
     shadowOffset: {
       width: 0,
       height: 1,
     },
     shadowOpacity: 0.43,
     shadowRadius: 9.51,
-    elevation: 6,
+    elevation: 2,
   },
   judul: {
     fontSize: hp('2%'),
@@ -151,9 +162,9 @@ const styles = StyleSheet.create({
     width: '70%',
   },
   image: {
-    marginBottom: wp('2%'),
-    width: wp('20%'),
-    height: wp('20%'),
+    marginBottom: wp('1%'),
+    width: wp('10%'),
+    height: wp('10%'),
   },
   loadingApi: {
     flex: 1,
@@ -167,13 +178,20 @@ const styles = StyleSheet.create({
     // top:hp('-50%')
   },
   card: {
-    marginRight: wp('3%'),
+    marginRight: wp('1%'),
     alignItems: 'center',
     justifyContent: 'center',
     overflow: 'hidden',
-    paddingRight:5,
-    paddingLeft:3,
+    paddingRight:2,
+    paddingLeft:2,
     paddingBottom:5,
+  },
+  containerColumn: {
+    flexDirection: 'column',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    marginRight: wp('1%'),
+    height: wp('45%'), // cukup tinggi agar 2 item muat
   },
 });
 

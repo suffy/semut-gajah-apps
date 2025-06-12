@@ -82,7 +82,7 @@ export class ProdukKategori extends Component {
   _isMounted = false;
   constructor(props) {
     super(props);
-    console.log('route navigation===', this.props.route.params);
+    //console.log('route navigation===', this.props.route.params);
     if (Text.defaultProps == null) Text.defaultProps = {};
     Text.defaultProps.allowFontScaling = false;
     this.onEndReachedCalledDuringMomentum = false;

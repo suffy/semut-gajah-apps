@@ -76,7 +76,7 @@ export class BannerPromo extends Component {
 
   render() {
     const {banners} = this.props;
-    console.log('banners', banners);
+    //console.log('banners', banners);
     return (
       <View style={styles.container}>
         {banners[0]?.map((item, index) => {
