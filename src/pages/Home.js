@@ -65,6 +65,7 @@ import {useRoute} from '@react-navigation/native';
 import {Avatar} from 'react-native-elements';
 import moment from 'moment';
 import Bintang from '../assets/newIcons/iconBintangActive.svg';
+import BannerYoutube from './BannerYoutube';
 const width = Dimensions.get('window').width;
 const height = width * 0.5;
 const widthItem = width / 3;
@@ -1170,7 +1171,7 @@ export class Home extends Component {
               <Text numberOfLines={1} style={styles.name}>
                 {/* {'SEMUT GAJAH'} */}
                 {'Hello '}
-                {!dataUser?.user_address[0]
+                {!dataUser?.user_address?.[0]
                   ? ' '
                   : dataUser?.user_address[0]?.shop_name
                   ? dataUser?.user_address[0]?.shop_name
@@ -1225,6 +1226,37 @@ export class Home extends Component {
           banners={this.state.banners}
           navigation={this.props.navigation}
         />
+        <CopilotStep
+          text="Semua informasi promo ada disini"
+          order={4}
+          name="banner-youtube">
+          <CopilotView>
+            <BannerYoutube
+              promo={[
+                {
+                  id: 1,
+                  banner: require('../assets/images/banner_youtube/_9eqkjRg_XI.jpg'),
+                  url: 'https://youtu.be/_9eqkjRg_XI',
+                },
+                {
+                  id: 2,
+                  banner: require('../assets/images/banner_youtube/CvVO1Oy7yMk.jpg'),
+                  url: 'https://youtu.be/CvVO1Oy7yMk',
+                },
+                {
+                  id: 3,
+                  banner: require('../assets/images/banner_youtube/EnXtGkkqHas.jpg'),
+                  url: 'https://youtu.be/EnXtGkkqHas',
+                },
+                {
+                  id: 4,
+                  banner: require('../assets/images/banner_youtube/twH4Kfa_JXA.jpg'),
+                  url: 'https://youtu.be/twH4Kfa_JXA',
+                },
+              ]}
+            />
+          </CopilotView>
+        </CopilotStep>
         <List
           // refreshing={refreshing}
           rating={this.state.rating}
