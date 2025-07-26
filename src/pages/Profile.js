@@ -352,7 +352,7 @@ export class Profile extends Component {
               <TouchableOpacity
                 style={styles.posisi}
                 onPress={() => navigation.navigate('KalenderReward')}>
-                <IconMisi width={wp('7%')} height={hp('6%')} />
+                <IconRedeem width={wp('7%')} height={hp('6%')} />
                 <Text style={styles.textlist}>{' Kalender Reward '}</Text>
               </TouchableOpacity>
             </View>
