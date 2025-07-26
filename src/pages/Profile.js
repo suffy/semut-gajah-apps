@@ -349,6 +349,12 @@ export class Profile extends Component {
                 <IconMisi width={wp('7%')} height={hp('6%')} />
                 <Text style={styles.textlist}>{' Misi '}</Text>
               </TouchableOpacity>
+              <TouchableOpacity
+                style={styles.posisi}
+                onPress={() => navigation.navigate('KalenderReward')}>
+                <IconMisi width={wp('7%')} height={hp('6%')} />
+                <Text style={styles.textlist}>{' Kalender Reward '}</Text>
+              </TouchableOpacity>
             </View>
             <View style={[styles.viewBg, {backgroundColor: '#FFFFFF'}]}>
               <Text style={styles.textjudul2}>{'Semua Kategori'}</Text>

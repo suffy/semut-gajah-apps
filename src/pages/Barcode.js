@@ -79,7 +79,7 @@ const Barcode = props => {
         showSnackbarInet();
       } else if (error400) {
         Storage.removeItem('token');
-        this.props.navigation.navigate('Home');
+        props.navigation.navigate('Home');
       }
     }
   }
@@ -124,12 +124,12 @@ const Barcode = props => {
     });
   }
   function funBack(){
-    this.props.navigation.goBack()
+    props.navigation.goBack()
   }
   // getQRcode = () => {
   //   axios
   //     .get(`${CONFIG.BASE_URL}/api/qrcode`, {
-  //       headers: {Authorization: `Bearer ${this.props.token}`},
+  //       headers: {Authorization: `Bearer ${props.token}`},
   //     })
   //     .then(response => {
   //       // console.log(response)
@@ -151,7 +151,7 @@ const Barcode = props => {
     <SafeAreaView style={{flex: 1}}>
       <Header 
          title="Kode Barcode"
-      navigation={this.props.navigation}
+      navigation={props.navigation}
          notif={false}
          notifCount={0}
          cart={false}
