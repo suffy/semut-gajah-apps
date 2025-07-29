@@ -353,7 +353,7 @@ export class Profile extends Component {
                 style={styles.posisi}
                 onPress={() => navigation.navigate('KalenderReward')}>
                 <IconRedeem width={wp('7%')} height={hp('6%')} />
-                <Text style={styles.textlist}>{' Kalender Reward '}</Text>
+                <Text style={styles.textlist}>{' Redeem Reward '}</Text>
               </TouchableOpacity>
             </View>
             <View style={[styles.viewBg, {backgroundColor: '#FFFFFF'}]}>

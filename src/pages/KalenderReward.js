@@ -560,7 +560,7 @@ export class KalenderReward extends Component {
             fill="black"
             onPress={() => this.props.navigation.goBack()}
           />
-          <Text style={styles.text}>{'Kalender Reward'}</Text>
+          <Text style={styles.text}>{'Redeem Reward'}</Text>
         </View>
         {/* {console.log('isi promo', JSON.stringify(this.state.promo))} */}
         {loadingApi ? (
