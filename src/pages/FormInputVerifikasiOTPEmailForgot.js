@@ -9,6 +9,7 @@ import {
   StyleSheet,
   ScrollView,
   KeyboardAvoidingView,
+  TouchableWithoutFeedback,
 } from 'react-native';
 import {connect} from 'react-redux';
 import axios from 'axios';
@@ -20,9 +21,7 @@ import CONFIG from '../constants/config';
 import messaging from '@react-native-firebase/messaging';
 import Size from '../components/Fontresponsive';
 import IconOTP from '../assets/icons/OTP.svg';
-import IconPhone from '../assets/newIcons/iconNomorTelepon.svg';
-import IconEmail from '../assets/newIcons/iconEmail.svg';
-import IconUser from '../assets/newIcons/iconPerson.svg';
+import IconEmail from '../assets/icons/Email.svg';
 import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
@@ -50,19 +49,18 @@ function LoadingApi() {
   );
 }
 
-export class FormInputOTPForgotPass extends Component {
+export class FormInputVerifikasiOTPSMSForgot extends Component {
   _isMounted = false;
   constructor(props) {
     super(props);
     if (Text.defaultProps == null) Text.defaultProps = {};
     Text.defaultProps.allowFontScaling = false;
     this.state = {
-      phoneNumber: '',
-      email: '',
-      code: '',
+      codeOTP: '',
+      timer: 60,
+      showInput: true,
       loadingApi: false,
       alertData: '',
-      tambahan: '',
       modalAlert: false,
     };
   }
@@ -70,31 +68,34 @@ export class FormInputOTPForgotPass extends Component {
   UNSAFE_componentWillMount() {
     // lor(this);
     this._isMounted = true;
+    this.setTime();
   }
 
   componentWillUnmount() {
     // rol();
     this._isMounted = false;
+    clearInterval(this.interval);
   }
 
-  sendOTPWA = async () => {
+  sendOTP = async () => {
     const formData = {
-      phone: this.state.phoneNumber,
-      customer_code: this.state.code,
+      email: this.props.email,
+      customer_code: this.props.customer_code,
     };
     this.setState({loadingApi: true});
     try {
       let response = await axios.post(
-        `${CONFIG.BASE_URL}/api/otp/no-auth/wa`,
+        `${CONFIG.BASE_URL}/api/otp/no-auth/email`,
         formData,
+        // {
+        // headers: {Authorization: `Bearer ${this.props.token}`},
+        // }
       );
+      // console.log(response)
       const data = response.data;
       if (data !== '' && data['success'] == true) {
-        console.log('HASIL SEND OTP', data.data);
-        this.props.loginAct(this.state.phoneNumber, 'phone');
-        this.props.loginAct(this.state.code, 'customer_code');
-        this.props.navigation.navigate('FormInputVerifikasiOTPWAForgot');
         this.setState({loadingApi: false});
+        console.log('HASIL SEND OTP', data.data);
       } else {
         console.log('', typeof data);
         this.setState({
@@ -120,33 +121,38 @@ export class FormInputOTPForgotPass extends Component {
         this.showSnackbarBusy();
       } else if (errorNetwork) {
         this.showSnackbarInet();
-      } else {
-        this.setState({
-          alertData: 'Gagal mengirim otp',
-          modalAlert: !this.state.modalAlert,
-          loadingApi: false,
-        });
       }
     }
   };
 
-  sendOTPSMS = async () => {
+  cekOTP = async () => {
     const formData = {
-      phone: this.state.phoneNumber,
-      customer_code: this.state.code,
+      otp_code: this.state.codeOTP,
+      phone: this.props.email,
     };
     this.setState({loadingApi: true});
+
+    console.log(formData)
+
     try {
       let response = await axios.post(
-        `${CONFIG.BASE_URL}/api/otp/no-auth/sms`,
+        `${CONFIG.BASE_URL}/api/otp/verify`,
         formData,
+        // {
+        //   headers: {Authorization: `Bearer ${this.props.token}`},
+        // },
+        // {timeout: 1000},
       );
       const data = response.data;
+      console.log(data);
       if (data !== '' && data['success'] == true) {
-        console.log('HASIL SEND OTP', data.data);
-        this.props.loginAct(this.state.phoneNumber, 'phone');
-        this.props.loginAct(this.state.code, 'customer_code');
-        this.props.navigation.navigate('FormInputVerifikasiOTPSMSForgot');
+        this.setState({loadingApi: false});
+        this.props.navigation.navigate('FormLupaPassword');
+      } else {
+        this.setState({
+          alertData: 'Verifikasi gagal, pastikan kode otp sesuai',
+          modalAlert: !this.state.modalAlert,
+        });
         this.setState({loadingApi: false});
       }
     } catch (error) {
@@ -168,7 +174,7 @@ export class FormInputOTPForgotPass extends Component {
         this.showSnackbarInet();
       } else {
         this.setState({
-          alertData: 'Gagal mengirim otp',
+          alertData: 'Verifikasi gagal, pastikan kode otp sesuai',
           modalAlert: !this.state.modalAlert,
           loadingApi: false,
         });
@@ -176,54 +182,25 @@ export class FormInputOTPForgotPass extends Component {
     }
   };
 
-  sendOTPEmail = async () => {
-    const formData = {
-      email: this.state.email,
-      customer_code: this.state.code,
-    };
-    this.setState({loadingApi: true});
-    try {
-      let response = await axios.post(
-        `${CONFIG.BASE_URL}/api/otp/no-auth/email`,
-        formData,
-      );
-      const data = response.data;
-      if (data !== '' && data['success'] == true) {
-        console.log('HASIL SEND OTP', data, formData);
-        this.props.loginAct(this.state.email, 'email');
-        this.props.loginAct(this.state.code, 'customer_code');
-        this.props.navigation.navigate('FormInputVerifikasiOTPEmailForgot');
-        this.setState({loadingApi: false});
-      }
-    } catch (error) {
-      let error429 =
-        JSON.parse(JSON.stringify(error)).message ===
-        'Request failed with status code 429';
-      let errorNetwork =
-        JSON.parse(JSON.stringify(error)).message === 'Network Error';
-      let error400 =
-        JSON.parse(JSON.stringify(error)).message ===
-        'Request failed with status code 400';
-      console.log(
-        'Cek Error========================',
-        JSON.parse(JSON.stringify(error)).message,
-      );
-      if (error429) {
-        this.showSnackbarBusy();
-      } else if (errorNetwork) {
-        this.showSnackbarInet();
-      } else {
-        this.setState({
-          alertData: 'Gagal mengirim otp',
-          modalAlert: !this.state.modalAlert,
-          loadingApi: false,
-        });
-      }
-    }
+  setTime = () => {
+    this.interval = setInterval(
+      () => this.setState(prevState => ({timer: prevState.timer - 1})),
+      1000,
+    );
   };
+
+  componentDidUpdate() {
+    if (this.state.timer === 0) {
+      clearInterval(this.interval);
+      this.setState({timer: 60});
+    }
+  }
 
   getCloseAlertModal() {
     this.setState({modalAlert: !this.state.modalAlert});
+    if (this.state.alertData == 'Silahkan input nomor telepon ulang kembali') {
+      this.props.navigation.goBack();
+    }
   }
 
   showSnackbarBusy = () => {
@@ -267,105 +244,76 @@ export class FormInputOTPForgotPass extends Component {
   };
 
   render() {
-    const {loadingApi} = this.state;
+    const {timer, showInput, loadingApi} = this.state;
     return (
       <ScrollView showsVerticalScrollIndicator={false} style={styles.scroll}>
         <ModalAlert
           modalAlert={this.state.modalAlert}
-          tambahan={this.state.tambahan}
           alert={this.state.alertData}
           getCloseAlertModal={() => this.getCloseAlertModal()}
         />
         <View style={styles.container}>
           <Logo width={wp('35%')} height={hp('16%')} style={styles.image} />
-          <Text style={styles.textlogo}>{'Pilih metode verifikasi'}</Text>
+          <Text style={styles.textlogo}>{'Kode OTP'}</Text>
           <View style={styles.posision}>
-            <Text style={[styles.textStyle]}>
-              {'Silahkan masukkan email yang terdaftar'}
-            </Text>
-            <View style={styles.posision}>
-              <View style={styles.containerInput}>
-                {/* <TextInput
-                  autoCapitalize="none"
-                  placeholder="Nomor telepon"
-                  placeholderTextColor="#C1B5B2"
-                  required="number"
-                  keyboardType="number-pad"
-                  style={styles.inputStyle}
-                  underlineColorAndroid="transparent"
-                  onChangeText={value =>
-                    this._isMounted && this.setState({phoneNumber: value})
-                  }
-                /> */}
-                <TextInput
-                  autoCapitalize="none"
-                  placeholder="Email"
-                  placeholderTextColor="#C1B5B2"
-                  keyboardType="email-address"
-                  style={styles.inputStyle}
-                  underlineColorAndroid="transparent"
-                  onChangeText={value =>
-                    this._isMounted && this.setState({email: value})
-                  }
+            {/* <Text style={[styles.textStyle]}>{'Kode OTP'}</Text> */}
+            {showInput ? (
+              <>
+                <View style={styles.containerInput}>
+                  <TextInput
+                    autoCapitalize="none"
+                    placeholder="Kode OTP"
+                    placeholderTextColor="#A4A4A4"
+                    keyboardType="numeric"
+                    style={styles.inputStyle}
+                    underlineColorAndroid="transparent"
+                    onChangeText={value =>
+                      this._isMounted && this.setState({codeOTP: value})
+                    }
+                  />
+                </View>
+                <IconOTP
+                  style={styles.icon}
+                  width={wp('6%')}
+                  height={hp('6%')}
                 />
-              </View>
-              <IconEmail
-                style={styles.icon}
-                width={wp('6%')}
-                height={hp('6%')}
-              />
-            </View>
-            <Text style={[styles.textStyle]}>
-              {'Silahkan masukkan kode kustomer yang terdaftar'}
-            </Text>
-            <View style={styles.posision}>
-              <View style={styles.containerInput}>
-                <TextInput
-                  autoCapitalize="none"
-                  placeholder="Kode Kustomer"
-                  placeholderTextColor="#C1B5B2"
-                  style={styles.inputStyle}
-                  underlineColorAndroid="transparent"
-                  onChangeText={value =>
-                    this._isMounted && this.setState({code: value})
-                  }
+              </>
+            ) : (
+              <>
+                <View style={styles.containerInput}>
+                  <TextInput
+                    autoCapitalize="none"
+                    placeholder="Email"
+                    placeholderTextColor="#A4A4A4"
+                    keyboardType="email-address"
+                    style={styles.inputStyle}
+                    underlineColorAndroid="transparent"
+                    onChangeText={value =>
+                      this._isMounted && this.setState({codeOTP: value})
+                    }
+                  />
+                </View>
+                <IconEmail
+                  style={styles.icon}
+                  width={wp('6%')}
+                  height={hp('6%')}
                 />
-              </View>
-              <IconUser
-                style={styles.icon}
-                width={wp('6%')}
-                height={hp('6%')}
-              />
-            </View>
+              </>
+            )}
 
-            <Text style={[styles.textStyle]}>
-              {
-                'Pilih salah satu metode dibawah ini untuk mendapatkan kode verifikasi'
-              }
-            </Text>
-
-            <View
-              style={{
-                flexDirection: 'row',
-                justifyContent: 'flex-start',
-                marginTop: hp('2%'),
-              }}>
-              {/* <TouchableOpacity
-                style={styles.buttonWASms}
-                onPress={() => this.sendOTPSMS()}>
-                <Text style={styles.textOTP}>{'SMS'}</Text>
-              </TouchableOpacity>
+            {showInput ? (
               <TouchableOpacity
-                style={styles.buttonWASms}
-                onPress={() => this.sendOTPWA()}>
-                <Text style={styles.textOTP}>{'Whatsapp'}</Text>
-              </TouchableOpacity> */}
-              <TouchableOpacity
-                style={styles.buttonWASms}
-                onPress={() => this.sendOTPEmail()}>
-                <Text style={styles.textOTP}>{'Email'}</Text>
+                style={styles.buttonOTP}
+                onPress={() => this.cekOTP()}>
+                <Text style={styles.textOTP}>{'OK'}</Text>
               </TouchableOpacity>
-            </View>
+            ) : (
+              <TouchableOpacity
+                style={styles.buttonOTP}
+                onPress={() => this.sendPhone()}>
+                <Text style={styles.textOTP}>{'Simpan Telepon'}</Text>
+              </TouchableOpacity>
+            )}
 
             <View
               style={{
@@ -374,6 +322,52 @@ export class FormInputOTPForgotPass extends Component {
                 // backgroundColor: 'red',
                 width: wp('67%'),
               }}>
+              {timer === 60 ? (
+                <TouchableOpacity
+                  onPress={() => {
+                    this.sendOTP();
+                    this.setTime();
+                  }}>
+                  <Text style={[styles.textLupaPassword]}>
+                    {'Kirim Ulang OTP'}
+                  </Text>
+                </TouchableOpacity>
+              ) : (
+                <View style={{flexDirection: 'row'}}>
+                  <TouchableWithoutFeedback
+                  // onPress={() => {
+                  //   this.sendOTP();
+                  //   }}
+                  >
+                    <Text style={[styles.textLupaPassword]}>
+                      {'Kirim Ulang OTP'}
+                    </Text>
+                  </TouchableWithoutFeedback>
+                  <Text
+                    style={[
+                      styles.textLupaPassword,
+                      {marginLeft: wp('1%'), marginRight: wp('-5%')},
+                    ]}>
+                    {'('}
+                    {timer}
+                    {')'}
+                  </Text>
+                </View>
+              )}
+              {showInput ? (
+                <TouchableOpacity
+                  onPress={() => {
+                    // this.setState({showInput: !showInput});
+                    this.setState({
+                      alertData: 'Silahkan input email ulang kembali',
+                      modalAlert: !this.state.modalAlert,
+                    });
+                  }}>
+                  <Text style={[styles.textNomorTeleponSalah]}>
+                    {'Email Salah ?'}
+                  </Text>
+                </TouchableOpacity>
+              ) : null}
             </View>
           </View>
         </View>
@@ -385,8 +379,9 @@ export class FormInputOTPForgotPass extends Component {
 
 const mapStateToProps = state => ({
   token: state.LoginReducer.token,
-  phone: state.LoginReducer.phone,
+  email: state.LoginReducer.email,
   dataUser: state.LoginReducer.dataUser,
+  customer_code: state.LoginReducer.customer_code,
 });
 
 const mapDispatchToProps = dispatch => {
@@ -400,7 +395,7 @@ const mapDispatchToProps = dispatch => {
 export default connect(
   mapStateToProps,
   mapDispatchToProps,
-)(FormInputOTPForgotPass);
+)(FormInputVerifikasiOTPSMSForgot);
 
 const styles = StyleSheet.create({
   scroll: {
@@ -442,7 +437,7 @@ const styles = StyleSheet.create({
     borderRadius: wp('4%'),
     marginTop: hp('2%'),
     paddingHorizontal: wp('13%'),
-    backgroundColor: '#F1F1F1',
+    backgroundColor: '#fff',
     shadowColor: '#000',
     shadowOffset: {width: 0, height: 6},
     shadowOpacity: 0.41,
@@ -452,7 +447,7 @@ const styles = StyleSheet.create({
   icon: {
     position: 'absolute',
     top: hp('1.8%'),
-    left: wp('6%'),
+    right: wp('62%'),
   },
   eye: {
     position: 'absolute',
@@ -460,35 +455,22 @@ const styles = StyleSheet.create({
     right: wp('6%'),
   },
   textStyle: {
-    fontFamily: 'Lato-Regular',
+    fontFamily: 'Lato-Bold',
     fontSize: hp('1.6%'),
-    // paddingTop: hp('3%'),
-    width: wp('65%'),
-    alignSelf: 'center',
-    textAlign: 'center',
+    paddingTop: hp('3%'),
     // paddingLeft:Font(34)
   },
   button: {
     flexDirection: 'row',
   },
-  buttonWASms: {
+  buttonOTP: {
     backgroundColor: '#529F45',
     height: hp('5.5%'),
-    width: wp('30%'),
-    alignItems: 'center',
-    justifyContent: 'center',
-    borderRadius: wp('2%'),
-    marginLeft: wp('5%'),
-  },
-  buttonSimpanTelepon: {
-    backgroundColor: '#529F45',
-    height: hp('5.5%'),
-    width: wp('55%'),
+    width: wp('70%'),
     alignItems: 'center',
     justifyContent: 'center',
     borderRadius: wp('2%'),
     alignSelf: 'center',
-    marginLeft: wp('10%'),
   },
   textOTP: {
     textAlign: 'center',
@@ -499,10 +481,18 @@ const styles = StyleSheet.create({
   textLupaPassword: {
     fontFamily: 'Lato-Regular',
     color: 'grey',
-    fontSize: hp('1.4%'),
+    fontSize: hp('1.2%'),
     marginTop: hp('1%'),
-    marginBottom: hp('2.5%'),
-    marginLeft: wp('8%'),
+    // marginBottom: hp('2.5%'),
+    marginLeft: wp('10%'),
+  },
+  textNomorTeleponSalah: {
+    fontFamily: 'Lato-Regular',
+    color: 'grey',
+    fontSize: hp('1.2%'),
+    marginTop: hp('1%'),
+    // marginBottom: hp('2.5%'),
+    marginRight: wp('3%'),
   },
   offlineContainer: {
     // flex: 1,

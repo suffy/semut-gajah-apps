@@ -43,6 +43,7 @@ import ModalAlert from '../components/ModalAlert';
 import FormFoto from '../components/FormFoto';
 import ImagePicker from 'react-native-image-crop-picker';
 import Storage from '@react-native-async-storage/async-storage';
+import Snackbar from 'react-native-snackbar';
 
 function MiniOfflineSign() {
   return (
@@ -379,6 +380,27 @@ export class Register extends Component {
       });
   };
 
+  showSnackbarInet = () => {
+    Snackbar.show({
+      text: 'Internet Bermasalah, Silahkan ulangi lagi',
+      //You can also give duration- Snackbar.LENGTH_SHORT, Snackbar.LENGTH_LONG
+      duration: Snackbar.LENGTH_INDEFINITE,
+      //color of snakbar
+      backgroundColor: '#17a2b8',
+      //color of text
+      textColor: 'white',
+      //action
+      action: {
+        text: 'coba lagi',
+        textColor: 'white',
+        onPress: () => {
+          this.forceUpdate();
+        },
+      },
+    });
+  };
+
+
   getCloseAlertModal() {
     this.setState({modalAlert: !this.state.modalAlert});
   }
@@ -502,6 +524,12 @@ export class Register extends Component {
     } else if (!this.state.phone.trim()) {
       this.setState({
         alertData: 'Pastikan nomor telepon tidak ada yang kosong',
+        modalAlert: !this.state.modalAlert,
+      });
+      return;
+    } else if (!this.state.email.trim()) {
+      this.setState({
+        alertData: 'Pastikan nomor email tidak ada yang kosong',
         modalAlert: !this.state.modalAlert,
       });
       return;
@@ -662,7 +690,7 @@ export class Register extends Component {
                   <View style={styles.containerInput}>
                     <TextInput
                       autoCapitalize="none"
-                      placeholder="Email (Tidak Wajib Diisi)"
+                      placeholder="Email"
                       placeholderTextColor="#C1B5B2"
                       style={styles.inputStyle}
                       value={this.state.email}

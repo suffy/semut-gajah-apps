@@ -16,6 +16,7 @@ import FormInputVerifikasiOTPWAOld from '../pages/FormInputVerifikasiOTPWAOld';
 import FormInputOTPForgotPass from '../pages/FormInputOTPForgotPass';
 import FormInputVerifikasiOTPWAForgot from '../pages/FormInputVerifikasiOTPWAForgot';
 import FormInputVerifikasiOTPSMSForgot from '../pages/FormInputVerifikasiOTPSMSForgot';
+import FormInputVerifikasiOTPEmailForgot from '../pages/FormInputVerifikasiOTPEmailForgot';
 import RegisterUserLama from '../pages/RegisterUserLama';
 import FormLupaPassword from '../pages/FormLupaPassword';
 import FormIdentificationUser from '../pages/FormIdentificationUser';
@@ -606,6 +607,11 @@ export class Router extends Component {
         <Stack.Screen
           name="FormInputVerifikasiOTPSMSForgot"
           component={FormInputVerifikasiOTPSMSForgot}
+          options={{headerShown: false}}
+        />
+        <Stack.Screen
+          name="FormInputVerifikasiOTPEmailForgot"
+          component={FormInputVerifikasiOTPEmailForgot}
           options={{headerShown: false}}
         />
         <Stack.Screen
