@@ -9,6 +9,7 @@ import Login from '../pages/Login';
 import Register from '../pages/Register';
 import FormInputCodeOTP from '../pages/FormInputCodeOTP';
 import FormInputCodeOTPOld from '../pages/FormInputCodeOTPOld';
+import FormInputVerifikasiOTPEmail from '../pages/FormInputVerifikasiOTPEmail';
 import FormInputVerifikasiOTPSMS from '../pages/FormInputVerifikasiOTPSMS';
 import FormInputVerifikasiOTPSMSOld from '../pages/FormInputVerifikasiOTPSMSOld';
 import FormInputVerifikasiOTPWA from '../pages/FormInputVerifikasiOTPWA';
@@ -572,6 +573,11 @@ export class Router extends Component {
         <Stack.Screen
           name="FormInputCodeOTPOld"
           component={FormInputCodeOTPOld}
+          options={{headerShown: false}}
+        />
+        <Stack.Screen
+          name="FormInputVerifikasiOTPEmail"
+          component={FormInputVerifikasiOTPEmail}
           options={{headerShown: false}}
         />
         <Stack.Screen

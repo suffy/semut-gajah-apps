@@ -9,6 +9,8 @@ import {
   StyleSheet,
   ScrollView,
   KeyboardAvoidingView,
+  TouchableWithoutFeedback,
+  Alert,
 } from 'react-native';
 import {connect} from 'react-redux';
 import axios from 'axios';
@@ -48,7 +50,7 @@ function LoadingApi() {
   );
 }
 
-export class FormInputCodeOTP extends Component {
+export class FormInputVerifikasiOTPSMS extends Component {
   _isMounted = false;
   constructor(props) {
     super(props);
@@ -60,6 +62,7 @@ export class FormInputCodeOTP extends Component {
       showInput: true,
       loadingApi: false,
       alertData: '',
+      tambahan: '',
       modalAlert: false,
     };
   }
@@ -67,123 +70,16 @@ export class FormInputCodeOTP extends Component {
   UNSAFE_componentWillMount() {
     // lor(this);
     this._isMounted = true;
-    // console.log("data user 70"+ JSON.stringify())
+    this.setTime();
   }
 
   componentWillUnmount() {
     // rol();
     this._isMounted = false;
+    clearInterval(this.interval);
   }
 
-  sendOTPWA = async () => {
-    const formData = {
-      phone: this.props.dataUser.phone,
-    };
-    this.setState({loadingApi: true});
-    try {
-      let response = await axios.post(
-        `${CONFIG.BASE_URL}/api/otp/wa`,
-        formData,
-        // {
-        //   headers: {Authorization: `Bearer ${this.props.token}`},
-        // },
-      );
-      // console.log(response)
-      const data = response.data;
-      if (data !== '' && data['success'] == true) {
-        console.log('HASIL SEND OTP', data.data);
-        this.props.navigation.navigate('FormInputVerifikasiOTPWA',{dataUser:this.props.route.params?.dataUser});
-        this.setState({loadingApi: false});
-      } else {
-        console.log('', typeof data);
-        this.setState({
-          alertData: 'gagal memproses data' + data.message,
-          modalAlert: !this.state.modalAlert,
-        });
-        return false;
-      }
-    } catch (error) {
-      let error429 =
-        JSON.parse(JSON.stringify(error)).message ===
-        'Request failed with status code 429';
-      let errorNetwork =
-        JSON.parse(JSON.stringify(error)).message === 'Network Error';
-      let error400 =
-        JSON.parse(JSON.stringify(error)).message ===
-        'Request failed with status code 400';
-      console.log(
-        'Cek Error========================',
-        JSON.parse(JSON.stringify(error)).message,
-      );
-      if (error429) {
-        this.showSnackbarBusy();
-      } else if (errorNetwork) {
-        this.showSnackbarInet();
-      } else {
-        this.setState({
-          alertData: 'Gagal mengirim otp',
-          modalAlert: !this.state.modalAlert,
-          loadingApi: false,
-        });
-      }
-    }
-  };
-
-  sendOTPSMS = async () => {
-    const formData = {
-      phone: this.props.dataUser.phone,
-    };
-    this.setState({loadingApi: true});
-    try {
-      let response = await axios.post(
-        `${CONFIG.BASE_URL}/api/otp`,
-        formData,
-        // {
-        // headers: {Authorization: `Bearer ${this.props.token}`},
-        // }
-      );
-      // console.log(response)
-      const data = response.data;
-      if (data !== '' && data['success'] == true) {
-        console.log('HASIL SEND OTP', data.data);
-        this.props.navigation.navigate('FormInputVerifikasiOTPSMS',{dataUser:this.props.route.params?.dataUser});
-        this.setState({loadingApi: false});
-      } else {
-        console.log('', typeof data);
-        this.setState({
-          alertData: 'gagal memproses data' + data.message,
-          modalAlert: !this.state.modalAlert,
-        });
-        return false;
-      }
-    } catch (error) {
-      let error429 =
-        JSON.parse(JSON.stringify(error)).message ===
-        'Request failed with status code 429';
-      let errorNetwork =
-        JSON.parse(JSON.stringify(error)).message === 'Network Error';
-      let error400 =
-        JSON.parse(JSON.stringify(error)).message ===
-        'Request failed with status code 400';
-      console.log(
-        'Cek Error========================',
-        JSON.parse(JSON.stringify(error)).message,
-      );
-      if (error429) {
-        this.showSnackbarBusy();
-      } else if (errorNetwork) {
-        this.showSnackbarInet();
-      } else {
-        this.setState({
-          alertData: 'Gagal mengirim otp',
-          modalAlert: !this.state.modalAlert,
-          loadingApi: false,
-        });
-      }
-    }
-  };
-
-  sendOTPEmail = async () => {
+  sendOTP = async () => {
     const formData = {
       email: this.props.dataUser.email,
     };
@@ -193,22 +89,208 @@ export class FormInputCodeOTP extends Component {
         `${CONFIG.BASE_URL}/api/otp/email`,
         formData,
         // {
-        //   headers: {Authorization: `Bearer ${this.props.token}`},
-        // },
+        // headers: {Authorization: `Bearer ${this.props.token}`},
+        // }
       );
       // console.log(response)
       const data = response.data;
       if (data !== '' && data['success'] == true) {
-        console.log('HASIL SEND OTP', data.data);
-        this.props.navigation.navigate('FormInputVerifikasiOTPEmail',{dataUser:this.props.route.params?.dataUser});
         this.setState({loadingApi: false});
+        console.log('HASIL SEND OTP', data.data);
       } else {
         console.log('', typeof data);
         this.setState({
-          alertData: 'gagal memproses data' + data.message,
-          modalAlert: !this.state.modalAlert,
+          alertData: 'Kirim otp gagal ' + data.message,
+          modalAlert: true,
         });
         return false;
+      }
+    } catch (error) {
+      console.log(error);
+      this.setState({loadingApi: false});
+    }
+  };
+
+  cekOTP = async () => {
+    const formData = {
+      otp_code: this.state.codeOTP,
+      phone: this.props.dataUser.email,
+    };
+    this.setState({loadingApi: true});
+    try {
+      let response = await axios.post(
+        `${CONFIG.BASE_URL}/api/otp/verify`,
+        formData,
+        // {
+        //   headers: {Authorization: `Bearer ${this.props.token}`},
+        // },
+        // {timeout: 1000},
+      );
+      const data = response.data;
+      if (data !== '' && data['success'] == true) {
+        this.setState({
+          tambahan: 'VERIFIKASI SUKSES',
+          alertData:
+            'Harap menunggu dari sales kami untuk menghubungi nomor anda yang teregistrasi untuk keperluan persyaratan dokumen dan akses login',
+          modalAlert: true,
+          loadingApi: false,
+        });
+        
+        if (this.props.dataUser && this.props.dataUser.name_company) {
+          console.log('MASUK DISTRIBUTOR', this.props.dataUser);
+          const formData = JSON.stringify(this.props.dataUser);
+          await axios
+            .post(
+              `${CONFIG.BASE_URL}/api/distributor-partner/auth/register`,
+              formData,
+              {
+                headers: {
+                  'content-type': 'application/json',
+                },
+              },
+            )
+            .then(response => {
+              const data = response.data;
+              // const formData = {
+              //   phone: this.state.phone,
+              // };
+              if (data !== '' && data['success'] == true) {
+                console.log('MASUK', JSON.stringify(data));
+                // this.props.loginAct(data.data.token, 'token');
+                // this.props.loginAct(data.data.user, 'dataUser');
+                this.setState({loadingApi: false});
+                this.setState({
+                  tambahan: 'VERIFIKASI SUKSES',
+                  alertData:
+                    'Harap menunggu dari sales kami untuk menghubungi nomor anda yang teregistrasi untuk keperluan persyaratan dokumen dan akses login',
+                  modalAlert: true,
+                  loadingApi: false,
+                });
+              } else {
+                let message = data.message;
+                if (message == 'The phone has already been taken.') {
+                  this.setState({
+                    tambahan: 'VERIFIKASI GAGAL',
+                    alertData: 'Nomor telepon yang didaftarkan telah dipakai',
+                    modalAlert: true,
+                    loadingApi: false,
+                  });
+                } else if (message == 'Account has been registered') {
+                  this.setState({
+                    tambahan: 'VERIFIKASI GAGAL',
+                    alertData: 'Akun anda sudah terdaftar',
+                    modalAlert: true,
+                    loadingApi: false,
+                  });
+                } else {
+                  this.setState({
+                    tambahan: 'VERIFIKASI GAGAL',
+                    alertData: message,
+                    modalAlert: true,
+                    loadingApi: false,
+                  });
+                }
+              }
+            })
+            .catch(error => {
+              let error429 =
+                JSON.parse(JSON.stringify(error)).message ===
+                'Request failed with status code 429';
+              let errorNetwork =
+                JSON.parse(JSON.stringify(error)).message === 'Network Error';
+              let error400 =
+                JSON.parse(JSON.stringify(error)).message ===
+                'Request failed with status code 400';
+              console.log(
+                'Cek Error===========DataSearching=============',
+                JSON.parse(JSON.stringify(error)).message,
+              );
+              if (error429) {
+                this.showSnackbarBusy();
+              } else if (errorNetwork) {
+                this.showSnackbarInet();
+              }
+            });
+        } else {
+          console.log('MASUK UMUM', this.props.dataUser);
+          const formData = JSON.stringify(this.props.dataUser);
+          await axios
+            .post(`${CONFIG.BASE_URL}/api/auth/register?status=2`, 
+            this.props.route.params?.dataUser, {
+              headers: {
+                'content-type': 'application/json',
+              },
+            })
+            .then(response => {
+              // console.log(response)
+              const data = response.data;
+              // const formData = {
+              //   phone: this.state.phone,
+              // };
+              if (data !== '' && data['success'] == true) {
+                console.log('MASUK', JSON.stringify(data.data));
+                // this.props.loginAct(data.data.token, 'token');
+                // this.props.loginAct(data.data.user, 'dataUser');
+                this.setState({
+                  tambahan: 'VERIFIKASI SUKSES',
+                  alertData:
+                    'Akun anda sudah terdaftar di sistem kami, harap menunggu konfirmasi dari admin kami untuk bisa masuk',
+                  modalAlert: true,
+                  loadingApi: false,
+                });
+              } else {
+                let message = data.message;
+                if (message == 'The phone has already been taken.') {
+                  this.setState({
+                    tambahan: 'VERIFIKASI GAGAL',
+                    alertData: 'Nomor telepon yang didaftarkan telah dipakai',
+                    modalAlert: true,
+                    loadingApi: false,
+                  });
+                } else if (message == 'Account has been registered') {
+                  this.setState({
+                    tambahan: 'VERIFIKASI GAGAL',
+                    alertData: 'Akun anda sudah terdaftar',
+                    modalAlert: true,
+                    loadingApi: false,
+                  });
+                } else {
+                  this.setState({
+                    tambahan: 'VERIFIKASI GAGAL',
+                    alertData: message,
+                    modalAlert: true,
+                    loadingApi: false,
+                  });
+                }
+              }
+            })
+            .catch(error => {
+              let error429 =
+                JSON.parse(JSON.stringify(error)).message ===
+                'Request failed with status code 429';
+              let errorNetwork =
+                JSON.parse(JSON.stringify(error)).message === 'Network Error';
+              let error400 =
+                JSON.parse(JSON.stringify(error)).message ===
+                'Request failed with status code 400';
+              console.log(
+                'Cek Error===========DataSearching=============',
+                JSON.parse(JSON.stringify(error)).message,
+              );
+              if (error429) {
+                this.showSnackbarBusy();
+              } else if (errorNetwork) {
+                this.showSnackbarInet();
+              }
+            });
+        }
+      } else {
+        this.setState({
+          tambahan: 'VERIFIKASI GAGAL',
+          alertData: data.message,
+          modalAlert: true,
+          loadingApi: false,
+        });
       }
     } catch (error) {
       let error429 =
@@ -220,7 +302,7 @@ export class FormInputCodeOTP extends Component {
         JSON.parse(JSON.stringify(error)).message ===
         'Request failed with status code 400';
       console.log(
-        'Cek Error========================',
+        'Cek Error===========DataSearching=============',
         JSON.parse(JSON.stringify(error)).message,
       );
       if (error429) {
@@ -229,16 +311,43 @@ export class FormInputCodeOTP extends Component {
         this.showSnackbarInet();
       } else {
         this.setState({
-          alertData: 'Gagal mengirim otp',
-          modalAlert: !this.state.modalAlert,
+          alertData: 'Verifikasi gagal, pastikan kode otp sesuai',
+          modalAlert: true,
           loadingApi: false,
         });
       }
     }
   };
 
+  setTime = () => {
+    this.interval = setInterval(
+      () => this.setState(prevState => ({timer: prevState.timer - 1})),
+      1000,
+    );
+  };
+
+  componentDidUpdate() {
+    if (this.state.timer === 0) {
+      clearInterval(this.interval);
+      this.setState({timer: 60});
+    }
+  }
+
   getCloseAlertModal() {
-    this.setState({modalAlert: !this.state.modalAlert});
+    this.setState({modalAlert: false, tambahan: ''});
+    if (
+      this.state.alertData ==
+      'Harap menunggu dari sales kami untuk menghubungi nomor anda yang teregistrasi untuk keperluan persyaratan dokumen dan akses login'
+    ) {
+      this.props.navigation.replace('Login');
+    } else if (this.state.alertData == 'Silahkan register ulang kembali') {
+      this.props.navigation.replace('Login');
+    } else if (
+      this.state.alertData ==
+      'Akun anda sudah terdaftar di sistem kami, harap menunggu konfirmasi dari admin kami untuk bisa masuk'
+    ) {
+      this.props.navigation.replace('Login');
+    }
   }
 
   showSnackbarBusy = () => {
@@ -255,7 +364,7 @@ export class FormInputCodeOTP extends Component {
         text: 'coba lagi',
         textColor: 'white',
         onPress: () => {
-          this.forceUpdate();
+          this.setState({loadingApi: false});
         },
       },
     });
@@ -275,7 +384,7 @@ export class FormInputCodeOTP extends Component {
         text: 'coba lagi',
         textColor: 'white',
         onPress: () => {
-          this.forceUpdate();
+          this.setState({loadingApi: false});
         },
       },
     });
@@ -287,24 +396,21 @@ export class FormInputCodeOTP extends Component {
       <ScrollView showsVerticalScrollIndicator={false} style={styles.scroll}>
         <ModalAlert
           modalAlert={this.state.modalAlert}
+          tambahan={this.state.tambahan}
           alert={this.state.alertData}
           getCloseAlertModal={() => this.getCloseAlertModal()}
         />
         <View style={styles.container}>
           <Logo width={wp('35%')} height={hp('16%')} style={styles.image} />
-          <Text style={styles.textlogo}>{'Pilih metode verifikasi'}</Text>
+          <Text style={styles.textlogo}>{'Kode OTP'}</Text>
           <View style={styles.posision}>
-            <Text style={[styles.textStyle]}>
-              {
-                'Pilih salah satu metode dibawah ini untuk mendapatkan kode verifikasi'
-              }
-            </Text>
-            {/* {showInput ? (
+            {/* <Text style={[styles.textStyle]}>{'Kode OTP'}</Text> */}
+            {showInput ? (
               <>
                 <View style={styles.containerInput}>
-                   <TextInput
-            autoCapitalize = 'none'
-                    placeholder="Nomor telepon"
+                  <TextInput
+                    autoCapitalize="none"
+                    placeholder="Kode OTP"
                     placeholderTextColor="#A4A4A4"
                     keyboardType="numeric"
                     style={styles.inputStyle}
@@ -314,7 +420,7 @@ export class FormInputCodeOTP extends Component {
                     }
                   />
                 </View>
-                <IconPhone
+                <IconOTP
                   style={styles.icon}
                   width={wp('6%')}
                   height={hp('6%')}
@@ -323,9 +429,9 @@ export class FormInputCodeOTP extends Component {
             ) : (
               <>
                 <View style={styles.containerInput}>
-                   <TextInput
-            autoCapitalize = 'none'
-                    placeholder="Nomor telepon"
+                  <TextInput
+                    autoCapitalize="none"
+                    placeholder="Nomor Telepon"
                     placeholderTextColor="#A4A4A4"
                     keyboardType="numeric"
                     style={styles.inputStyle}
@@ -341,40 +447,21 @@ export class FormInputCodeOTP extends Component {
                   height={hp('6%')}
                 />
               </>
-            )} */}
+            )}
 
-            <View
-              style={{
-                flexDirection: 'row',
-                justifyContent: 'flex-start',
-                marginTop: hp('2%'),
-              }}>
-              {showInput ? (
-                <>
-                  {/* <TouchableOpacity
-                    style={styles.buttonWASms}
-                    onPress={() => this.sendOTPSMS()}>
-                    <Text style={styles.textOTP}>{'SMS'}</Text>
-                  </TouchableOpacity>
-                  <TouchableOpacity
-                    style={styles.buttonWASms}
-                    onPress={() => this.sendOTPWA()}>
-                    <Text style={styles.textOTP}>{'Whatsapp'}</Text>
-                  </TouchableOpacity> */}
-                  <TouchableOpacity
-                    style={styles.buttonWASms}
-                    onPress={() => this.sendOTPEmail()}>
-                    <Text style={styles.textOTP}>{'Email'}</Text>
-                  </TouchableOpacity>
-                </>
-              ) : (
-                <TouchableOpacity
-                  style={styles.buttonSimpanTelepon}
-                  onPress={() => this.sendPhone()}>
-                  <Text style={styles.textOTP}>{'Simpan Telepon'}</Text>
-                </TouchableOpacity>
-              )}
-            </View>
+            {showInput ? (
+              <TouchableOpacity
+                style={styles.buttonOTP}
+                onPress={() => this.cekOTP()}>
+                <Text style={styles.textOTP}>{'OK'}</Text>
+              </TouchableOpacity>
+            ) : (
+              <TouchableOpacity
+                style={styles.buttonOTP}
+                onPress={() => this.sendPhone()}>
+                <Text style={styles.textOTP}>{'Simpan Telepon'}</Text>
+              </TouchableOpacity>
+            )}
 
             <View
               style={{
@@ -383,7 +470,7 @@ export class FormInputCodeOTP extends Component {
                 // backgroundColor: 'red',
                 width: wp('67%'),
               }}>
-              {/* {timer === 60 ? (
+              {timer === 60 ? (
                 <TouchableOpacity
                   onPress={() => {
                     this.sendOTP();
@@ -395,7 +482,7 @@ export class FormInputCodeOTP extends Component {
                 </TouchableOpacity>
               ) : (
                 <View style={{flexDirection: 'row'}}>
-                  <TouchableOpacity
+                  <TouchableWithoutFeedback
                   // onPress={() => {
                   //   this.sendOTP();
                   //   }}
@@ -403,7 +490,7 @@ export class FormInputCodeOTP extends Component {
                     <Text style={[styles.textLupaPassword]}>
                       {'Kirim Ulang OTP'}
                     </Text>
-                  </TouchableOpacity>
+                  </TouchableWithoutFeedback>
                   <Text
                     style={[
                       styles.textLupaPassword,
@@ -414,17 +501,21 @@ export class FormInputCodeOTP extends Component {
                     {')'}
                   </Text>
                 </View>
-              )} */}
-              {/* {showInput ? (
+              )}
+              {showInput ? (
                 <TouchableOpacity
                   onPress={() => {
-                    this.setState({showInput: !showInput});
+                    // this.setState({showInput: !showInput});
+                    this.setState({
+                      alertData: 'Silahkan register ulang kembali',
+                      modalAlert: true,
+                    });
                   }}>
-                  <Text style={[styles.textLupaPassword]}>
-                    {'Nomor Telepon Salah ?'}
+                  <Text style={[styles.textNomorTeleponSalah]}>
+                    {'Email Salah ?'}
                   </Text>
                 </TouchableOpacity>
-              ) : null} */}
+              ) : null}
             </View>
           </View>
         </View>
@@ -448,7 +539,10 @@ const mapDispatchToProps = dispatch => {
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(FormInputCodeOTP);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(FormInputVerifikasiOTPSMS);
 
 const styles = StyleSheet.create({
   scroll: {
@@ -499,7 +593,7 @@ const styles = StyleSheet.create({
   },
   icon: {
     position: 'absolute',
-    top: hp('5.5%'),
+    top: hp('1.8%'),
     right: wp('62%'),
   },
   eye: {
@@ -508,35 +602,22 @@ const styles = StyleSheet.create({
     right: wp('6%'),
   },
   textStyle: {
-    fontFamily: 'Lato-Regular',
+    fontFamily: 'Lato-Bold',
     fontSize: hp('1.6%'),
-    // paddingTop: hp('3%'),
-    width: wp('65%'),
-    alignSelf: 'center',
-    textAlign: 'center',
+    paddingTop: hp('3%'),
     // paddingLeft:Font(34)
   },
   button: {
     flexDirection: 'row',
   },
-  buttonWASms: {
+  buttonOTP: {
     backgroundColor: '#529F45',
     height: hp('5.5%'),
-    width: wp('30%'),
-    alignItems: 'center',
-    justifyContent: 'center',
-    borderRadius: wp('2%'),
-    marginLeft: wp('5%'),
-  },
-  buttonSimpanTelepon: {
-    backgroundColor: '#529F45',
-    height: hp('5.5%'),
-    width: wp('55%'),
+    width: wp('70%'),
     alignItems: 'center',
     justifyContent: 'center',
     borderRadius: wp('2%'),
     alignSelf: 'center',
-    marginLeft: wp('10%'),
   },
   textOTP: {
     textAlign: 'center',
@@ -547,10 +628,18 @@ const styles = StyleSheet.create({
   textLupaPassword: {
     fontFamily: 'Lato-Regular',
     color: 'grey',
-    fontSize: hp('1.4%'),
+    fontSize: hp('1.2%'),
     marginTop: hp('1%'),
-    marginBottom: hp('2.5%'),
-    marginLeft: wp('8%'),
+    // marginBottom: hp('2.5%'),
+    marginLeft: wp('10%'),
+  },
+  textNomorTeleponSalah: {
+    fontFamily: 'Lato-Regular',
+    color: 'grey',
+    fontSize: hp('1.2%'),
+    marginTop: hp('1%'),
+    // marginBottom: hp('2.5%'),
+    marginRight: wp('3%'),
   },
   offlineContainer: {
     // flex: 1,

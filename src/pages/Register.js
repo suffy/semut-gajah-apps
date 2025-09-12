@@ -263,6 +263,26 @@ export class Register extends Component {
   };
 
   handlerSubmit = async () => {
+    if (!this.state.photo_ktp?.path?.trim()) {
+      this.setState({
+        alertData: 'Pastikan foto ktp tidak ada yang kosong',
+        modalAlert: !this.state.modalAlert,
+      });
+      return;
+    } else if (!this.state.photo_toko?.path?.trim()) {
+      this.setState({
+        alertData: 'Pastikan foto toko tidak ada yang kosong',
+        modalAlert: !this.state.modalAlert,
+      });
+      return;
+    } else if (!this.state.selfie_ktp?.path?.trim()) {
+      this.setState({
+        alertData: 'Pastikan foto selfie tidak ada yang kosong',
+        modalAlert: !this.state.modalAlert,
+      });
+      return;
+    }
+
     const dataUser = {
       name: this.state.name,
       shop_name: this.state.namaToko,
@@ -286,8 +306,8 @@ export class Register extends Component {
     formData.append('subdistrict', this.state.kelurahan);
     formData.append('postal_code', this.state.kodepos);
     formData.append('fcm_token', this.state.tokenFCM);
-    formData.append('latitude',this.props.route.params?.latitude),
-    formData.append('longitude',this.props.route.params?.longitude),
+    formData.append('latitude',this.props.route.params?.latitude);
+    formData.append('longitude',this.props.route.params?.longitude);
     formData.append('photo_ktp', {
       name: this.state.photo_ktp?.path?.split('/').pop(),
       type: this.state.photo_ktp?.mime,
@@ -303,11 +323,15 @@ export class Register extends Component {
       type: this.state.photo_toko?.mime,
       uri: this.state.photo_toko?.path,
     });
-    formData.append('photo_npwp', {
-      name: this.state.photo_npwp?.path?.split('/').pop(),
-      type: this.state.photo_npwp?.mime,
-      uri: this.state.photo_npwp?.path,
-    });
+
+    if (this.state.photo_npwp?.path?.trim()) {
+      formData.append('photo_npwp', {
+        name: this.state.photo_npwp?.path?.split('/').pop(),
+        type: this.state.photo_npwp?.mime,
+        uri: this.state.photo_npwp?.path,
+      });
+    }
+
     await axios
       .post(`${CONFIG.BASE_URL}/api/auth/register?status=1`, formData, {
         headers: {
