@@ -82,7 +82,7 @@ export class Category extends Component {
             <View style={styles.containerButton}>
               <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
               {chunkArray(
-                categories[0]?.sort((a, b) => a.menu_order - b.menu_order).slice(0, 10),
+                categories[0]?.sort((a, b) => a.menu_order - b.menu_order).slice(0, 100),
                 2
               ).map((group, columnIndex) => (
                 <View key={columnIndex} style={styles.containerColumn}>

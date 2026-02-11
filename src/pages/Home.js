@@ -1114,6 +1114,38 @@ export class Home extends Component {
       this.props.navigation.navigate('Produk', {
         screen: 'madu',
       });
+    } else if (item.id == 10) {
+      this.props.navigation.navigate('Produk', {
+        screen: 'freshcare',
+      });
+    } else if (item.id == 11) {
+      this.props.navigation.navigate('Produk', {
+        screen: 'hotin',
+      });
+    } else if (item.id == 12) {
+      this.props.navigation.navigate('Produk', {
+        screen: 'maduTj',
+      });
+    } else if (item.id == 13) {
+      this.props.navigation.navigate('Produk', {
+        screen: 'tresnojoyo',
+      });
+    } else if (item.id == 14) {
+      this.props.navigation.navigate('Produk', {
+        screen: 'bebio',
+      });
+    } else if (item.id == 15) {
+      this.props.navigation.navigate('Produk', {
+        screen: 'freshliving',
+      });
+    } else if (item.id == 16) {
+      this.props.navigation.navigate('Produk', {
+        screen: 'mywell',
+      });
+    } else if (item.id == 17) {
+      this.props.navigation.navigate('Produk', {
+        screen: 'herbal',
+      });
     }
   };
   getName = () => {

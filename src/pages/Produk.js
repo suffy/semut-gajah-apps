@@ -121,6 +121,38 @@ export class Produk extends Component {
       maduNewest: [],
       maduRecent: [],
       maduAll: [],
+      freshcarePopular: [],
+      freshcareNewest: [],
+      freshcareRecent: [],
+      freshcareAll: [],
+      hotinPopular: [],
+      hotinNewest: [],
+      hotinRecent: [],
+      hotinAll: [],
+      maduTjPopular: [],
+      maduTjNewest: [],
+      maduTjRecent: [],
+      maduTjAll: [],
+      tresnojoyoPopular: [],
+      tresnojoyoNewest: [],
+      tresnojoyoRecent: [],
+      tresnojoyoAll: [],
+      bebioPopular: [],
+      bebioNewest: [],
+      bebioRecent: [],
+      bebioAll: [],
+      freshlivingPopular: [],
+      freshlivingNewest: [],
+      freshlivingRecent: [],
+      freshlivingAll: [],
+      mywellPopular: [],
+      mywellNewest: [],
+      mywellRecent: [],
+      mywellAll: [],
+      herbalPopular: [],
+      herbalNewest: [],
+      herbalRecent: [],
+      herbalAll: [],
       listSearch: {
         id: '',
         name: '',
@@ -208,6 +240,38 @@ export class Produk extends Component {
       qtyTotalmaduPopular: 0,
       qtyTotalmaduRecent: 0,
       qtyTotalmaduAll: 0,
+      qtyTotalfreshcareNewest: 0,
+      qtyTotalfreshcarePopular: 0,
+      qtyTotalfreshcareRecent: 0,
+      qtyTotalfreshcareAll: 0,
+      qtyTotalhotinNewest: 0,
+      qtyTotalhotinPopular: 0,
+      qtyTotalhotinRecent: 0,
+      qtyTotalhotinAll: 0,
+      qtyTotalmaduTjNewest: 0,
+      qtyTotalmaduTjPopular: 0,
+      qtyTotalmaduTjRecent: 0,
+      qtyTotalmaduTjAll: 0,
+      qtyTotaltresnojoyoNewest: 0,
+      qtyTotaltresnojoyoPopular: 0,
+      qtyTotaltresnojoyoRecent: 0,
+      qtyTotaltresnojoyoAll: 0,
+      qtyTotalbebioNewest: 0,
+      qtyTotalbebioPopular: 0,
+      qtyTotalbebioRecent: 0,
+      qtyTotalbebioAll: 0,
+      qtyTotalfreshlivingNewest: 0,
+      qtyTotalfreshlivingPopular: 0,
+      qtyTotalfreshlivingRecent: 0,
+      qtyTotalfreshlivingAll: 0,
+      qtyTotalmywellNewest: 0,
+      qtyTotalmywellPopular: 0,
+      qtyTotalmywellRecent: 0,
+      qtyTotalmywellAll: 0,
+      qtyTotalherbalNewest: 0,
+      qtyTotalherbalPopular: 0,
+      qtyTotalherbalRecent: 0,
+      qtyTotalherbalAll: 0,
       visible: false,
       visible2: false,
       visibleModalBlack: false,
@@ -558,6 +622,134 @@ export class Produk extends Component {
             qtyTotalmaduAll: data.madu[0].total,
             loadingApi: false,
           });
+      } else if (
+        this.props.route.params &&
+        this.props.route.params.screen === 'freshcare'
+      ) {
+        this._isMounted &&
+          this.setState({
+            freshcarePopular: data.freshcarePopular[0].data,
+            freshcareNewest: data.freshcareNewest[0].data,
+            freshcareRecent: data.freshcareRecent[0].data,
+            freshcareAll: data.freshcare[0].data,
+            qtyTotalfreshcareNewest: data.freshcareNewest[0].total,
+            qtyTotalfreshcarePopular: data.freshcarePopular[0].total,
+            qtyTotalfreshcareRecent: data.freshcareRecent[0].total,
+            qtyTotalfreshcareAll: data.freshcare[0].total,
+            loadingApi: false,
+          });
+      } else if (
+        this.props.route.params &&
+        this.props.route.params.screen === 'hotin'
+      ) {
+        this._isMounted &&
+          this.setState({
+            hotinPopular: data.hotinPopular[0].data,
+            hotinNewest: data.hotinNewest[0].data,
+            hotinRecent: data.hotinRecent[0].data,
+            hotinAll: data.hotin[0].data,
+            qtyTotalhotinNewest: data.hotinNewest[0].total,
+            qtyTotalhotinPopular: data.hotinPopular[0].total,
+            qtyTotalhotinRecent: data.hotinRecent[0].total,
+            qtyTotalhotinAll: data.hotin[0].total,
+            loadingApi: false,
+          });
+      } else if (
+        this.props.route.params &&
+        this.props.route.params.screen === 'maduTj'
+      ) {
+        this._isMounted &&
+          this.setState({
+            maduTjPopular: data.maduTjPopular[0].data,
+            maduTjNewest: data.maduTjNewest[0].data,
+            maduTjRecent: data.maduTjRecent[0].data,
+            maduTjAll: data.maduTj[0].data,
+            qtyTotalmaduTjNewest: data.maduTjNewest[0].total,
+            qtyTotalmaduTjPopular: data.maduTjPopular[0].total,
+            qtyTotalmaduTjRecent: data.maduTjRecent[0].total,
+            qtyTotalmaduTjAll: data.maduTj[0].total,
+            loadingApi: false,
+          });
+      } else if (
+        this.props.route.params &&
+        this.props.route.params.screen === 'tresnojoyo'
+      ) {
+        this._isMounted &&
+          this.setState({
+            tresnojoyoPopular: data.tresnojoyoPopular[0].data,
+            tresnojoyoNewest: data.tresnojoyoNewest[0].data,
+            tresnojoyoRecent: data.tresnojoyoRecent[0].data,
+            tresnojoyoAll: data.tresnojoyo[0].data,
+            qtyTotaltresnojoyoNewest: data.tresnojoyoNewest[0].total,
+            qtyTotaltresnojoyoPopular: data.tresnojoyoPopular[0].total,
+            qtyTotaltresnojoyoRecent: data.tresnojoyoRecent[0].total,
+            qtyTotaltresnojoyoAll: data.tresnojoyo[0].total,
+            loadingApi: false,
+          });
+      } else if (
+        this.props.route.params &&
+        this.props.route.params.screen === 'bebio'
+      ) {
+        this._isMounted &&
+          this.setState({
+            bebioPopular: data.bebioPopular[0].data,
+            bebioNewest: data.bebioNewest[0].data,
+            bebioRecent: data.bebioRecent[0].data,
+            bebioAll: data.bebio[0].data,
+            qtyTotalbebioNewest: data.bebioNewest[0].total,
+            qtyTotalbebioPopular: data.bebioPopular[0].total,
+            qtyTotalbebioRecent: data.bebioRecent[0].total,
+            qtyTotalbebioAll: data.bebio[0].total,
+            loadingApi: false,
+          });
+      } else if (
+        this.props.route.params &&
+        this.props.route.params.screen === 'freshliving'
+      ) {
+        this._isMounted &&
+          this.setState({
+            freshlivingPopular: data.freshlivingPopular[0].data,
+            freshlivingNewest: data.freshlivingNewest[0].data,
+            freshlivingRecent: data.freshlivingRecent[0].data,
+            freshlivingAll: data.freshliving[0].data,
+            qtyTotalfreshlivingNewest: data.freshlivingNewest[0].total,
+            qtyTotalfreshlivingPopular: data.freshlivingPopular[0].total,
+            qtyTotalfreshlivingRecent: data.freshlivingRecent[0].total,
+            qtyTotalfreshlivingAll: data.freshliving[0].total,
+            loadingApi: false,
+          });
+      } else if (
+        this.props.route.params &&
+        this.props.route.params.screen === 'mywell'
+      ) {
+        this._isMounted &&
+          this.setState({
+            mywellPopular: data.mywellPopular[0].data,
+            mywellNewest: data.mywellNewest[0].data,
+            mywellRecent: data.mywellRecent[0].data,
+            mywellAll: data.mywell[0].data,
+            qtyTotalmywellNewest: data.mywellNewest[0].total,
+            qtyTotalmywellPopular: data.mywellPopular[0].total,
+            qtyTotalmywellRecent: data.mywellRecent[0].total,
+            qtyTotalmywellAll: data.mywell[0].total,
+            loadingApi: false,
+          });
+      } else if (
+        this.props.route.params &&
+        this.props.route.params.screen === 'herbal'
+      ) {
+        this._isMounted &&
+          this.setState({
+            herbalPopular: data.herbalPopular[0].data,
+            herbalNewest: data.herbalNewest[0].data,
+            herbalRecent: data.herbalRecent[0].data,
+            herbalAll: data.herbal[0].data,
+            qtyTotalherbalNewest: data.herbalNewest[0].total,
+            qtyTotalherbalPopular: data.herbalPopular[0].total,
+            qtyTotalherbalRecent: data.herbalRecent[0].total,
+            qtyTotalherbalAll: data.herbal[0].total,
+            loadingApi: false,
+          });
       } else {
         console.log('masuk biasa');
         this._isMounted &&
@@ -598,6 +790,38 @@ export class Produk extends Component {
             maduNewest: data.maduNewest[0].data,
             maduRecent: data.maduRecent[0].data,
             maduAll: data.madu[0].data,
+            freshcarePopular: data.freshcarePopular[0].data,
+            freshcareNewest: data.freshcareNewest[0].data,
+            freshcareRecent: data.freshcareRecent[0].data,
+            freshcareAll: data.freshcare[0].data,
+            hotinPopular: data.hotinPopular[0].data,
+            hotinNewest: data.hotinNewest[0].data,
+            hotinRecent: data.hotinRecent[0].data,
+            hotinAll: data.hotin[0].data,
+            maduTjPopular: data.maduTjPopular[0].data,
+            maduTjNewest: data.maduTjNewest[0].data,
+            maduTjRecent: data.maduTjRecent[0].data,
+            maduTjAll: data.maduTj[0].data,
+            tresnojoyoPopular: data.tresnojoyoPopular[0].data,
+            tresnojoyoNewest: data.tresnojoyoNewest[0].data,
+            tresnojoyoRecent: data.tresnojoyoRecent[0].data,
+            tresnojoyoAll: data.tresnojoyo[0].data,
+            bebioPopular: data.bebioPopular[0].data,
+            bebioNewest: data.bebioNewest[0].data,
+            bebioRecent: data.bebioRecent[0].data,
+            bebioAll: data.bebio[0].data,
+            freshlivingPopular: data.freshlivingPopular[0].data,
+            freshlivingNewest: data.freshlivingNewest[0].data,
+            freshlivingRecent: data.freshlivingRecent[0].data,
+            freshlivingAll: data.freshliving[0].data,
+            mywellPopular: data.mywellPopular[0].data,
+            mywellNewest: data.mywellNewest[0].data,
+            mywellRecent: data.mywellRecent[0].data,
+            mywellAll: data.mywell[0].data,
+            herbalPopular: data.herbalPopular[0].data,
+            herbalNewest: data.herbalNewest[0].data,
+            herbalRecent: data.herbalRecent[0].data,
+            herbalAll: data.herbal[0].data,
             // product_partner: data.product_partner[0].data,
             // qtyTotalproduct_partner: data.product_partner[0].total,
             loadingApi: false,
@@ -1171,6 +1395,38 @@ export class Produk extends Component {
       qtyTotalmaduPopular,
       qtyTotalmaduRecent,
       qtyTotalmaduAll,
+      qtyTotalfreshcareNewest,
+      qtyTotalfreshcarePopular,
+      qtyTotalfreshcareRecent,
+      qtyTotalfreshcareAll,
+      qtyTotalhotinNewest,
+      qtyTotalhotinPopular,
+      qtyTotalhotinRecent,
+      qtyTotalhotinAll,
+      qtyTotalmaduTjNewest,
+      qtyTotalmaduTjPopular,
+      qtyTotalmaduTjRecent,
+      qtyTotalmaduTjAll,
+      qtyTotaltresnojoyoNewest,
+      qtyTotaltresnojoyoPopular,
+      qtyTotaltresnojoyoRecent,
+      qtyTotaltresnojoyoAll,
+      qtyTotalbebioNewest,
+      qtyTotalbebioPopular,
+      qtyTotalbebioRecent,
+      qtyTotalbebioAll,
+      qtyTotalfreshlivingNewest,
+      qtyTotalfreshlivingPopular,
+      qtyTotalfreshlivingRecent,
+      qtyTotalfreshlivingAll,
+      qtyTotalmywellNewest,
+      qtyTotalmywellPopular,
+      qtyTotalmywellRecent,
+      qtyTotalmywellAll,
+      qtyTotalherbalNewest,
+      qtyTotalherbalPopular,
+      qtyTotalherbalRecent,
+      qtyTotalherbalAll,
     } = this.state;
     const rotation = this.animation.interpolate({
       inputRange: [0, 1, 2, 3, 4, 5],
@@ -3158,6 +3414,1734 @@ export class Produk extends Component {
                         postShoppingCart={item => this.postShoppingCart(item)}
                         qtyTotal={qtyTotalmaduRecent}
                         onClickAll={() => this.onClickAll('maduRecent')}
+                      />
+                    </View>
+                  )}
+
+                  {this.state.freshcareAll.length > 0 && (
+                    <View style={[styles.container, {height: hp('44%')}]}>
+                      <View style={styles.columnTitle}>
+                        {qtyTotalfreshcareAll > 10 ? (
+                          <Text
+                            column={2}
+                            style={[styles.title, {width: wp('70%')}]}>
+                            {'Produk Freshcare Semua'}
+                          </Text>
+                        ) : (
+                          <Text column={2} style={styles.title}>
+                            {'Produk Freshcare Semua'}
+                          </Text>
+                        )}
+                        {qtyTotalfreshcareAll > 10 ? (
+                          <TouchableOpacity
+                            onPress={() =>
+                              this.props.navigation.navigate('ProdukKategori', {
+                                initial: false,
+                                screen: 'freshcare',
+                              })
+                            }
+                            style={styles.buttonNext2}>
+                            <View
+                              style={{
+                                alignItems: 'center',
+                                justifyContent: 'center',
+                                flexDirection: 'row',
+                              }}>
+                              <Text style={styles.textButtonNext2}>
+                                {'Lihat Semua'}
+                              </Text>
+                              <IconNext2
+                                fill="#529F45"
+                                width={wp('3%')}
+                                height={wp('3%')}
+                              />
+                            </View>
+                          </TouchableOpacity>
+                        ) : null}
+                      </View>
+                      <CardProduk
+                        onClick={item => this.clickCard(item)}
+                        data={this.state.freshcareAll}
+                        postShoppingCart={item => this.postShoppingCart(item)}
+                        qtyTotal={qtyTotalfreshcareAll}
+                        onClickAll={() => this.onClickAll('freshcare')}
+                      />
+                    </View>
+                  )}
+
+                  {this.state.freshcarePopular.length > 0 && (
+                    <View style={[styles.container, {height: hp('44%')}]}>
+                      <View style={styles.columnTitle}>
+                        {qtyTotalfreshcarePopular > 10 ? (
+                          <Text
+                            column={2}
+                            style={[styles.title, {width: wp('70%')}]}>
+                            {'Produk Freshcare Terlaris'}
+                          </Text>
+                        ) : (
+                          <Text column={2} style={styles.title}>
+                            {'Produk Freshcare Terlaris'}
+                          </Text>
+                        )}
+                        {qtyTotalfreshcarePopular > 10 ? (
+                          <TouchableOpacity
+                            onPress={() =>
+                              this.props.navigation.navigate('ProdukKategori', {
+                                initial: false,
+                                screen: 'freshcarePopular',
+                              })
+                            }
+                            style={styles.buttonNext2}>
+                            <View
+                              style={{
+                                alignItems: 'center',
+                                justifyContent: 'center',
+                                flexDirection: 'row',
+                              }}>
+                              <Text style={styles.textButtonNext2}>
+                                {'Lihat Semua'}
+                              </Text>
+                              <IconNext2
+                                fill="#529F45"
+                                width={wp('3%')}
+                                height={wp('3%')}
+                              />
+                            </View>
+                          </TouchableOpacity>
+                        ) : null}
+                      </View>
+                      <CardProduk
+                        onClick={item => this.clickCard(item)}
+                        data={this.state.freshcarePopular}
+                        postShoppingCart={item => this.postShoppingCart(item)}
+                        qtyTotal={qtyTotalfreshcarePopular}
+                        onClickAll={() => this.onClickAll('freshcarePopular')}
+                      />
+                    </View>
+                  )}
+
+                  {this.state.freshcareNewest.length > 0 && (
+                    <View
+                      style={
+                        this.state.freshcareRecent.length > 0
+                          ? [styles.container,{height: hp('44%')}]
+                          : [styles.container, {marginBottom: 0, elevation: 0,height: hp('44%')}]
+                      }>
+                      <View style={styles.columnTitle}>
+                        {qtyTotalfreshcareNewest > 10 ? (
+                          <Text
+                            column={2}
+                            style={[styles.title, {width: wp('70%')}]}>
+                            {'Produk Freshcare Terbaru'}
+                          </Text>
+                        ) : (
+                          <Text column={2} style={styles.title}>
+                            {'Produk Freshcare Terbaru'}
+                          </Text>
+                        )}
+                        {qtyTotalfreshcareNewest > 10 ? (
+                          <TouchableOpacity
+                            onPress={() =>
+                              this.props.navigation.navigate('ProdukKategori', {
+                                initial: false,
+                                screen: 'freshcareNewest',
+                              })
+                            }
+                            style={styles.buttonNext2}>
+                            <View
+                              style={{
+                                alignItems: 'center',
+                                justifyContent: 'center',
+                                flexDirection: 'row',
+                              }}>
+                              <Text style={styles.textButtonNext2}>
+                                {'Lihat Semua'}
+                              </Text>
+                              <IconNext2
+                                fill="#529F45"
+                                width={wp('3%')}
+                                height={wp('3%')}
+                              />
+                            </View>
+                          </TouchableOpacity>
+                        ) : null}
+                      </View>
+                      <CardProduk
+                        onClick={item => this.clickCard(item)}
+                        data={this.state.freshcareNewest}
+                        postShoppingCart={item => this.postShoppingCart(item)}
+                        qtyTotal={qtyTotalfreshcareNewest}
+                        onClickAll={() => this.onClickAll('freshcareNewest')}
+                      />
+                    </View>
+                  )}
+                  {this.state.freshcareRecent.length > 0 && (
+                    <View
+                      style={[
+                        styles.container,
+                        {
+                          marginBottom: hp('9%'),
+                          elevation: 0,
+                          height: hp('44%'),
+                        },
+                      ]}>
+                      <View style={styles.columnTitle}>
+                        {qtyTotalfreshcareRecent > 10 ? (
+                          <Text
+                            column={2}
+                            style={[styles.title, {width: wp('70%')}]}>
+                            {'Produk Freshcare Terakhir Dipesan'}
+                          </Text>
+                        ) : (
+                          <Text column={2} style={styles.title}>
+                            {'Produk Freshcare Terakhir Dipesan'}
+                          </Text>
+                        )}
+                        {qtyTotalfreshcareRecent > 10 ? (
+                          <TouchableOpacity
+                            onPress={() =>
+                              this.props.navigation.navigate('ProdukKategori', {
+                                initial: false,
+                                screen: 'freshcareRecent',
+                              })
+                            }
+                            style={styles.buttonNext2}>
+                            <View
+                              style={{
+                                alignItems: 'center',
+                                justifyContent: 'center',
+                                flexDirection: 'row',
+                              }}>
+                              <Text style={styles.textButtonNext2}>
+                                {'Lihat Semua'}
+                              </Text>
+                              <IconNext2
+                                fill="#529F45"
+                                width={wp('3%')}
+                                height={wp('3%')}
+                              />
+                            </View>
+                          </TouchableOpacity>
+                        ) : null}
+                      </View>
+                      <CardProduk
+                        onClick={item => this.clickCard(item)}
+                        data={this.state.freshcareRecent}
+                        postShoppingCart={item => this.postShoppingCart(item)}
+                        qtyTotal={qtyTotalfreshcareRecent}
+                        onClickAll={() => this.onClickAll('freshcareRecent')}
+                      />
+                    </View>
+                  )}
+
+                  {this.state.hotinAll.length > 0 && (
+                    <View style={[styles.container, {height: hp('44%')}]}>
+                      <View style={styles.columnTitle}>
+                        {qtyTotalhotinAll > 10 ? (
+                          <Text
+                            column={2}
+                            style={[styles.title, {width: wp('70%')}]}>
+                            {'Produk Hotin Semua'}
+                          </Text>
+                        ) : (
+                          <Text column={2} style={styles.title}>
+                            {'Produk Hotin Semua'}
+                          </Text>
+                        )}
+                        {qtyTotalhotinAll > 10 ? (
+                          <TouchableOpacity
+                            onPress={() =>
+                              this.props.navigation.navigate('ProdukKategori', {
+                                initial: false,
+                                screen: 'hotin',
+                              })
+                            }
+                            style={styles.buttonNext2}>
+                            <View
+                              style={{
+                                alignItems: 'center',
+                                justifyContent: 'center',
+                                flexDirection: 'row',
+                              }}>
+                              <Text style={styles.textButtonNext2}>
+                                {'Lihat Semua'}
+                              </Text>
+                              <IconNext2
+                                fill="#529F45"
+                                width={wp('3%')}
+                                height={wp('3%')}
+                              />
+                            </View>
+                          </TouchableOpacity>
+                        ) : null}
+                      </View>
+                      <CardProduk
+                        onClick={item => this.clickCard(item)}
+                        data={this.state.hotinAll}
+                        postShoppingCart={item => this.postShoppingCart(item)}
+                        qtyTotal={qtyTotalhotinAll}
+                        onClickAll={() => this.onClickAll('hotin')}
+                      />
+                    </View>
+                  )}
+
+                  {this.state.hotinPopular.length > 0 && (
+                    <View style={[styles.container, {height: hp('44%')}]}>
+                      <View style={styles.columnTitle}>
+                        {qtyTotalhotinPopular > 10 ? (
+                          <Text
+                            column={2}
+                            style={[styles.title, {width: wp('70%')}]}>
+                            {'Produk Hotin Terlaris'}
+                          </Text>
+                        ) : (
+                          <Text column={2} style={styles.title}>
+                            {'Produk Hotin Terlaris'}
+                          </Text>
+                        )}
+                        {qtyTotalhotinPopular > 10 ? (
+                          <TouchableOpacity
+                            onPress={() =>
+                              this.props.navigation.navigate('ProdukKategori', {
+                                initial: false,
+                                screen: 'hotinPopular',
+                              })
+                            }
+                            style={styles.buttonNext2}>
+                            <View
+                              style={{
+                                alignItems: 'center',
+                                justifyContent: 'center',
+                                flexDirection: 'row',
+                              }}>
+                              <Text style={styles.textButtonNext2}>
+                                {'Lihat Semua'}
+                              </Text>
+                              <IconNext2
+                                fill="#529F45"
+                                width={wp('3%')}
+                                height={wp('3%')}
+                              />
+                            </View>
+                          </TouchableOpacity>
+                        ) : null}
+                      </View>
+                      <CardProduk
+                        onClick={item => this.clickCard(item)}
+                        data={this.state.hotinPopular}
+                        postShoppingCart={item => this.postShoppingCart(item)}
+                        qtyTotal={qtyTotalhotinPopular}
+                        onClickAll={() => this.onClickAll('hotinPopular')}
+                      />
+                    </View>
+                  )}
+
+                  {this.state.hotinNewest.length > 0 && (
+                    <View
+                      style={
+                        this.state.hotinRecent.length > 0
+                          ? [styles.container,{height: hp('44%')}]
+                          : [styles.container, {marginBottom: 0, elevation: 0,height: hp('44%')}]
+                      }>
+                      <View style={styles.columnTitle}>
+                        {qtyTotalhotinNewest > 10 ? (
+                          <Text
+                            column={2}
+                            style={[styles.title, {width: wp('70%')}]}>
+                            {'Produk Hotin Terbaru'}
+                          </Text>
+                        ) : (
+                          <Text column={2} style={styles.title}>
+                            {'Produk Hotin Terbaru'}
+                          </Text>
+                        )}
+                        {qtyTotalhotinNewest > 10 ? (
+                          <TouchableOpacity
+                            onPress={() =>
+                              this.props.navigation.navigate('ProdukKategori', {
+                                initial: false,
+                                screen: 'hotinNewest',
+                              })
+                            }
+                            style={styles.buttonNext2}>
+                            <View
+                              style={{
+                                alignItems: 'center',
+                                justifyContent: 'center',
+                                flexDirection: 'row',
+                              }}>
+                              <Text style={styles.textButtonNext2}>
+                                {'Lihat Semua'}
+                              </Text>
+                              <IconNext2
+                                fill="#529F45"
+                                width={wp('3%')}
+                                height={wp('3%')}
+                              />
+                            </View>
+                          </TouchableOpacity>
+                        ) : null}
+                      </View>
+                      <CardProduk
+                        onClick={item => this.clickCard(item)}
+                        data={this.state.hotinNewest}
+                        postShoppingCart={item => this.postShoppingCart(item)}
+                        qtyTotal={qtyTotalhotinNewest}
+                        onClickAll={() => this.onClickAll('hotinNewest')}
+                      />
+                    </View>
+                  )}
+                  {this.state.hotinRecent.length > 0 && (
+                    <View
+                      style={[
+                        styles.container,
+                        {
+                          marginBottom: hp('9%'),
+                          elevation: 0,
+                          height: hp('44%'),
+                        },
+                      ]}>
+                      <View style={styles.columnTitle}>
+                        {qtyTotalhotinRecent > 10 ? (
+                          <Text
+                            column={2}
+                            style={[styles.title, {width: wp('70%')}]}>
+                            {'Produk Hotin Terakhir Dipesan'}
+                          </Text>
+                        ) : (
+                          <Text column={2} style={styles.title}>
+                            {'Produk Hotin Terakhir Dipesan'}
+                          </Text>
+                        )}
+                        {qtyTotalhotinRecent > 10 ? (
+                          <TouchableOpacity
+                            onPress={() =>
+                              this.props.navigation.navigate('ProdukKategori', {
+                                initial: false,
+                                screen: 'hotinRecent',
+                              })
+                            }
+                            style={styles.buttonNext2}>
+                            <View
+                              style={{
+                                alignItems: 'center',
+                                justifyContent: 'center',
+                                flexDirection: 'row',
+                              }}>
+                              <Text style={styles.textButtonNext2}>
+                                {'Lihat Semua'}
+                              </Text>
+                              <IconNext2
+                                fill="#529F45"
+                                width={wp('3%')}
+                                height={wp('3%')}
+                              />
+                            </View>
+                          </TouchableOpacity>
+                        ) : null}
+                      </View>
+                      <CardProduk
+                        onClick={item => this.clickCard(item)}
+                        data={this.state.hotinRecent}
+                        postShoppingCart={item => this.postShoppingCart(item)}
+                        qtyTotal={qtyTotalhotinRecent}
+                        onClickAll={() => this.onClickAll('hotinRecent')}
+                      />
+                    </View>
+                  )}
+
+                  {this.state.maduTjAll.length > 0 && (
+                    <View style={[styles.container, {height: hp('44%')}]}>
+                      <View style={styles.columnTitle}>
+                        {qtyTotalmaduTjAll > 10 ? (
+                          <Text
+                            column={2}
+                            style={[styles.title, {width: wp('70%')}]}>
+                            {'Produk Madu TJ Semua'}
+                          </Text>
+                        ) : (
+                          <Text column={2} style={styles.title}>
+                            {'Produk Madu TJ Semua'}
+                          </Text>
+                        )}
+                        {qtyTotalmaduTjAll > 10 ? (
+                          <TouchableOpacity
+                            onPress={() =>
+                              this.props.navigation.navigate('ProdukKategori', {
+                                initial: false,
+                                screen: 'maduTj',
+                              })
+                            }
+                            style={styles.buttonNext2}>
+                            <View
+                              style={{
+                                alignItems: 'center',
+                                justifyContent: 'center',
+                                flexDirection: 'row',
+                              }}>
+                              <Text style={styles.textButtonNext2}>
+                                {'Lihat Semua'}
+                              </Text>
+                              <IconNext2
+                                fill="#529F45"
+                                width={wp('3%')}
+                                height={wp('3%')}
+                              />
+                            </View>
+                          </TouchableOpacity>
+                        ) : null}
+                      </View>
+                      <CardProduk
+                        onClick={item => this.clickCard(item)}
+                        data={this.state.maduTjAll}
+                        postShoppingCart={item => this.postShoppingCart(item)}
+                        qtyTotal={qtyTotalmaduTjAll}
+                        onClickAll={() => this.onClickAll('maduTj')}
+                      />
+                    </View>
+                  )}
+
+                  {this.state.maduTjPopular.length > 0 && (
+                    <View style={[styles.container, {height: hp('44%')}]}>
+                      <View style={styles.columnTitle}>
+                        {qtyTotalmaduTjPopular > 10 ? (
+                          <Text
+                            column={2}
+                            style={[styles.title, {width: wp('70%')}]}>
+                            {'Produk Madu TJ Terlaris'}
+                          </Text>
+                        ) : (
+                          <Text column={2} style={styles.title}>
+                            {'Produk Madu TJ Terlaris'}
+                          </Text>
+                        )}
+                        {qtyTotalmaduTjPopular > 10 ? (
+                          <TouchableOpacity
+                            onPress={() =>
+                              this.props.navigation.navigate('ProdukKategori', {
+                                initial: false,
+                                screen: 'maduTjPopular',
+                              })
+                            }
+                            style={styles.buttonNext2}>
+                            <View
+                              style={{
+                                alignItems: 'center',
+                                justifyContent: 'center',
+                                flexDirection: 'row',
+                              }}>
+                              <Text style={styles.textButtonNext2}>
+                                {'Lihat Semua'}
+                              </Text>
+                              <IconNext2
+                                fill="#529F45"
+                                width={wp('3%')}
+                                height={wp('3%')}
+                              />
+                            </View>
+                          </TouchableOpacity>
+                        ) : null}
+                      </View>
+                      <CardProduk
+                        onClick={item => this.clickCard(item)}
+                        data={this.state.maduTjPopular}
+                        postShoppingCart={item => this.postShoppingCart(item)}
+                        qtyTotal={qtyTotalmaduTjPopular}
+                        onClickAll={() => this.onClickAll('maduTjPopular')}
+                      />
+                    </View>
+                  )}
+
+                  {this.state.maduTjNewest.length > 0 && (
+                    <View
+                      style={
+                        this.state.maduTjRecent.length > 0
+                          ? [styles.container,{height: hp('44%')}]
+                          : [styles.container, {marginBottom: 0, elevation: 0,height: hp('44%')}]
+                      }>
+                      <View style={styles.columnTitle}>
+                        {qtyTotalmaduTjNewest > 10 ? (
+                          <Text
+                            column={2}
+                            style={[styles.title, {width: wp('70%')}]}>
+                            {'Produk Madu TJ Terbaru'}
+                          </Text>
+                        ) : (
+                          <Text column={2} style={styles.title}>
+                            {'Produk Madu TJ Terbaru'}
+                          </Text>
+                        )}
+                        {qtyTotalmaduTjNewest > 10 ? (
+                          <TouchableOpacity
+                            onPress={() =>
+                              this.props.navigation.navigate('ProdukKategori', {
+                                initial: false,
+                                screen: 'maduTjNewest',
+                              })
+                            }
+                            style={styles.buttonNext2}>
+                            <View
+                              style={{
+                                alignItems: 'center',
+                                justifyContent: 'center',
+                                flexDirection: 'row',
+                              }}>
+                              <Text style={styles.textButtonNext2}>
+                                {'Lihat Semua'}
+                              </Text>
+                              <IconNext2
+                                fill="#529F45"
+                                width={wp('3%')}
+                                height={wp('3%')}
+                              />
+                            </View>
+                          </TouchableOpacity>
+                        ) : null}
+                      </View>
+                      <CardProduk
+                        onClick={item => this.clickCard(item)}
+                        data={this.state.maduTjNewest}
+                        postShoppingCart={item => this.postShoppingCart(item)}
+                        qtyTotal={qtyTotalmaduTjNewest}
+                        onClickAll={() => this.onClickAll('maduTjNewest')}
+                      />
+                    </View>
+                  )}
+                  {this.state.maduTjRecent.length > 0 && (
+                    <View
+                      style={[
+                        styles.container,
+                        {
+                          marginBottom: hp('9%'),
+                          elevation: 0,
+                          height: hp('44%'),
+                        },
+                      ]}>
+                      <View style={styles.columnTitle}>
+                        {qtyTotalmaduTjRecent > 10 ? (
+                          <Text
+                            column={2}
+                            style={[styles.title, {width: wp('70%')}]}>
+                            {'Produk Madu TJ Terakhir Dipesan'}
+                          </Text>
+                        ) : (
+                          <Text column={2} style={styles.title}>
+                            {'Produk Madu TJ Terakhir Dipesan'}
+                          </Text>
+                        )}
+                        {qtyTotalmaduTjRecent > 10 ? (
+                          <TouchableOpacity
+                            onPress={() =>
+                              this.props.navigation.navigate('ProdukKategori', {
+                                initial: false,
+                                screen: 'maduTjRecent',
+                              })
+                            }
+                            style={styles.buttonNext2}>
+                            <View
+                              style={{
+                                alignItems: 'center',
+                                justifyContent: 'center',
+                                flexDirection: 'row',
+                              }}>
+                              <Text style={styles.textButtonNext2}>
+                                {'Lihat Semua'}
+                              </Text>
+                              <IconNext2
+                                fill="#529F45"
+                                width={wp('3%')}
+                                height={wp('3%')}
+                              />
+                            </View>
+                          </TouchableOpacity>
+                        ) : null}
+                      </View>
+                      <CardProduk
+                        onClick={item => this.clickCard(item)}
+                        data={this.state.maduTjRecent}
+                        postShoppingCart={item => this.postShoppingCart(item)}
+                        qtyTotal={qtyTotalmaduTjRecent}
+                        onClickAll={() => this.onClickAll('maduTjRecent')}
+                      />
+                    </View>
+                  )}
+
+                  {this.state.tresnojoyoAll.length > 0 && (
+                    <View style={[styles.container, {height: hp('44%')}]}>
+                      <View style={styles.columnTitle}>
+                        {qtyTotaltresnojoyoAll > 10 ? (
+                          <Text
+                            column={2}
+                            style={[styles.title, {width: wp('70%')}]}>
+                            {'Produk Tresnojoyo Semua'}
+                          </Text>
+                        ) : (
+                          <Text column={2} style={styles.title}>
+                            {'Produk Tresnojoyo Semua'}
+                          </Text>
+                        )}
+                        {qtyTotaltresnojoyoAll > 10 ? (
+                          <TouchableOpacity
+                            onPress={() =>
+                              this.props.navigation.navigate('ProdukKategori', {
+                                initial: false,
+                                screen: 'tresnojoyo',
+                              })
+                            }
+                            style={styles.buttonNext2}>
+                            <View
+                              style={{
+                                alignItems: 'center',
+                                justifyContent: 'center',
+                                flexDirection: 'row',
+                              }}>
+                              <Text style={styles.textButtonNext2}>
+                                {'Lihat Semua'}
+                              </Text>
+                              <IconNext2
+                                fill="#529F45"
+                                width={wp('3%')}
+                                height={wp('3%')}
+                              />
+                            </View>
+                          </TouchableOpacity>
+                        ) : null}
+                      </View>
+                      <CardProduk
+                        onClick={item => this.clickCard(item)}
+                        data={this.state.tresnojoyoAll}
+                        postShoppingCart={item => this.postShoppingCart(item)}
+                        qtyTotal={qtyTotaltresnojoyoAll}
+                        onClickAll={() => this.onClickAll('tresnojoyo')}
+                      />
+                    </View>
+                  )}
+
+                  {this.state.tresnojoyoPopular.length > 0 && (
+                    <View style={[styles.container, {height: hp('44%')}]}>
+                      <View style={styles.columnTitle}>
+                        {qtyTotaltresnojoyoPopular > 10 ? (
+                          <Text
+                            column={2}
+                            style={[styles.title, {width: wp('70%')}]}>
+                            {'Produk Tresnojoyo Terlaris'}
+                          </Text>
+                        ) : (
+                          <Text column={2} style={styles.title}>
+                            {'Produk Tresnojoyo Terlaris'}
+                          </Text>
+                        )}
+                        {qtyTotaltresnojoyoPopular > 10 ? (
+                          <TouchableOpacity
+                            onPress={() =>
+                              this.props.navigation.navigate('ProdukKategori', {
+                                initial: false,
+                                screen: 'tresnojoyoPopular',
+                              })
+                            }
+                            style={styles.buttonNext2}>
+                            <View
+                              style={{
+                                alignItems: 'center',
+                                justifyContent: 'center',
+                                flexDirection: 'row',
+                              }}>
+                              <Text style={styles.textButtonNext2}>
+                                {'Lihat Semua'}
+                              </Text>
+                              <IconNext2
+                                fill="#529F45"
+                                width={wp('3%')}
+                                height={wp('3%')}
+                              />
+                            </View>
+                          </TouchableOpacity>
+                        ) : null}
+                      </View>
+                      <CardProduk
+                        onClick={item => this.clickCard(item)}
+                        data={this.state.tresnojoyoPopular}
+                        postShoppingCart={item => this.postShoppingCart(item)}
+                        qtyTotal={qtyTotaltresnojoyoPopular}
+                        onClickAll={() => this.onClickAll('tresnojoyoPopular')}
+                      />
+                    </View>
+                  )}
+
+                  {this.state.tresnojoyoNewest.length > 0 && (
+                    <View
+                      style={
+                        this.state.tresnojoyoRecent.length > 0
+                          ? [styles.container,{height: hp('44%')}]
+                          : [styles.container, {marginBottom: 0, elevation: 0,height: hp('44%')}]
+                      }>
+                      <View style={styles.columnTitle}>
+                        {qtyTotaltresnojoyoNewest > 10 ? (
+                          <Text
+                            column={2}
+                            style={[styles.title, {width: wp('70%')}]}>
+                            {'Produk Tresnojoyo Terbaru'}
+                          </Text>
+                        ) : (
+                          <Text column={2} style={styles.title}>
+                            {'Produk Tresnojoyo Terbaru'}
+                          </Text>
+                        )}
+                        {qtyTotaltresnojoyoNewest > 10 ? (
+                          <TouchableOpacity
+                            onPress={() =>
+                              this.props.navigation.navigate('ProdukKategori', {
+                                initial: false,
+                                screen: 'tresnojoyoNewest',
+                              })
+                            }
+                            style={styles.buttonNext2}>
+                            <View
+                              style={{
+                                alignItems: 'center',
+                                justifyContent: 'center',
+                                flexDirection: 'row',
+                              }}>
+                              <Text style={styles.textButtonNext2}>
+                                {'Lihat Semua'}
+                              </Text>
+                              <IconNext2
+                                fill="#529F45"
+                                width={wp('3%')}
+                                height={wp('3%')}
+                              />
+                            </View>
+                          </TouchableOpacity>
+                        ) : null}
+                      </View>
+                      <CardProduk
+                        onClick={item => this.clickCard(item)}
+                        data={this.state.tresnojoyoNewest}
+                        postShoppingCart={item => this.postShoppingCart(item)}
+                        qtyTotal={qtyTotaltresnojoyoNewest}
+                        onClickAll={() => this.onClickAll('tresnojoyoNewest')}
+                      />
+                    </View>
+                  )}
+                  {this.state.tresnojoyoRecent.length > 0 && (
+                    <View
+                      style={[
+                        styles.container,
+                        {
+                          marginBottom: hp('9%'),
+                          elevation: 0,
+                          height: hp('44%'),
+                        },
+                      ]}>
+                      <View style={styles.columnTitle}>
+                        {qtyTotaltresnojoyoRecent > 10 ? (
+                          <Text
+                            column={2}
+                            style={[styles.title, {width: wp('70%')}]}>
+                            {'Produk Tresnojoyo Terakhir Dipesan'}
+                          </Text>
+                        ) : (
+                          <Text column={2} style={styles.title}>
+                            {'Produk Tresnojoyo Terakhir Dipesan'}
+                          </Text>
+                        )}
+                        {qtyTotaltresnojoyoRecent > 10 ? (
+                          <TouchableOpacity
+                            onPress={() =>
+                              this.props.navigation.navigate('ProdukKategori', {
+                                initial: false,
+                                screen: 'tresnojoyoRecent',
+                              })
+                            }
+                            style={styles.buttonNext2}>
+                            <View
+                              style={{
+                                alignItems: 'center',
+                                justifyContent: 'center',
+                                flexDirection: 'row',
+                              }}>
+                              <Text style={styles.textButtonNext2}>
+                                {'Lihat Semua'}
+                              </Text>
+                              <IconNext2
+                                fill="#529F45"
+                                width={wp('3%')}
+                                height={wp('3%')}
+                              />
+                            </View>
+                          </TouchableOpacity>
+                        ) : null}
+                      </View>
+                      <CardProduk
+                        onClick={item => this.clickCard(item)}
+                        data={this.state.tresnojoyoRecent}
+                        postShoppingCart={item => this.postShoppingCart(item)}
+                        qtyTotal={qtyTotaltresnojoyoRecent}
+                        onClickAll={() => this.onClickAll('tresnojoyoRecent')}
+                      />
+                    </View>
+                  )}
+
+                  {this.state.bebioAll.length > 0 && (
+                    <View style={[styles.container, {height: hp('44%')}]}>
+                      <View style={styles.columnTitle}>
+                        {qtyTotalbebioAll > 10 ? (
+                          <Text
+                            column={2}
+                            style={[styles.title, {width: wp('70%')}]}>
+                            {'Produk Bebio Semua'}
+                          </Text>
+                        ) : (
+                          <Text column={2} style={styles.title}>
+                            {'Produk Bebio Semua'}
+                          </Text>
+                        )}
+                        {qtyTotalbebioAll > 10 ? (
+                          <TouchableOpacity
+                            onPress={() =>
+                              this.props.navigation.navigate('ProdukKategori', {
+                                initial: false,
+                                screen: 'bebio',
+                              })
+                            }
+                            style={styles.buttonNext2}>
+                            <View
+                              style={{
+                                alignItems: 'center',
+                                justifyContent: 'center',
+                                flexDirection: 'row',
+                              }}>
+                              <Text style={styles.textButtonNext2}>
+                                {'Lihat Semua'}
+                              </Text>
+                              <IconNext2
+                                fill="#529F45"
+                                width={wp('3%')}
+                                height={wp('3%')}
+                              />
+                            </View>
+                          </TouchableOpacity>
+                        ) : null}
+                      </View>
+                      <CardProduk
+                        onClick={item => this.clickCard(item)}
+                        data={this.state.bebioAll}
+                        postShoppingCart={item => this.postShoppingCart(item)}
+                        qtyTotal={qtyTotalbebioAll}
+                        onClickAll={() => this.onClickAll('bebio')}
+                      />
+                    </View>
+                  )}
+
+                  {this.state.bebioPopular.length > 0 && (
+                    <View style={[styles.container, {height: hp('44%')}]}>
+                      <View style={styles.columnTitle}>
+                        {qtyTotalbebioPopular > 10 ? (
+                          <Text
+                            column={2}
+                            style={[styles.title, {width: wp('70%')}]}>
+                            {'Produk Bebio Terlaris'}
+                          </Text>
+                        ) : (
+                          <Text column={2} style={styles.title}>
+                            {'Produk Bebio Terlaris'}
+                          </Text>
+                        )}
+                        {qtyTotalbebioPopular > 10 ? (
+                          <TouchableOpacity
+                            onPress={() =>
+                              this.props.navigation.navigate('ProdukKategori', {
+                                initial: false,
+                                screen: 'bebioPopular',
+                              })
+                            }
+                            style={styles.buttonNext2}>
+                            <View
+                              style={{
+                                alignItems: 'center',
+                                justifyContent: 'center',
+                                flexDirection: 'row',
+                              }}>
+                              <Text style={styles.textButtonNext2}>
+                                {'Lihat Semua'}
+                              </Text>
+                              <IconNext2
+                                fill="#529F45"
+                                width={wp('3%')}
+                                height={wp('3%')}
+                              />
+                            </View>
+                          </TouchableOpacity>
+                        ) : null}
+                      </View>
+                      <CardProduk
+                        onClick={item => this.clickCard(item)}
+                        data={this.state.bebioPopular}
+                        postShoppingCart={item => this.postShoppingCart(item)}
+                        qtyTotal={qtyTotalbebioPopular}
+                        onClickAll={() => this.onClickAll('bebioPopular')}
+                      />
+                    </View>
+                  )}
+
+                  {this.state.bebioNewest.length > 0 && (
+                    <View
+                      style={
+                        this.state.bebioRecent.length > 0
+                          ? [styles.container,{height: hp('44%')}]
+                          : [styles.container, {marginBottom: 0, elevation: 0,height: hp('44%')}]
+                      }>
+                      <View style={styles.columnTitle}>
+                        {qtyTotalbebioNewest > 10 ? (
+                          <Text
+                            column={2}
+                            style={[styles.title, {width: wp('70%')}]}>
+                            {'Produk Bebio Terbaru'}
+                          </Text>
+                        ) : (
+                          <Text column={2} style={styles.title}>
+                            {'Produk Bebio Terbaru'}
+                          </Text>
+                        )}
+                        {qtyTotalbebioNewest > 10 ? (
+                          <TouchableOpacity
+                            onPress={() =>
+                              this.props.navigation.navigate('ProdukKategori', {
+                                initial: false,
+                                screen: 'bebioNewest',
+                              })
+                            }
+                            style={styles.buttonNext2}>
+                            <View
+                              style={{
+                                alignItems: 'center',
+                                justifyContent: 'center',
+                                flexDirection: 'row',
+                              }}>
+                              <Text style={styles.textButtonNext2}>
+                                {'Lihat Semua'}
+                              </Text>
+                              <IconNext2
+                                fill="#529F45"
+                                width={wp('3%')}
+                                height={wp('3%')}
+                              />
+                            </View>
+                          </TouchableOpacity>
+                        ) : null}
+                      </View>
+                      <CardProduk
+                        onClick={item => this.clickCard(item)}
+                        data={this.state.bebioNewest}
+                        postShoppingCart={item => this.postShoppingCart(item)}
+                        qtyTotal={qtyTotalbebioNewest}
+                        onClickAll={() => this.onClickAll('bebioNewest')}
+                      />
+                    </View>
+                  )}
+                  {this.state.bebioRecent.length > 0 && (
+                    <View
+                      style={[
+                        styles.container,
+                        {
+                          marginBottom: hp('9%'),
+                          elevation: 0,
+                          height: hp('44%'),
+                        },
+                      ]}>
+                      <View style={styles.columnTitle}>
+                        {qtyTotalbebioRecent > 10 ? (
+                          <Text
+                            column={2}
+                            style={[styles.title, {width: wp('70%')}]}>
+                            {'Produk Bebio Terakhir Dipesan'}
+                          </Text>
+                        ) : (
+                          <Text column={2} style={styles.title}>
+                            {'Produk Bebio Terakhir Dipesan'}
+                          </Text>
+                        )}
+                        {qtyTotalbebioRecent > 10 ? (
+                          <TouchableOpacity
+                            onPress={() =>
+                              this.props.navigation.navigate('ProdukKategori', {
+                                initial: false,
+                                screen: 'bebioRecent',
+                              })
+                            }
+                            style={styles.buttonNext2}>
+                            <View
+                              style={{
+                                alignItems: 'center',
+                                justifyContent: 'center',
+                                flexDirection: 'row',
+                              }}>
+                              <Text style={styles.textButtonNext2}>
+                                {'Lihat Semua'}
+                              </Text>
+                              <IconNext2
+                                fill="#529F45"
+                                width={wp('3%')}
+                                height={wp('3%')}
+                              />
+                            </View>
+                          </TouchableOpacity>
+                        ) : null}
+                      </View>
+                      <CardProduk
+                        onClick={item => this.clickCard(item)}
+                        data={this.state.bebioRecent}
+                        postShoppingCart={item => this.postShoppingCart(item)}
+                        qtyTotal={qtyTotalbebioRecent}
+                        onClickAll={() => this.onClickAll('bebioRecent')}
+                      />
+                    </View>
+                  )}
+
+                  {this.state.freshlivingAll.length > 0 && (
+                    <View style={[styles.container, {height: hp('44%')}]}>
+                      <View style={styles.columnTitle}>
+                        {qtyTotalfreshlivingAll > 10 ? (
+                          <Text
+                            column={2}
+                            style={[styles.title, {width: wp('70%')}]}>
+                            {'Produk Freshliving Semua'}
+                          </Text>
+                        ) : (
+                          <Text column={2} style={styles.title}>
+                            {'Produk Freshliving Semua'}
+                          </Text>
+                        )}
+                        {qtyTotalfreshlivingAll > 10 ? (
+                          <TouchableOpacity
+                            onPress={() =>
+                              this.props.navigation.navigate('ProdukKategori', {
+                                initial: false,
+                                screen: 'freshliving',
+                              })
+                            }
+                            style={styles.buttonNext2}>
+                            <View
+                              style={{
+                                alignItems: 'center',
+                                justifyContent: 'center',
+                                flexDirection: 'row',
+                              }}>
+                              <Text style={styles.textButtonNext2}>
+                                {'Lihat Semua'}
+                              </Text>
+                              <IconNext2
+                                fill="#529F45"
+                                width={wp('3%')}
+                                height={wp('3%')}
+                              />
+                            </View>
+                          </TouchableOpacity>
+                        ) : null}
+                      </View>
+                      <CardProduk
+                        onClick={item => this.clickCard(item)}
+                        data={this.state.freshlivingAll}
+                        postShoppingCart={item => this.postShoppingCart(item)}
+                        qtyTotal={qtyTotalfreshlivingAll}
+                        onClickAll={() => this.onClickAll('freshliving')}
+                      />
+                    </View>
+                  )}
+
+                  {this.state.freshlivingPopular.length > 0 && (
+                    <View style={[styles.container, {height: hp('44%')}]}>
+                      <View style={styles.columnTitle}>
+                        {qtyTotalfreshlivingPopular > 10 ? (
+                          <Text
+                            column={2}
+                            style={[styles.title, {width: wp('70%')}]}>
+                            {'Produk Freshliving Terlaris'}
+                          </Text>
+                        ) : (
+                          <Text column={2} style={styles.title}>
+                            {'Produk Freshliving Terlaris'}
+                          </Text>
+                        )}
+                        {qtyTotalfreshlivingPopular > 10 ? (
+                          <TouchableOpacity
+                            onPress={() =>
+                              this.props.navigation.navigate('ProdukKategori', {
+                                initial: false,
+                                screen: 'freshlivingPopular',
+                              })
+                            }
+                            style={styles.buttonNext2}>
+                            <View
+                              style={{
+                                alignItems: 'center',
+                                justifyContent: 'center',
+                                flexDirection: 'row',
+                              }}>
+                              <Text style={styles.textButtonNext2}>
+                                {'Lihat Semua'}
+                              </Text>
+                              <IconNext2
+                                fill="#529F45"
+                                width={wp('3%')}
+                                height={wp('3%')}
+                              />
+                            </View>
+                          </TouchableOpacity>
+                        ) : null}
+                      </View>
+                      <CardProduk
+                        onClick={item => this.clickCard(item)}
+                        data={this.state.freshlivingPopular}
+                        postShoppingCart={item => this.postShoppingCart(item)}
+                        qtyTotal={qtyTotalfreshlivingPopular}
+                        onClickAll={() => this.onClickAll('freshlivingPopular')}
+                      />
+                    </View>
+                  )}
+
+                  {this.state.freshlivingNewest.length > 0 && (
+                    <View
+                      style={
+                        this.state.freshlivingRecent.length > 0
+                          ? [styles.container,{height: hp('44%')}]
+                          : [styles.container, {marginBottom: 0, elevation: 0,height: hp('44%')}]
+                      }>
+                      <View style={styles.columnTitle}>
+                        {qtyTotalfreshlivingNewest > 10 ? (
+                          <Text
+                            column={2}
+                            style={[styles.title, {width: wp('70%')}]}>
+                            {'Produk Freshliving Terbaru'}
+                          </Text>
+                        ) : (
+                          <Text column={2} style={styles.title}>
+                            {'Produk Freshliving Terbaru'}
+                          </Text>
+                        )}
+                        {qtyTotalfreshlivingNewest > 10 ? (
+                          <TouchableOpacity
+                            onPress={() =>
+                              this.props.navigation.navigate('ProdukKategori', {
+                                initial: false,
+                                screen: 'freshlivingNewest',
+                              })
+                            }
+                            style={styles.buttonNext2}>
+                            <View
+                              style={{
+                                alignItems: 'center',
+                                justifyContent: 'center',
+                                flexDirection: 'row',
+                              }}>
+                              <Text style={styles.textButtonNext2}>
+                                {'Lihat Semua'}
+                              </Text>
+                              <IconNext2
+                                fill="#529F45"
+                                width={wp('3%')}
+                                height={wp('3%')}
+                              />
+                            </View>
+                          </TouchableOpacity>
+                        ) : null}
+                      </View>
+                      <CardProduk
+                        onClick={item => this.clickCard(item)}
+                        data={this.state.freshlivingNewest}
+                        postShoppingCart={item => this.postShoppingCart(item)}
+                        qtyTotal={qtyTotalfreshlivingNewest}
+                        onClickAll={() => this.onClickAll('freshlivingNewest')}
+                      />
+                    </View>
+                  )}
+                  {this.state.freshlivingRecent.length > 0 && (
+                    <View
+                      style={[
+                        styles.container,
+                        {
+                          marginBottom: hp('9%'),
+                          elevation: 0,
+                          height: hp('44%'),
+                        },
+                      ]}>
+                      <View style={styles.columnTitle}>
+                        {qtyTotalfreshlivingRecent > 10 ? (
+                          <Text
+                            column={2}
+                            style={[styles.title, {width: wp('70%')}]}>
+                            {'Produk Freshliving Terakhir Dipesan'}
+                          </Text>
+                        ) : (
+                          <Text column={2} style={styles.title}>
+                            {'Produk Freshliving Terakhir Dipesan'}
+                          </Text>
+                        )}
+                        {qtyTotalfreshlivingRecent > 10 ? (
+                          <TouchableOpacity
+                            onPress={() =>
+                              this.props.navigation.navigate('ProdukKategori', {
+                                initial: false,
+                                screen: 'freshlivingRecent',
+                              })
+                            }
+                            style={styles.buttonNext2}>
+                            <View
+                              style={{
+                                alignItems: 'center',
+                                justifyContent: 'center',
+                                flexDirection: 'row',
+                              }}>
+                              <Text style={styles.textButtonNext2}>
+                                {'Lihat Semua'}
+                              </Text>
+                              <IconNext2
+                                fill="#529F45"
+                                width={wp('3%')}
+                                height={wp('3%')}
+                              />
+                            </View>
+                          </TouchableOpacity>
+                        ) : null}
+                      </View>
+                      <CardProduk
+                        onClick={item => this.clickCard(item)}
+                        data={this.state.freshlivingRecent}
+                        postShoppingCart={item => this.postShoppingCart(item)}
+                        qtyTotal={qtyTotalfreshlivingRecent}
+                        onClickAll={() => this.onClickAll('freshlivingRecent')}
+                      />
+                    </View>
+                  )}
+
+                  {this.state.mywellAll.length > 0 && (
+                    <View style={[styles.container, {height: hp('44%')}]}>
+                      <View style={styles.columnTitle}>
+                        {qtyTotalmywellAll > 10 ? (
+                          <Text
+                            column={2}
+                            style={[styles.title, {width: wp('70%')}]}>
+                            {'Produk Mywell Semua'}
+                          </Text>
+                        ) : (
+                          <Text column={2} style={styles.title}>
+                            {'Produk Mywell Semua'}
+                          </Text>
+                        )}
+                        {qtyTotalmywellAll > 10 ? (
+                          <TouchableOpacity
+                            onPress={() =>
+                              this.props.navigation.navigate('ProdukKategori', {
+                                initial: false,
+                                screen: 'mywell',
+                              })
+                            }
+                            style={styles.buttonNext2}>
+                            <View
+                              style={{
+                                alignItems: 'center',
+                                justifyContent: 'center',
+                                flexDirection: 'row',
+                              }}>
+                              <Text style={styles.textButtonNext2}>
+                                {'Lihat Semua'}
+                              </Text>
+                              <IconNext2
+                                fill="#529F45"
+                                width={wp('3%')}
+                                height={wp('3%')}
+                              />
+                            </View>
+                          </TouchableOpacity>
+                        ) : null}
+                      </View>
+                      <CardProduk
+                        onClick={item => this.clickCard(item)}
+                        data={this.state.mywellAll}
+                        postShoppingCart={item => this.postShoppingCart(item)}
+                        qtyTotal={qtyTotalmywellAll}
+                        onClickAll={() => this.onClickAll('mywell')}
+                      />
+                    </View>
+                  )}
+
+                  {this.state.mywellPopular.length > 0 && (
+                    <View style={[styles.container, {height: hp('44%')}]}>
+                      <View style={styles.columnTitle}>
+                        {qtyTotalmywellPopular > 10 ? (
+                          <Text
+                            column={2}
+                            style={[styles.title, {width: wp('70%')}]}>
+                            {'Produk Mywell Terlaris'}
+                          </Text>
+                        ) : (
+                          <Text column={2} style={styles.title}>
+                            {'Produk Mywell Terlaris'}
+                          </Text>
+                        )}
+                        {qtyTotalmywellPopular > 10 ? (
+                          <TouchableOpacity
+                            onPress={() =>
+                              this.props.navigation.navigate('ProdukKategori', {
+                                initial: false,
+                                screen: 'mywellPopular',
+                              })
+                            }
+                            style={styles.buttonNext2}>
+                            <View
+                              style={{
+                                alignItems: 'center',
+                                justifyContent: 'center',
+                                flexDirection: 'row',
+                              }}>
+                              <Text style={styles.textButtonNext2}>
+                                {'Lihat Semua'}
+                              </Text>
+                              <IconNext2
+                                fill="#529F45"
+                                width={wp('3%')}
+                                height={wp('3%')}
+                              />
+                            </View>
+                          </TouchableOpacity>
+                        ) : null}
+                      </View>
+                      <CardProduk
+                        onClick={item => this.clickCard(item)}
+                        data={this.state.mywellPopular}
+                        postShoppingCart={item => this.postShoppingCart(item)}
+                        qtyTotal={qtyTotalmywellPopular}
+                        onClickAll={() => this.onClickAll('mywellPopular')}
+                      />
+                    </View>
+                  )}
+
+                  {this.state.mywellNewest.length > 0 && (
+                    <View
+                      style={
+                        this.state.mywellRecent.length > 0
+                          ? [styles.container,{height: hp('44%')}]
+                          : [styles.container, {marginBottom: 0, elevation: 0,height: hp('44%')}]
+                      }>
+                      <View style={styles.columnTitle}>
+                        {qtyTotalmywellNewest > 10 ? (
+                          <Text
+                            column={2}
+                            style={[styles.title, {width: wp('70%')}]}>
+                            {'Produk Mywell Terbaru'}
+                          </Text>
+                        ) : (
+                          <Text column={2} style={styles.title}>
+                            {'Produk Mywell Terbaru'}
+                          </Text>
+                        )}
+                        {qtyTotalmywellNewest > 10 ? (
+                          <TouchableOpacity
+                            onPress={() =>
+                              this.props.navigation.navigate('ProdukKategori', {
+                                initial: false,
+                                screen: 'mywellNewest',
+                              })
+                            }
+                            style={styles.buttonNext2}>
+                            <View
+                              style={{
+                                alignItems: 'center',
+                                justifyContent: 'center',
+                                flexDirection: 'row',
+                              }}>
+                              <Text style={styles.textButtonNext2}>
+                                {'Lihat Semua'}
+                              </Text>
+                              <IconNext2
+                                fill="#529F45"
+                                width={wp('3%')}
+                                height={wp('3%')}
+                              />
+                            </View>
+                          </TouchableOpacity>
+                        ) : null}
+                      </View>
+                      <CardProduk
+                        onClick={item => this.clickCard(item)}
+                        data={this.state.mywellNewest}
+                        postShoppingCart={item => this.postShoppingCart(item)}
+                        qtyTotal={qtyTotalmywellNewest}
+                        onClickAll={() => this.onClickAll('mywellNewest')}
+                      />
+                    </View>
+                  )}
+                  {this.state.mywellRecent.length > 0 && (
+                    <View
+                      style={[
+                        styles.container,
+                        {
+                          marginBottom: hp('9%'),
+                          elevation: 0,
+                          height: hp('44%'),
+                        },
+                      ]}>
+                      <View style={styles.columnTitle}>
+                        {qtyTotalmywellRecent > 10 ? (
+                          <Text
+                            column={2}
+                            style={[styles.title, {width: wp('70%')}]}>
+                            {'Produk Mywell Terakhir Dipesan'}
+                          </Text>
+                        ) : (
+                          <Text column={2} style={styles.title}>
+                            {'Produk Mywell Terakhir Dipesan'}
+                          </Text>
+                        )}
+                        {qtyTotalmywellRecent > 10 ? (
+                          <TouchableOpacity
+                            onPress={() =>
+                              this.props.navigation.navigate('ProdukKategori', {
+                                initial: false,
+                                screen: 'mywellRecent',
+                              })
+                            }
+                            style={styles.buttonNext2}>
+                            <View
+                              style={{
+                                alignItems: 'center',
+                                justifyContent: 'center',
+                                flexDirection: 'row',
+                              }}>
+                              <Text style={styles.textButtonNext2}>
+                                {'Lihat Semua'}
+                              </Text>
+                              <IconNext2
+                                fill="#529F45"
+                                width={wp('3%')}
+                                height={wp('3%')}
+                              />
+                            </View>
+                          </TouchableOpacity>
+                        ) : null}
+                      </View>
+                      <CardProduk
+                        onClick={item => this.clickCard(item)}
+                        data={this.state.mywellRecent}
+                        postShoppingCart={item => this.postShoppingCart(item)}
+                        qtyTotal={qtyTotalmywellRecent}
+                        onClickAll={() => this.onClickAll('mywellRecent')}
+                      />
+                    </View>
+                  )}
+
+                  {this.state.herbalAll.length > 0 && (
+                    <View style={[styles.container, {height: hp('44%')}]}>
+                      <View style={styles.columnTitle}>
+                        {qtyTotalherbalAll > 10 ? (
+                          <Text
+                            column={2}
+                            style={[styles.title, {width: wp('70%')}]}>
+                            {'Produk Herbal Semua'}
+                          </Text>
+                        ) : (
+                          <Text column={2} style={styles.title}>
+                            {'Produk Herbal Semua'}
+                          </Text>
+                        )}
+                        {qtyTotalherbalAll > 10 ? (
+                          <TouchableOpacity
+                            onPress={() =>
+                              this.props.navigation.navigate('ProdukKategori', {
+                                initial: false,
+                                screen: 'herbal',
+                              })
+                            }
+                            style={styles.buttonNext2}>
+                            <View
+                              style={{
+                                alignItems: 'center',
+                                justifyContent: 'center',
+                                flexDirection: 'row',
+                              }}>
+                              <Text style={styles.textButtonNext2}>
+                                {'Lihat Semua'}
+                              </Text>
+                              <IconNext2
+                                fill="#529F45"
+                                width={wp('3%')}
+                                height={wp('3%')}
+                              />
+                            </View>
+                          </TouchableOpacity>
+                        ) : null}
+                      </View>
+                      <CardProduk
+                        onClick={item => this.clickCard(item)}
+                        data={this.state.herbalAll}
+                        postShoppingCart={item => this.postShoppingCart(item)}
+                        qtyTotal={qtyTotalherbalAll}
+                        onClickAll={() => this.onClickAll('herbal')}
+                      />
+                    </View>
+                  )}
+
+                  {this.state.herbalPopular.length > 0 && (
+                    <View style={[styles.container, {height: hp('44%')}]}>
+                      <View style={styles.columnTitle}>
+                        {qtyTotalherbalPopular > 10 ? (
+                          <Text
+                            column={2}
+                            style={[styles.title, {width: wp('70%')}]}>
+                            {'Produk Herbal Terlaris'}
+                          </Text>
+                        ) : (
+                          <Text column={2} style={styles.title}>
+                            {'Produk Herbal Terlaris'}
+                          </Text>
+                        )}
+                        {qtyTotalherbalPopular > 10 ? (
+                          <TouchableOpacity
+                            onPress={() =>
+                              this.props.navigation.navigate('ProdukKategori', {
+                                initial: false,
+                                screen: 'herbalPopular',
+                              })
+                            }
+                            style={styles.buttonNext2}>
+                            <View
+                              style={{
+                                alignItems: 'center',
+                                justifyContent: 'center',
+                                flexDirection: 'row',
+                              }}>
+                              <Text style={styles.textButtonNext2}>
+                                {'Lihat Semua'}
+                              </Text>
+                              <IconNext2
+                                fill="#529F45"
+                                width={wp('3%')}
+                                height={wp('3%')}
+                              />
+                            </View>
+                          </TouchableOpacity>
+                        ) : null}
+                      </View>
+                      <CardProduk
+                        onClick={item => this.clickCard(item)}
+                        data={this.state.herbalPopular}
+                        postShoppingCart={item => this.postShoppingCart(item)}
+                        qtyTotal={qtyTotalherbalPopular}
+                        onClickAll={() => this.onClickAll('herbalPopular')}
+                      />
+                    </View>
+                  )}
+
+                  {this.state.herbalNewest.length > 0 && (
+                    <View
+                      style={
+                        this.state.herbalRecent.length > 0
+                          ? [styles.container,{height: hp('44%')}]
+                          : [styles.container, {marginBottom: 0, elevation: 0,height: hp('44%')}]
+                      }>
+                      <View style={styles.columnTitle}>
+                        {qtyTotalherbalNewest > 10 ? (
+                          <Text
+                            column={2}
+                            style={[styles.title, {width: wp('70%')}]}>
+                            {'Produk Herbal Terbaru'}
+                          </Text>
+                        ) : (
+                          <Text column={2} style={styles.title}>
+                            {'Produk Herbal Terbaru'}
+                          </Text>
+                        )}
+                        {qtyTotalherbalNewest > 10 ? (
+                          <TouchableOpacity
+                            onPress={() =>
+                              this.props.navigation.navigate('ProdukKategori', {
+                                initial: false,
+                                screen: 'herbalNewest',
+                              })
+                            }
+                            style={styles.buttonNext2}>
+                            <View
+                              style={{
+                                alignItems: 'center',
+                                justifyContent: 'center',
+                                flexDirection: 'row',
+                              }}>
+                              <Text style={styles.textButtonNext2}>
+                                {'Lihat Semua'}
+                              </Text>
+                              <IconNext2
+                                fill="#529F45"
+                                width={wp('3%')}
+                                height={wp('3%')}
+                              />
+                            </View>
+                          </TouchableOpacity>
+                        ) : null}
+                      </View>
+                      <CardProduk
+                        onClick={item => this.clickCard(item)}
+                        data={this.state.herbalNewest}
+                        postShoppingCart={item => this.postShoppingCart(item)}
+                        qtyTotal={qtyTotalherbalNewest}
+                        onClickAll={() => this.onClickAll('herbalNewest')}
+                      />
+                    </View>
+                  )}
+                  {this.state.herbalRecent.length > 0 && (
+                    <View
+                      style={[
+                        styles.container,
+                        {
+                          marginBottom: hp('9%'),
+                          elevation: 0,
+                          height: hp('44%'),
+                        },
+                      ]}>
+                      <View style={styles.columnTitle}>
+                        {qtyTotalherbalRecent > 10 ? (
+                          <Text
+                            column={2}
+                            style={[styles.title, {width: wp('70%')}]}>
+                            {'Produk Herbal Terakhir Dipesan'}
+                          </Text>
+                        ) : (
+                          <Text column={2} style={styles.title}>
+                            {'Produk Herbal Terakhir Dipesan'}
+                          </Text>
+                        )}
+                        {qtyTotalherbalRecent > 10 ? (
+                          <TouchableOpacity
+                            onPress={() =>
+                              this.props.navigation.navigate('ProdukKategori', {
+                                initial: false,
+                                screen: 'herbalRecent',
+                              })
+                            }
+                            style={styles.buttonNext2}>
+                            <View
+                              style={{
+                                alignItems: 'center',
+                                justifyContent: 'center',
+                                flexDirection: 'row',
+                              }}>
+                              <Text style={styles.textButtonNext2}>
+                                {'Lihat Semua'}
+                              </Text>
+                              <IconNext2
+                                fill="#529F45"
+                                width={wp('3%')}
+                                height={wp('3%')}
+                              />
+                            </View>
+                          </TouchableOpacity>
+                        ) : null}
+                      </View>
+                      <CardProduk
+                        onClick={item => this.clickCard(item)}
+                        data={this.state.herbalRecent}
+                        postShoppingCart={item => this.postShoppingCart(item)}
+                        qtyTotal={qtyTotalherbalRecent}
+                        onClickAll={() => this.onClickAll('herbalRecent')}
                       />
                     </View>
                   )}
