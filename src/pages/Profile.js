@@ -356,7 +356,7 @@ export class Profile extends Component {
                 <Text style={styles.textlist}>{' Redeem Reward '}</Text>
               </TouchableOpacity>
             </View>
-            <View style={[styles.viewBg, {backgroundColor: '#FFFFFF'}]}>
+            {/* <View style={[styles.viewBg, {backgroundColor: '#FFFFFF'}]}>
               <Text style={styles.textjudul2}>{'Semua Kategori'}</Text>
               <TouchableOpacity
                 style={styles.posisi}
@@ -406,7 +406,7 @@ export class Profile extends Component {
                   {' Minyak Angin dan Balsem '}
                 </Text>
               </TouchableOpacity>
-            </View>
+            </View> */}
             <View style={[styles.viewBg, {backgroundColor: '#F4F4F4'}]}>
               <Text style={styles.textjudul2}>{'Pusat Bantuan'}</Text>
               <TouchableOpacity
