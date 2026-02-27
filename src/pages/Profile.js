@@ -48,6 +48,7 @@ import Snackbar from 'react-native-snackbar';
 import {CommonActions} from '@react-navigation/native';
 import IconMisi from '../assets/icons/DaftarMisi.svg';
 import Header from '../components/Header';
+import FastImage from 'react-native-fast-image';
 function LoadingApi() {
   return (
     <View style={styles.loadingApi}>
@@ -243,9 +244,13 @@ export class Profile extends Component {
           <View style={{flexDirection: 'row', paddingBottom: hp('2.5%')}}>
             {dataUser?.photo ? (
               <View style={styles.avatar}>
-                <Image
-                  source={{uri: CONFIG.BASE_URL + dataUser?.photo}}
-                  style={styles.image}></Image>
+                <FastImage
+                  style={styles.image}
+                  source={{
+                    uri: CONFIG.BASE_URL + dataUser?.photo,
+                    priority: FastImage.priority.normal,
+                  }}
+                />
               </View>
             ) : (
               <View style={styles.avatar}>

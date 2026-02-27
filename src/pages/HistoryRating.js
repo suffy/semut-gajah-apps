@@ -33,6 +33,7 @@ import {
 } from 'react-native-responsive-screen';
 import Storage from '@react-native-async-storage/async-storage';
 import Snackbar from 'react-native-snackbar';
+import FastImage from 'react-native-fast-image';
 
 function MiniOfflineSign() {
   return (
@@ -382,13 +383,12 @@ export class HistoryRating extends Component {
                                 // backgroundColor: 'red',
                               }}>
                               {item.data_review[0]?.review?.image ? (
-                                <Image
-                                  source={{
-                                    uri:
-                                      CONFIG.BASE_URL +
-                                      item.data_review[0]?.review?.image,
-                                  }}
+                                <FastImage
                                   style={styles.imageStyle}
+                                  source={{
+                                    uri: CONFIG.BASE_URL + item.data_review[0]?.review?.image,
+                                    priority: FastImage.priority.normal,
+                                  }}
                                 />
                               ) : (
                                 <DummyImage style={styles.imageStyle} />

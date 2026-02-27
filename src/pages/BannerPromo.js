@@ -11,6 +11,7 @@ import {
   ScrollView,
   TouchableWithoutFeedback,
 } from 'react-native';
+import FastImage from 'react-native-fast-image';
 import {connect} from 'react-redux';
 import {BannerAction,TopSpenderAction} from '../redux/Action';
 import {Card} from 'react-native-elements';
@@ -87,10 +88,13 @@ export class BannerPromo extends Component {
               key={index}
               style={styles.buttonCategory}
               onPress={() => this.getNavigasi(item, index)}>
-              <Image
-                resizeMode="contain"
+              <FastImage
                 style={styles.images}
-                source={{uri: CONFIG.BASE_URL + item.banner}}
+                source={{
+                  uri: CONFIG.BASE_URL + item.banner,
+                  priority: FastImage.priority.normal,
+                }}
+                resizeMode={FastImage.resizeMode.contain}
               />
             </TouchableWithoutFeedback>
           );

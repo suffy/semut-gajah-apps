@@ -35,6 +35,7 @@ import DummyImage from '../assets/icons/IconLogo.svg';
 import Snackbar from 'react-native-snackbar';
 import ModalTracking from '../components/ModalTracking';
 import Header from '../components/Header';
+import FastImage from 'react-native-fast-image';
 function LoadingApi() {
   return (
     <View style={styles.loadingApi}>
@@ -606,12 +607,13 @@ export class OutOfStockDetails extends Component {
                           ]}>
                           <View>
                             {item?.product?.image ? (
-                              <Image
-                                resizeMode="center"
+                              <FastImage
+                                style={styles.imageStyle}
                                 source={{
                                   uri: CONFIG.BASE_URL + item?.product?.image,
+                                  priority: FastImage.priority.normal,
                                 }}
-                                style={styles.imageStyle}
+                                resizeMode={FastImage.resizeMode.center}
                               />
                             ) : (
                               <DummyImage style={styles.imageStyle} />
@@ -809,12 +811,13 @@ export class OutOfStockDetails extends Component {
                           ]}>
                           <View>
                             {item?.product?.image ? (
-                              <Image
-                                resizeMode="center"
+                              <FastImage
+                                style={styles.imageStyle}
                                 source={{
                                   uri: CONFIG.BASE_URL + item?.product?.image,
+                                  priority: FastImage.priority.normal,
                                 }}
-                                style={styles.imageStyle}
+                                resizeMode={FastImage.resizeMode.center}
                               />
                             ) : (
                               <DummyImage style={styles.imageStyle} />
@@ -1124,12 +1127,13 @@ export class OutOfStockDetails extends Component {
                         ]}>
                         <View>
                           {item?.product?.image ? (
-                            <Image
-                              resizeMode="center"
+                            <FastImage
+                              style={styles.imageStyle}
                               source={{
                                 uri: CONFIG.BASE_URL + item?.product?.image,
+                                priority: FastImage.priority.normal,
                               }}
-                              style={styles.imageStyle}
+                              resizeMode={FastImage.resizeMode.center}
                             />
                           ) : (
                             <DummyImage style={styles.imageStyle} />

@@ -48,6 +48,7 @@ import BottomNavigation from '../components/BottomNavigation';
 import DummyImage from '../assets/icons/IconLogo.svg';
 import Snackbar from 'react-native-snackbar';
 import Header from '../components/Header';
+import FastImage from 'react-native-fast-image';
 // Indonesian locale
 let idLocale = require('moment/locale/id');
 moment.updateLocale('id', idLocale);
@@ -994,14 +995,14 @@ export class ListDataPayment extends Component {
                         style={[styles.position2, {justifyContent: 'center'}]}>
                         <View>
                           {item?.data_item[0]?.product.image ? (
-                            <Image
-                              resizeMode="contain"
-                              source={{
-                                uri:
-                                  CONFIG.BASE_URL +
-                                  item?.data_item[0]?.product.image,
-                              }}
+                            <FastImage
                               style={styles.imageStyle}
+                              source={{
+                                uri: CONFIG.BASE_URL +
+                                  item?.data_item[0]?.product.image,
+                                priority: FastImage.priority.normal,
+                              }}
+                              resizeMode={FastImage.resizeMode.contain}
                             />
                           ) : (
                             <DummyImage style={styles.imageStyle} />

@@ -16,6 +16,7 @@ import {
 } from 'react-native-responsive-screen';
 import IconChat from '../assets/icons/ChatThumbnail.svg';
 import DummyImage from '../assets/icons/IconLogo.svg';
+import FastImage from 'react-native-fast-image';
 
 const width = Dimensions.get('window').width;
 const height = width * 0.77;
@@ -43,13 +44,12 @@ export class ProductsImages extends Component {
         <View style={styles.positionProduct}>
           {this.state.image != null && (
             <React.Fragment>
-              <Image
-                source={
-                  this.state.image
+              <FastImage
+                style={styles.product}
+                source={this.state.image
                     ? {uri: CONFIG.BASE_URL + this.state.image}
                     : null
                 }
-                style={styles.product}
               />
             </React.Fragment>
           )}

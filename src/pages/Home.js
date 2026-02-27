@@ -18,6 +18,7 @@ import {
   Linking,
   BackHandler,
 } from 'react-native';
+import FastImage from 'react-native-fast-image';
 import Banner from '../pages/Banner';
 import Voucher from '../pages/Voucher';
 import List from '../pages/List';
@@ -1173,9 +1174,14 @@ export class Home extends Component {
             }}>
             {dataUser?.photo ? (
               <View style={styles.avatar}>
-                <Image
-                  source={{uri: CONFIG.BASE_URL + dataUser?.photo}}
-                  style={styles.image}></Image>
+                <FastImage
+                  style={styles.image}
+                  source={{
+                    uri: CONFIG.BASE_URL + dataUser?.photo,
+                    priority: FastImage.priority.normal,
+                  }}
+                  resizeMode={FastImage.resizeMode.contain}
+                />
               </View>
             ) : (
               <View style={styles.avatar}>
@@ -1562,6 +1568,10 @@ export class Home extends Component {
               <LoadingApi />
             ) : (
               <FlatList
+                removeClippedSubviews={true}
+                initialNumToRender={4}
+                maxToRenderPerBatch={4}
+                windowSize={5}
                 // scrollToIndex={this.onPressFunction}
                 contentContainerStyle={styles.viewButtonRecomen}
                 // columnWrapperStyle={{backgroundColor: 'white'}}
@@ -1578,13 +1588,12 @@ export class Home extends Component {
                 }
                 onEndReached={() => this.getMoreData()}
                 onEndReachedThreshold={0.5}
-                initialNumToRender={10}
                 showsVerticalScrollIndicator={false}
                 onMomentumScrollBegin={() => {
                   this.onEndReachedCalledDuringMomentum = false;
                 }}
                 ListFooterComponent={() => this.renderLoadMore()}
-                ListHeaderComponent={this.flatListHeader}
+                ListHeaderComponent={this.flatListHeader()}
                 ListHeaderComponentStyle={{
                   backgroundColor: '#ddd',
                   marginHorizontal: wp('-2%'),
@@ -1611,10 +1620,13 @@ export class Home extends Component {
                         style={styles.buttonViewProdukRecomen}>
                         <View style={styles.imagesContainer}>
                           {item.image ? (
-                            <Image
-                              resizeMode="contain"
-                              source={{uri: CONFIG.BASE_URL + item.image}}
+                            <FastImage
                               style={styles.list}
+                              source={{
+                                uri: CONFIG.BASE_URL + item.image,
+                                priority: FastImage.priority.normal,
+                              }}
+                              resizeMode={FastImage.resizeMode.contain}
                             />
                           ) : (
                             <DummyImage style={styles.list} />

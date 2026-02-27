@@ -45,6 +45,7 @@ import ModalAlert from '../components/ModalAlert';
 import DummyImage from '../assets/icons/IconLogo.svg';
 import Snackbar from 'react-native-snackbar';
 import Header from '../components/Header';
+import FastImage from 'react-native-fast-image';
 
 function MiniOfflineSign() {
   return (
@@ -674,11 +675,13 @@ export class Delivery extends Component {
                         backgroundColor: '#FFF',
                       }}>
                       {item.image ? (
-                        <Image
+                        <FastImage
+                          style={styles.image}
                           source={{
                             uri: CONFIG.BASE_URL + item.image,
+                            priority: FastImage.priority.normal,
                           }}
-                          style={styles.image}
+                          resizeMode={FastImage.resizeMode.contain}
                         />
                       ) : (
                         <DummyImage style={styles.image} />

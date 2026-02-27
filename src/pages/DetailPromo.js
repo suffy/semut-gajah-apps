@@ -26,6 +26,7 @@ import axios from 'axios';
 import {ActivityIndicator} from 'react-native-paper';
 import Storage from '@react-native-async-storage/async-storage';
 import Header from '../components/Header';
+import FastImage from 'react-native-fast-image';
 
 function LoadingApi() {
   return (
@@ -385,13 +386,13 @@ export class DetailPromo extends Component {
                   {/* )} */}
                 </View>
               </Card>
-              <Image
+              <FastImage
+                style={styles.banner}
                 source={
                   this.props.banner?.banner
                     ? {uri: CONFIG.BASE_URL + this.props.banner?.banner}
                     : null
                 }
-                style={styles.banner}
               />
             </ScrollView>
             <View

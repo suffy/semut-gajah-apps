@@ -11,6 +11,7 @@ import {
   Pressable,
   Modal,
 } from 'react-native';
+import FastImage from 'react-native-fast-image';
 import {connect} from 'react-redux';
 import Font from '../components/Fontresponsive';
 import axios from 'axios';
@@ -81,7 +82,7 @@ export class List extends Component {
     // console.log('LIST ', qtyTotalPopular);
     return (
       <View style={{flex: 1}}>
-        {products_promo[0]?.data?.length > 0 && (
+        {products_promo[0]?.data?.slice(0, 3).length > 0 && (
           <View style={styles.container}>
             <View style={styles.columnTitle}>
               <Text style={styles.title}>{'Produk Promo'}</Text>
@@ -111,7 +112,7 @@ export class List extends Component {
               horizontal
               showsHorizontalScrollIndicator={false}
               style={styles.scroll}>
-              {products_promo[0]?.data?.map((item, index) => (
+              {products_promo[0]?.data?.slice(0, 3).map((item, index) => (
                 // <View key={index}>
                 <TouchableOpacity
                   key={index}
@@ -126,10 +127,13 @@ export class List extends Component {
                   style={styles.buttonViewProdukTerbaru}>
                   <View style={styles.imagesContainer}>
                     {item.image ? (
-                      <Image
-                        resizeMode="contain"
-                        source={{uri: CONFIG.BASE_URL + item.image}}
+                      <FastImage
                         style={styles.list}
+                        source={{
+                          uri: CONFIG.BASE_URL + item.image,
+                          priority: FastImage.priority.normal,
+                        }}
+                        resizeMode={FastImage.resizeMode.contain}
                       />
                     ) : (
                       <DummyImage style={styles.list} />
@@ -271,7 +275,7 @@ export class List extends Component {
           <LoadingApi />
           ) : (
           <> */}
-        {products_recent[0]?.data?.length > 0 && (
+        {products_recent[0]?.data?.slice(0, 3).length > 0 && (
           <View style={styles.container}>
             <View style={styles.columnTitle}>
               <Text style={styles.title}>{'Produk Terakhir Dilihat'}</Text>
@@ -284,7 +288,7 @@ export class List extends Component {
               horizontal
               showsHorizontalScrollIndicator={false}
               style={styles.scroll}>
-              {products_recent[0]?.data?.map((item, index) => {
+              {products_recent[0]?.data?.slice(0, 3).map((item, index) => {
                 return (
                   <TouchableOpacity
                     key={index}
@@ -299,11 +303,14 @@ export class List extends Component {
                     style={styles.buttonViewProdukTerbaru}>
                       <View style={styles.imagesContainer}>
                     {item.image ? (
-                      <Image
-                        resizeMode="contain"
-                        source={{uri: CONFIG.BASE_URL + item.image}}
-                        style={styles.list}
-                      />
+                      <FastImage
+  style={styles.list}
+  source={{
+    uri: CONFIG.BASE_URL + item.image,
+    priority: FastImage.priority.normal,
+  }}
+  resizeMode={FastImage.resizeMode.contain}
+/>
                     ) : (
                       <DummyImage style={styles.list} />
                     )}
@@ -434,7 +441,7 @@ export class List extends Component {
           <LoadingApi />
         ) : (
           <> */}
-        {products_newest[0]?.data?.length > 0 && (
+        {products_newest[0]?.data?.slice(0, 3).length > 0 && (
           <View style={styles.container}>
             <View style={styles.columnTitle}>
               <Text style={styles.title}>{'Produk Terbaru'}</Text>
@@ -470,7 +477,7 @@ export class List extends Component {
               horizontal
               showsHorizontalScrollIndicator={false}
               style={styles.scroll}>
-              {products_newest[0]?.data?.map((item, index) => (
+              {products_newest[0]?.data?.slice(0, 3).map((item, index) => (
                 // <View key={index}>
                 <TouchableOpacity
                   key={index}
@@ -485,11 +492,14 @@ export class List extends Component {
                   style={styles.buttonViewProdukTerbaru}>
                   <View style={styles.imagesContainer}>
                     {item.image ? (
-                      <Image
-                        resizeMode="contain"
-                        source={{uri: CONFIG.BASE_URL + item.image}}
-                        style={styles.list}
-                      />
+                      <FastImage
+  style={styles.list}
+  source={{
+    uri: CONFIG.BASE_URL + item.image,
+    priority: FastImage.priority.normal,
+  }}
+  resizeMode={FastImage.resizeMode.contain}
+/>
                     ) : (
                       <DummyImage style={styles.list} />
                     )}
@@ -632,7 +642,7 @@ export class List extends Component {
           <LoadingApi />
         ) : (
           <> */}
-        {products_popular[0]?.data?.length > 0 && (
+        {products_popular[0]?.data?.slice(0, 3).length > 0 && (
           <View style={[styles.container]}>
             <View style={styles.columnTitle}>
               <Text style={styles.title}>{'Produk Populer'}</Text>
@@ -668,7 +678,7 @@ export class List extends Component {
               horizontal
               showsHorizontalScrollIndicator={false}
               style={styles.scroll}>
-              {products_popular[0]?.data?.map((item, index) => (
+              {products_popular[0]?.data?.slice(0, 3).map((item, index) => (
                 <TouchableOpacity
                   key={index}
                   onPress={() => {
@@ -682,11 +692,14 @@ export class List extends Component {
                   style={styles.buttonViewProdukTerbaru}>
                   <View style={styles.imagesContainer}>
                   {item.image ? (
-                    <Image
-                      resizeMode="contain"
-                      source={{uri: CONFIG.BASE_URL + item.image}}
-                      style={styles.list}
-                    />
+                    <FastImage
+                        style={styles.list}
+                        source={{
+                          uri: CONFIG.BASE_URL + item.image,
+                          priority: FastImage.priority.normal,
+                        }}
+                        resizeMode={FastImage.resizeMode.contain}
+                      />
                   ) : (
                     <DummyImage style={styles.list} />
                   )}

@@ -14,6 +14,7 @@ import {
   TouchableWithoutFeedback,
   Animated,
 } from 'react-native';
+import FastImage from 'react-native-fast-image';
 import CONFIG from '../constants/config';
 import NumberFormat from 'react-number-format';
 import {
@@ -50,10 +51,13 @@ export class CardProdukPromo extends Component {
             style={styles.buttonViewProdukTerbaru}>
             <View style={styles.imagesContainer}>
               {item?.product?.image ? (
-                <Image
-                  resizeMode="contain"
-                  source={{uri: CONFIG.BASE_URL + item?.product?.image}}
+                <FastImage
                   style={styles.list}
+                  source={{
+                    uri: CONFIG.BASE_URL + item?.product?.image,
+                    priority: FastImage.priority.normal,
+                  }}
+                  resizeMode={FastImage.resizeMode.contain}
                 />
               ) : (
                 <DummyImage style={styles.list} />

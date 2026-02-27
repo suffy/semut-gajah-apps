@@ -29,6 +29,7 @@ import IconBack from '../assets/icons/backArrow.svg';
 import DummyImage from '../assets/icons/IconLogo.svg';
 import Snackbar from 'react-native-snackbar';
 import ModalDelete from '../components/ModalDelete';
+import FastImage from 'react-native-fast-image';
 
 const listDataSubscribe = [
   {
@@ -315,11 +316,12 @@ export class ListDataSubscribe extends Component {
                 <View style={[styles.position2, {marginLeft: wp('2%')}]}>
                   <View>
                     {item.product.image ? (
-                      <Image
+                      <FastImage
+                        style={[styles.position, styles.imageStyle]}
                         source={{
                           uri: CONFIG.BASE_URL + item.product.image,
+                          priority: FastImage.priority.normal,
                         }}
-                        style={[styles.position, styles.imageStyle]}
                       />
                     ) : (
                       <DummyImage

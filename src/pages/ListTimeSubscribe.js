@@ -26,6 +26,7 @@ import IconBack from '../assets/icons/backArrow.svg';
 import {ActivityIndicator} from 'react-native-paper';
 import DummyImage from '../assets/icons/IconLogo.svg';
 import Snackbar from 'react-native-snackbar';
+import FastImage from 'react-native-fast-image';
 
 function LoadingApi() {
   return (
@@ -298,11 +299,12 @@ export class ListTimeSubscribe extends Component {
                       {this.state.listDataSubscribe.map((item, index) => (
                         <View key={index}>
                           {item.product.image ? (
-                            <Image
+                            <FastImage
+                              style={[styles.position, styles.imageStyle]}
                               source={{
                                 uri: CONFIG.BASE_URL + item.product.image,
+                                priority: FastImage.priority.normal,
                               }}
-                              style={[styles.position, styles.imageStyle]}
                             />
                           ) : (
                             <DummyImage
@@ -361,11 +363,12 @@ export class ListTimeSubscribe extends Component {
                       {this.state.listDataMonthSubscribe.map((item, index) => (
                         <View key={index}>
                           {item.product.image ? (
-                            <Image
+                            <FastImage
+                              style={[styles.position, styles.imageStyle]}
                               source={{
                                 uri: CONFIG.BASE_URL + item.product.image,
+                                priority: FastImage.priority.normal,
                               }}
-                              style={[styles.position, styles.imageStyle]}
                             />
                           ) : (
                             <DummyImage

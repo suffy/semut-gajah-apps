@@ -26,6 +26,7 @@ import {
   listenOrientationChange as lor,
   removeOrientationListener as rol,
 } from 'react-native-responsive-screen';
+import FastImage from 'react-native-fast-image';
 
 const width = Dimensions.get('window').width;
 
@@ -102,7 +103,7 @@ export class OrderComplaint extends Component {
                   </View>
                   <View style={[styles.position2, {justifyContent: 'center'}]}>
                     <View>
-                      <Image
+                      <FastImage
                         source={
                           item.order?.order_details[0]?.product.image
                             ? {

@@ -37,6 +37,7 @@ import {ActivityIndicator} from 'react-native-paper';
 import DummyImage from '../assets/icons/IconLogo.svg';
 import Snackbar from 'react-native-snackbar';
 import Header from '../components/Header';
+import FastImage from 'react-native-fast-image';
 function LoadingApi() {
   return (
     <View style={styles.loadingApi}>
@@ -696,15 +697,15 @@ export class OrderComplaint extends Component {
                                 <View>
                                   {item.order?.order_details[0]?.product
                                     ?.image ? (
-                                    <Image
-                                      resizeMode="contain"
+                                    <FastImage
+                                      style={styles.imageStyle}
                                       source={{
-                                        uri:
-                                          CONFIG.BASE_URL +
+                                        uri: CONFIG.BASE_URL +
                                           item.order?.order_details[0]?.product
                                             ?.image,
+                                        priority: FastImage.priority.normal,
                                       }}
-                                      style={styles.imageStyle}
+                                      resizeMode={FastImage.resizeMode.contain}
                                     />
                                   ) : (
                                     <DummyImage style={styles.imageStyle} />

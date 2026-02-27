@@ -34,6 +34,7 @@ import {Picker} from '@react-native-picker/picker';
 import ModalAlert from '../components/ModalAlert';
 import DummyImage from '../assets/icons/IconLogo.svg';
 import Snackbar from 'react-native-snackbar';
+import FastImage from 'react-native-fast-image';
 
 const width = Dimensions.get('window').width;
 
@@ -496,12 +497,13 @@ export class OrderComplaintTransaction extends Component {
                           ]}>
                           <View>
                             {item.product?.image ? (
-                              <Image
-                                resizeMode="contain"
+                              <FastImage
+                                style={styles.imageStyle}
                                 source={{
                                   uri: CONFIG.BASE_URL + item.product?.image,
+                                  priority: FastImage.priority.normal,
                                 }}
-                                style={styles.imageStyle}
+                                resizeMode={FastImage.resizeMode.contain}
                               />
                             ) : (
                               <DummyImage style={styles.imageStyle} />
@@ -579,12 +581,13 @@ export class OrderComplaintTransaction extends Component {
                           ]}>
                           <View>
                             {item.product?.image ? (
-                              <Image
-                                resizeMode="contain"
+                              <FastImage
+                                style={styles.imageStyle}
                                 source={{
                                   uri: CONFIG.BASE_URL + item.product?.image,
+                                  priority: FastImage.priority.normal,
                                 }}
-                                style={styles.imageStyle}
+                                resizeMode={FastImage.resizeMode.contain}
                               />
                             ) : (
                               <DummyImage style={styles.imageStyle} />
@@ -802,60 +805,51 @@ export class OrderComplaintTransaction extends Component {
             </View>
             {photo ? (
               <React.Fragment>
-                <Image
-                  // source={{
-                  //   uri: `data:${image.mime};base64,${image.data}`,
-                  // }}
-                  source={{
-                    uri: photo?.path,
-                  }}
-                  // style={{width: image.width, height: image.height}}
+                <FastImage
                   style={{
                     flex: 1,
                     height: wp('40%'),
                     width: '100%',
                     borderRadius: hp('2%'),
                     marginBottom: wp('2%'),
+                  }}
+                  source={{
+                    uri: photo?.path,
+                    priority: FastImage.priority.normal,
                   }}
                 />
               </React.Fragment>
             ) : null}
             {photo2 ? (
               <React.Fragment>
-                <Image
-                  // source={{
-                  //   uri: `data:${image.mime};base64,${image.data}`,
-                  // }}
-                  source={{
-                    uri: photo2?.path,
-                  }}
-                  // style={{width: image.width, height: image.height}}
+                <FastImage
                   style={{
                     flex: 1,
                     height: wp('40%'),
                     width: '100%',
                     borderRadius: hp('2%'),
                     marginBottom: wp('2%'),
+                  }}
+                  source={{
+                    uri: photo2?.path,
+                    priority: FastImage.priority.normal,
                   }}
                 />
               </React.Fragment>
             ) : null}
             {photo3 ? (
               <React.Fragment>
-                <Image
-                  // source={{
-                  //   uri: `data:${image.mime};base64,${image.data}`,
-                  // }}
-                  source={{
-                    uri: photo3?.path,
-                  }}
-                  // style={{width: image.width, height: image.height}}
+                <FastImage
                   style={{
                     flex: 1,
                     height: wp('40%'),
                     width: '100%',
                     borderRadius: hp('2%'),
                     marginBottom: wp('2%'),
+                  }}
+                  source={{
+                    uri: photo3?.path,
+                    priority: FastImage.priority.normal,
                   }}
                 />
               </React.Fragment>

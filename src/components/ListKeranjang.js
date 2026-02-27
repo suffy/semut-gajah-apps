@@ -26,6 +26,7 @@ import IconClose from '../assets/icons/Closemodal.svg';
 import {Card} from 'react-native-elements/dist/card/Card';
 import Tooltip from 'react-native-walkthrough-tooltip';
 import DummyImage from '../assets/icons/IconLogo.svg';
+import FastImage from 'react-native-fast-image';
 
 export class ListKeranjang extends Component {
   constructor(props) {
@@ -96,10 +97,7 @@ export class ListKeranjang extends Component {
                 </View>
                 <View style={styles.backgroundImage}>
                   {item.image ? (
-                    <Image
-                      source={{
-                        uri: CONFIG.BASE_URL + item.image,
-                      }}
+                    <FastImage
                       style={[
                         styles.posision,
                         {
@@ -107,6 +105,11 @@ export class ListKeranjang extends Component {
                           width: wp('20%'),
                         },
                       ]}
+                      source={{
+                        uri: CONFIG.BASE_URL + item.image,
+                        priority: FastImage.priority.normal,
+                      }}
+                      resizeMode={FastImage.resizeMode.contain}
                     />
                   ) : (
                     <DummyImage

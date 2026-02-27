@@ -49,6 +49,7 @@ import Header from '../components/Header';
 import bintang from '../assets/newIcons/iconBintang.svg';
 import bintangAbu from '../assets/newIcons/iconBintangActive.svg';
 import {Rating, AirbnbRating} from 'react-native-ratings';
+import FastImage from 'react-native-fast-image';
 function MiniOfflineSign() {
   return (
     <View style={styles.offlineContainer}>
@@ -1483,10 +1484,13 @@ export class ProdukDeskripsi extends Component {
                             }}
                             style={styles.buttonViewProdukTerbaru}>
                             {item.image ? (
-                              <Image
-                                resizeMode="contain"
-                                source={{uri: CONFIG.BASE_URL + item.image}}
+                              <FastImage
                                 style={styles.list}
+                                source={{
+                                  uri: CONFIG.BASE_URL + item.image,
+                                  priority: FastImage.priority.normal,
+                                }}
+                                resizeMode={FastImage.resizeMode.contain}
                               />
                             ) : (
                               <DummyImage style={styles.list} />

@@ -34,6 +34,7 @@ import IconNext2 from '../assets/icons/RightArrow.svg';
 import {ActivityIndicator} from 'react-native-paper';
 import Snackbar from 'react-native-snackbar';
 import Icon404 from '../assets/icons/404.svg';
+import FastImage from 'react-native-fast-image';
 
 const {width} = Dimensions.get('window');
 const height = width * 0.44;
@@ -630,9 +631,12 @@ export class KalenderReward extends Component {
                       backgroundColor: '#FFF',
                     }}>
                     {item.image ? (
-                      <Image
-                        source={{uri: CONFIG.BASE_URL + item.image}}
+                      <FastImage
                         style={styles.banner}
+                        source={{
+                          uri: CONFIG.BASE_URL + item.image,
+                          priority: FastImage.priority.normal,
+                        }}
                       />
                     ) : (
                       <DummyImage style={styles.banner} />

@@ -37,6 +37,7 @@ import DummyImage from '../assets/icons/IconLogo.svg';
 import Snackbar from 'react-native-snackbar';
 import ModalDelete from '../components/ModalDelete';
 import ModalBlackList from '../components/ModalBlackList';
+import FastImage from 'react-native-fast-image';
 
 function LoadingApi() {
   return (
@@ -390,11 +391,12 @@ export class Wishlist extends Component {
                   ]}>
                   <View>
                     {item.product.image ? (
-                      <Image
+                      <FastImage
+                        style={styles.imageStyle}
                         source={{
                           uri: CONFIG.BASE_URL + item.product.image,
+                          priority: FastImage.priority.normal,
                         }}
-                        style={styles.imageStyle}
                       />
                     ) : (
                       <DummyImage style={styles.imageStyle} />
@@ -682,11 +684,12 @@ export class Wishlist extends Component {
                             ]}>
                             <View>
                               {item.product.image ? (
-                                <Image
+                                <FastImage
+                                  style={styles.imageStyle}
                                   source={{
                                     uri: CONFIG.BASE_URL + item.product.image,
+                                    priority: FastImage.priority.normal,
                                   }}
-                                  style={styles.imageStyle}
                                 />
                               ) : (
                                 <DummyImage style={styles.imageStyle} />

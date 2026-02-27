@@ -44,6 +44,7 @@ import FormFoto from '../components/FormFoto';
 import ImagePicker from 'react-native-image-crop-picker';
 import Storage from '@react-native-async-storage/async-storage';
 import Snackbar from 'react-native-snackbar';
+import FastImage from 'react-native-fast-image';
 
 function MiniOfflineSign() {
   return (
@@ -963,15 +964,16 @@ export class Register extends Component {
                       />
 
                       <TouchableOpacity onPress={() => this.generate_captcha()}>
-                        <Image
-                          source={{
-                            uri: 'https://reactnativecode.com/wp-content/uploads/2019/08/reload_image.jpg',
-                          }}
+                        <FastImage
                           style={{
                             width: wp('8%'),
                             height: hp('8%'),
                             resizeMode: 'contain',
                             margin: 5,
+                          }}
+                          source={{
+                            uri: 'https://reactnativecode.com/wp-content/uploads/2019/08/reload_image.jpg',
+                            priority: FastImage.priority.normal,
                           }}
                         />
                       </TouchableOpacity>

@@ -23,6 +23,7 @@ import axios from 'axios';
 import CONFIG from '../constants/config';
 import ModalAlert from '../components/ModalAlert';
 import Snackbar from 'react-native-snackbar';
+import FastImage from 'react-native-fast-image';
 
 const slides = [
   {
@@ -255,7 +256,7 @@ export class SplashScreen extends Component {
   _renderItem = ({item}) => {
     return (
       <View style={styles.slide}>
-        <Image source={item.image} style={styles.image} />
+        <FastImage source={item.image} style={styles.image} />
         <Text style={styles.title}>{item.title}</Text>
         <Text style={styles.text}>{item.text}</Text>
         {item.key === 1 && (

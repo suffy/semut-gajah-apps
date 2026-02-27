@@ -22,6 +22,7 @@ import {
   TopSpenderAction,
 } from '../redux/Action';
 import {connect} from 'react-redux';
+import FastImage from 'react-native-fast-image';
 class ProductVarian extends Component {
   _isMounted = false;
   constructor(props) {
@@ -55,15 +56,19 @@ class ProductVarian extends Component {
                   {item?.image == undefined ? (
                     <DummyImage style={styles.imagesVarian} />
                   ) : (
-                    <Image
+                    <FastImage
                       source={
                         dataVarian != undefined ? (
-                          {uri: CONFIG.BASE_URL + item?.image}
+                          {
+                            uri: CONFIG.BASE_URL + item?.image,
+                            priority: FastImage.priority.normal,
+                          }
                         ) : (
                           <DummyImage style={styles.imagesVarian} />
                         )
                       }
                       style={styles.imagesVarian}
+                      resizeMode={FastImage.resizeMode.contain}
                     />
                   )}
                 </TouchableOpacity>

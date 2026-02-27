@@ -24,6 +24,7 @@ import {
 import IconBack from '../assets/icons/backArrow.svg';
 import Snackbar from 'react-native-snackbar';
 import {ActivityIndicator} from 'react-native-paper';
+import FastImage from 'react-native-fast-image';
 
 const {width} = Dimensions.get('window');
 const height = width * 0.44;
@@ -199,7 +200,7 @@ export class DetailReward extends Component {
           }}
           style={{flex: 1}}
           showsVerticalScrollIndicator={false}>
-          <Image
+          <FastImage
             source={
               detailReward.image
                 ? {uri: CONFIG.BASE_URL + detailReward.image}

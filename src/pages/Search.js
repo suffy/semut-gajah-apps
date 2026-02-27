@@ -27,6 +27,7 @@ import {
 } from 'react-native-responsive-screen';
 import Font from '../components/Fontresponsive';
 import DummyImage from '../assets/icons/IconLogo.svg';
+import FastImage from 'react-native-fast-image';
 
 export class Search extends Component {
   UNSAFE_componentWillMount() {
@@ -81,11 +82,12 @@ export class Search extends Component {
                       ]}>
                       <View>
                         {item.image ? (
-                          <Image
+                          <FastImage
+                            style={styles.imageStyle}
                             source={{
                               uri: CONFIG.BASE_URL + item.image,
+                              priority: FastImage.priority.normal,
                             }}
-                            style={styles.imageStyle}
                           />
                         ) : (
                           <DummyImage style={styles.imageStyle} />

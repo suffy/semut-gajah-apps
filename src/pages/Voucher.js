@@ -23,6 +23,7 @@ import {
 } from 'react-native-responsive-screen';
 import Storage from '@react-native-async-storage/async-storage';
 import Snackbar from 'react-native-snackbar';
+import FastImage from 'react-native-fast-image';
 
 const {width} = Dimensions.get('window');
 const height = width * 0.3;
@@ -168,11 +169,12 @@ export class Voucher extends Component {
                       this.props.voucherAct(item, 'voucher'),
                     )
                   }>
-                  <Image
+                  <FastImage
                     source={
                       item.file ? {uri: CONFIG.BASE_URL + item.file} : null
                     }
-                    style={styles.image}></Image>
+                    style={styles.image}
+                  />
                 </TouchableOpacity>
               ))}
             </ScrollView>

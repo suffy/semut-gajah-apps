@@ -11,6 +11,7 @@ import {
   ScrollView,
   TouchableWithoutFeedback,
 } from 'react-native';
+import FastImage from 'react-native-fast-image';
 import {connect} from 'react-redux';
 import {Card} from 'react-native-elements';
 import {SafeAreaView} from 'react-native-safe-area-context';
@@ -90,12 +91,21 @@ export class Category extends Component {
                     <TouchableWithoutFeedback key={item.id ?? rowIndex} onPress={() => getNavigasi(item)}>
                       <View style={styles.card}>
                         <View style={styles.viewCategory}>
-                          <Image
-                            resizeMode="contain"
-                            source={{ uri: CONFIG.BASE_URL + item.icon }}
+                          <FastImage
                             style={styles.image}
+                            source={{
+                              uri: CONFIG.BASE_URL + item.icon,
+                              priority: FastImage.priority.normal,
+                            }}
+                            resizeMode={FastImage.resizeMode.contain}
                           />
-                          <Text style={styles.title}>{item.name}</Text>
+                          <Text 
+                            numberOfLines={2}
+                            adjustsFontSizeToFit
+                            style={styles.title}
+                          >
+                              {item.name}
+                          </Text>
                         </View>
                       </View>
                     </TouchableWithoutFeedback>
@@ -155,11 +165,11 @@ const styles = StyleSheet.create({
     marginBottom: hp('2%'),
   },
   title: {
-    fontSize: hp('1.4%'),
+    fontSize: wp('2%'), // proporsional terhadap card
     color: '#000000',
     fontFamily: 'Lato-Medium',
     textAlign: 'center',
-    width: '70%',
+    width: '90%',
   },
   image: {
     marginBottom: wp('1%'),

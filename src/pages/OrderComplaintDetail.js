@@ -27,6 +27,7 @@ import Storage from '@react-native-async-storage/async-storage';
 import IconBack from '../assets/icons/backArrow.svg';
 import DummyImage from '../assets/icons/IconLogo.svg';
 import Snackbar from 'react-native-snackbar';
+import FastImage from 'react-native-fast-image';
 
 const width = Dimensions.get('window').width;
 
@@ -295,15 +296,15 @@ export class OrderComplaintDetail extends Component {
                 <View>
                   {this.props.detailComplaint?.order?.order_details[0]?.product
                     ?.image ? (
-                    <Image
-                      resizeMode="contain"
+                    <FastImage
+                      style={styles.imageStyle}
                       source={{
-                        uri:
-                          CONFIG.BASE_URL +
+                        uri: CONFIG.BASE_URL +
                           this.props.detailComplaint?.order?.order_details[0]
                             ?.product?.image,
+                        priority: FastImage.priority.normal,
                       }}
-                      style={styles.imageStyle}
+                      resizeMode={FastImage.resizeMode.contain}
                     />
                   ) : (
                     <DummyImage style={styles.imageStyle} />
@@ -967,30 +968,33 @@ export class OrderComplaintDetail extends Component {
                             },
                           ]}>
                           {itemComplaint.file_1 ? (
-                            <Image
-                              resizeMode={'cover'}
+                            <FastImage
+                              style={styles.imageStyle2}
                               source={{
                                 uri: CONFIG.BASE_URL + itemComplaint.file_1,
+                                priority: FastImage.priority.normal,
                               }}
-                              style={styles.imageStyle2}
+                              resizeMode={FastImage.resizeMode.cover}
                             />
                           ) : null}
                           {itemComplaint.file_2 ? (
-                            <Image
-                              resizeMode={'cover'}
+                            <FastImage
+                              style={styles.imageStyle2}
                               source={{
                                 uri: CONFIG.BASE_URL + itemComplaint.file_2,
+                                priority: FastImage.priority.normal,
                               }}
-                              style={styles.imageStyle2}
+                              resizeMode={FastImage.resizeMode.cover}
                             />
                           ) : null}
                           {itemComplaint.file_3 ? (
-                            <Image
-                              resizeMode={'cover'}
+                            <FastImage
+                              style={styles.imageStyle2}
                               source={{
                                 uri: CONFIG.BASE_URL + itemComplaint.file_3,
+                                priority: FastImage.priority.normal,
                               }}
-                              style={styles.imageStyle2}
+                              resizeMode={FastImage.resizeMode.cover}
                             />
                           ) : null}
                         </View>

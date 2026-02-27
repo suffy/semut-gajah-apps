@@ -34,6 +34,7 @@ import IconShopping from '../assets/newIcons/iconKeranjangAktif.svg';
 import IconMenu from '../assets/newIcons/iconMenu.svg';
 import {ActivityIndicator} from 'react-native-paper';
 import Snackbar from 'react-native-snackbar';
+import FastImage from 'react-native-fast-image';
 
 const list = [
   {
@@ -484,7 +485,7 @@ class Chat extends React.Component {
 
   scrollToBottomComponent = () => {
     return (
-      <Image
+      <FastImage
         source={require('../assets/images/ArrowDown.png')}
         style={{height: hp('5%'), width: hp('5%')}}
         color="#333"

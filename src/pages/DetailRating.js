@@ -26,6 +26,7 @@ import {
 } from 'react-native-responsive-screen';
 import IconBack from '../assets/icons/backArrow.svg';
 import DummyImage from '../assets/icons/IconLogo.svg';
+import FastImage from 'react-native-fast-image';
 
 const width = Dimensions.get('window').width;
 
@@ -79,11 +80,12 @@ export class DetailRating extends Component {
                       style={[styles.position2, {justifyContent: 'center'}]}>
                       <View>
                         {item.review.image ? (
-                          <Image
+                          <FastImage
+                            style={styles.imageStyle}
                             source={{
                               uri: CONFIG.BASE_URL + item.review.image,
+                              priority: FastImage.priority.normal,
                             }}
-                            style={styles.imageStyle}
                           />
                         ) : (
                           <DummyImage style={styles.imageStyle} />

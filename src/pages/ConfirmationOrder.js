@@ -34,6 +34,7 @@ import BottomNavigation from '../components/BottomNavigation';
 import DummyImage from '../assets/icons/IconLogo.svg';
 import Snackbar from 'react-native-snackbar';
 import Header from '../components/Header';
+import FastImage from 'react-native-fast-image';
 
 function MiniOfflineSign() {
   return (
@@ -316,11 +317,12 @@ export class ConfirmationOrder extends Component {
                               },
                             ]}>
                             <View>
-                              <Image
+                              <FastImage
+                                style={styles.imageStyle}
                                 source={{
                                   uri: CONFIG.BASE_URL + itemData.product.image,
+                                  priority: FastImage.priority.normal,
                                 }}
-                                style={styles.imageStyle}
                               />
                             </View>
                             <View

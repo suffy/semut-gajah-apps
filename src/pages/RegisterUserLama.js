@@ -39,6 +39,7 @@ import {
 } from 'react-native-responsive-screen';
 import {ActivityIndicator} from 'react-native-paper';
 import ModalAlert from '../components/ModalAlert';
+import FastImage from 'react-native-fast-image';
 
 function MiniOfflineSign() {
   return (
@@ -630,15 +631,16 @@ export class RegisterUserLama extends Component {
                   />
 
                   <TouchableOpacity onPress={this.generate_captcha}>
-                    <Image
-                      source={{
-                        uri: 'https://reactnativecode.com/wp-content/uploads/2019/08/reload_image.jpg',
-                      }}
+                    <FastImage
                       style={{
                         width: wp('8%'),
                         height: hp('8%'),
                         resizeMode: 'contain',
                         margin: 5,
+                      }}
+                      source={{
+                        uri: 'https://reactnativecode.com/wp-content/uploads/2019/08/reload_image.jpg',
+                        priority: FastImage.priority.normal,
                       }}
                     />
                   </TouchableOpacity>

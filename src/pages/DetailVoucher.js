@@ -20,6 +20,7 @@ import {
   listenOrientationChange as lor,
   removeOrientationListener as rol,
 } from 'react-native-responsive-screen';
+import FastImage from 'react-native-fast-image';
 
 const { width } = Dimensions.get("window");
 const height = width * 0.44;
@@ -48,13 +49,14 @@ export class DetailVoucher extends Component {
           </View>
         )}
         <ScrollView showsVerticalScrollIndicator={false}>
-          <Image
+          <FastImage
             source={
               this.props.voucher.file
                 ? {uri: CONFIG.BASE_URL + this.props.voucher.file}
                 : null
             }
-            style={styles.banner}></Image>
+            style={styles.banner}
+          />
           <Card containerStyle={styles.cardBackground}>
             <View style={styles.position}>
               <View style={styles.positionDetail}>

@@ -26,6 +26,7 @@ import IconBack from '../assets/icons/backArrow.svg';
 import ModalAlert from '../components/ModalAlert';
 import DummyImage from '../assets/icons/IconLogo.svg';
 import Snackbar from 'react-native-snackbar';
+import FastImage from 'react-native-fast-image';
 
 const createFormData = (photo, body) => {
   const data = new FormData();
@@ -297,15 +298,15 @@ export class ReplyComplaint extends Component {
                 <View>
                   {this.props.detailComplaint?.order?.order_details[0]?.product
                     ?.image ? (
-                    <Image
-                      resizeMode="contain"
+                    <FastImage
+                      style={styles.imageStyle}
                       source={{
-                        uri:
-                          CONFIG.BASE_URL +
+                        uri: CONFIG.BASE_URL +
                           this.props.detailComplaint?.order?.order_details[0]
                             ?.product?.image,
+                        priority: FastImage.priority.normal,
                       }}
-                      style={styles.imageStyle}
+                      resizeMode={FastImage.resizeMode.contain}
                     />
                   ) : (
                     <DummyImage style={styles.imageStyle} />
@@ -501,45 +502,39 @@ export class ReplyComplaint extends Component {
                             },
                           ]}>
                           {itemComplaint.file_1 && (
-                            <Image
-                              resizeMode={'cover'}
-                              source={
-                                itemComplaint.file_1
+                            <FastImage
+                              style={styles.imageStyle2}
+                              source={itemComplaint.file_1
                                   ? {
                                       uri:
                                         CONFIG.BASE_URL + itemComplaint.file_1,
                                     }
-                                  : null
-                              }
-                              style={styles.imageStyle2}
+                                  : null}
+                              resizeMode={FastImage.resizeMode.cover}
                             />
                           )}
                           {itemComplaint.file_2 && (
-                            <Image
-                              resizeMode={'cover'}
-                              source={
-                                itemComplaint.file_2
+                            <FastImage
+                              style={styles.imageStyle2}
+                              source={itemComplaint.file_2
                                   ? {
                                       uri:
                                         CONFIG.BASE_URL + itemComplaint.file_2,
                                     }
-                                  : null
-                              }
-                              style={styles.imageStyle2}
+                                  : null}
+                              resizeMode={FastImage.resizeMode.cover}
                             />
                           )}
                           {itemComplaint.file_3 && (
-                            <Image
-                              resizeMode={'cover'}
-                              source={
-                                itemComplaint.file_3
+                            <FastImage
+                              style={styles.imageStyle2}
+                              source={itemComplaint.file_3
                                   ? {
                                       uri:
                                         CONFIG.BASE_URL + itemComplaint.file_3,
                                     }
-                                  : null
-                              }
-                              style={styles.imageStyle2}
+                                  : null}
+                              resizeMode={FastImage.resizeMode.cover}
                             />
                           )}
                         </View>

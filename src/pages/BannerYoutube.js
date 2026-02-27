@@ -9,6 +9,7 @@ import {
   TouchableWithoutFeedback,
   Linking,
 } from 'react-native';
+import FastImage from 'react-native-fast-image';
 import CONFIG from '../constants/config';
 import axios from 'axios';
 import {connect} from 'react-redux';
@@ -152,10 +153,8 @@ export class BannerYoutube extends Component {
                         console.warn('No URL found for this item.');
                       }
                     }}>
-                    <Image
-                      resizeMode="stretch"
+                    <FastImage
                       key={item.id}
-                      source={item.banner}
                       style={[
                         styles.banner,
                         {
@@ -164,18 +163,21 @@ export class BannerYoutube extends Component {
                           marginLeft: index === 0 ? wp('10%') : wp('5%'),
                         },
                       ]}
+                      source={item.banner}
+                      resizeMode={FastImage.resizeMode.stretch}
                     />
                   </TouchableWithoutFeedback>
-                  <Image
-                    resizeMode="contain"
-                    source={require('../assets/images/banner_youtube/logo_youtube.png')}
-                    style={{
-                      position: 'absolute', 
-                      bottom: wp('15%'), 
-                      right: wp('32%'),
-                      width: wp('15%'),
-                      height: wp('15%'),
-                    }}/>
+                    <FastImage
+                      style={{
+                        position: 'absolute', 
+                        bottom: wp('15%'), 
+                        right: wp('32%'),
+                        width: wp('15%'),
+                        height: wp('15%'),
+                      }}
+                      source={require('../assets/images/banner_youtube/logo_youtube.png')}
+                      resizeMode={FastImage.resizeMode.contain}
+                    />
                 </View>
               );
             })}

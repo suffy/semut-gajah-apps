@@ -19,6 +19,7 @@ import axios from 'axios';
 import Snackbar from 'react-native-snackbar';
 import {ActivityIndicator} from 'react-native-paper';
 import Header from '../components/Header'
+import FastImage from 'react-native-fast-image';
 function LoadingApi() {
   return (
     <View style={styles.loadingApi}>
@@ -194,7 +195,7 @@ export class TopSpender extends Component {
               showsVerticalScrollIndicator={false}>
               <View style={{flex: 1, marginTop: hp('2%'), height: hp('90%')}}>
                 {this.props.topSpender != undefined ? (
-                  <Image
+                  <FastImage
                     source={
                       this.props.topSpender?.banner ? (
                         {uri: CONFIG.BASE_URL + this.props.topSpender?.banner}

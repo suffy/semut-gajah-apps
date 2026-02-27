@@ -20,6 +20,7 @@ import {
 } from 'react-native-responsive-screen';
 import Storage from '@react-native-async-storage/async-storage';
 import {ActivityIndicator} from 'react-native-paper';
+import FastImage from 'react-native-fast-image';
 
 const {width} = Dimensions.get('window');
 const height = width * 0.464;
@@ -158,10 +159,8 @@ export class Banner extends Component {
                           null;
                         }
                       }}>
-                      <Image
-                        resizeMode="cover"
+                      <FastImage
                         key={item.id}
-                        source={{uri: CONFIG.BASE_URL + item.banner}}
                         style={[
                           styles.banner,
                           {
@@ -169,7 +168,13 @@ export class Banner extends Component {
                               index + 1 === promo?.length ? wp('5%') : null,
                             marginLeft: index === 0 ? wp('10%') : wp('5%'),
                           },
-                        ]}></Image>
+                        ]}
+                        source={{
+                          uri: CONFIG.BASE_URL + item.banner,
+                          priority: FastImage.priority.normal,
+                        }}
+                        resizeMode={FastImage.resizeMode.cover}
+                      />
                     </TouchableWithoutFeedback>
                   </View>
                 );

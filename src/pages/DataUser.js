@@ -30,6 +30,7 @@ import ModalAlert from '../components/ModalAlert';
 import ModalDelete from '../components/ModalDelete';
 import Snackbar from 'react-native-snackbar';
 import Header from '../components/Header';
+import FastImage from 'react-native-fast-image';
 const createFormData = (photo, body) => {
   const data = new FormData();
   data.append('photo', {
@@ -421,10 +422,13 @@ export class DataUser extends Component {
         {dataUser.photo != null ? (
           <View style={styles.containerAvatar}>
             <View style={styles.avatar}>
-              <Image
-                source={{uri: CONFIG.BASE_URL + this.props.dataUser.photo}}
+              <FastImage
                 style={styles.image}
-                rounded></Image>
+                source={{
+                  uri: CONFIG.BASE_URL + this.props.dataUser.photo,
+                  priority: FastImage.priority.normal,
+                }}
+              />
               <Pressable
                 style={styles.editAvatar}
                 onPress={() => {

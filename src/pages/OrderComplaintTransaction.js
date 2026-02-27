@@ -30,6 +30,7 @@ import Storage from '@react-native-async-storage/async-storage';
 import IconBack from '../assets/icons/backArrow.svg';
 import {ActivityIndicator} from 'react-native-paper';
 import Snackbar from 'react-native-snackbar';
+import FastImage from 'react-native-fast-image';
 
 function LoadingApi() {
   return (
@@ -301,14 +302,14 @@ export class OrderComplaintTransaction extends Component {
                             ]}>
                             <View>
                               {item.data_item[0]?.product?.image ? (
-                                <Image
-                                  resizeMode="contain"
-                                  source={{
-                                    uri:
-                                      CONFIG.BASE_URL +
-                                      item.data_item[0]?.product?.image,
-                                  }}
+                                <FastImage
                                   style={styles.imageStyle}
+                                  source={{
+                                    uri: CONFIG.BASE_URL +
+                                      item.data_item[0]?.product?.image,
+                                    priority: FastImage.priority.normal,
+                                  }}
+                                  resizeMode={FastImage.resizeMode.contain}
                                 />
                               ) : (
                                 <DummyImage style={styles.imageStyle} />

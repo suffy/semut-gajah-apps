@@ -36,6 +36,7 @@ import Icon404 from '../assets/icons/404.svg';
 import ModalBlackList from '../components/ModalBlackList';
 import Header from '../components/Header';
 import CardProduk from '../components/CardProdukPromo';
+import FastImage from 'react-native-fast-image';
 
 const {width} = Dimensions.get('window');
 const height = width * 0.44;
@@ -636,9 +637,12 @@ export class KalenderPromo extends Component {
               return (
                 <View key={index}>
                   {item.banner ? (
-                    <Image
-                      source={{uri: CONFIG.BASE_URL + item.banner}}
+                    <FastImage
                       style={styles.banner}
+                      source={{
+                        uri: CONFIG.BASE_URL + item.banner,
+                        priority: FastImage.priority.normal,
+                      }}
                     />
                   ) : (
                     <DummyImage style={styles.banner} />

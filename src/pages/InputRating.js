@@ -29,6 +29,8 @@ import IconBack from '../assets/icons/backArrow.svg';
 import ModalAlert from '../components/ModalAlert';
 import DummyImage from '../assets/icons/IconLogo.svg';
 import Snackbar from 'react-native-snackbar';
+import FastImage from 'react-native-fast-image';
+
 export class InputRating extends Component {
   _isMounted = false;
   constructor(props) {
@@ -218,11 +220,12 @@ export class InputRating extends Component {
                       ]}>
                       <View>
                         {item.product.image ? (
-                          <Image
+                          <FastImage
+                            style={styles.imageStyle}
                             source={{
                               uri: CONFIG.BASE_URL + item.product.image,
+                              priority: FastImage.priority.normal,
                             }}
-                            style={styles.imageStyle}
                           />
                         ) : (
                           <DummyImage style={styles.imageStyle} />

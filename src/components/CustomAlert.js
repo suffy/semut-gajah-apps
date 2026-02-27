@@ -11,6 +11,7 @@ import IconLonceng from '../assets/icons/Lonceng.svg';
 import Lonceng from '../assets/icons/IconLonceng.svg';
 import CONFIG from '../constants/config';
 import IconClose from '../assets/icons/IconClose.svg';
+import FastImage from 'react-native-fast-image';
 
 class CustomAlert extends Component {
   render() {
@@ -35,10 +36,10 @@ class CustomAlert extends Component {
               style={{
                 justifyContent: 'center',
               }}>
-              <Image
-                resizeMode="cover"
-                source={images}
+              <FastImage
                 style={styles.imagesAlert}
+                source={images}
+                resizeMode={FastImage.resizeMode.cover}
               />
             </View>
             <TouchableOpacity  onPress={() => onPressBtn()} style={styles.iconClose}>

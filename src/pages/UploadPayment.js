@@ -24,6 +24,7 @@ import {
   removeOrientationListener as rol,
 } from 'react-native-responsive-screen';
 import Storage from '@react-native-async-storage/async-storage';
+import FastImage from 'react-native-fast-image';
 
 const width = Dimensions.get('window').width;
 
@@ -276,9 +277,12 @@ export class UploadPayment extends Component {
             </View>
             {photo && (
               <React.Fragment>
-                <Image
-                  source={{uri: photo.uri}}
+                <FastImage
                   style={{width: 300, height: 300}}
+                  source={{
+                    uri: photo.uri,
+                    priority: FastImage.priority.normal,
+                  }}
                 />
                 <TouchableOpacity
                   style={[

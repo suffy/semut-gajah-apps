@@ -32,6 +32,7 @@ import {
 import Storage from '@react-native-async-storage/async-storage';
 import DummyImage from '../assets/icons/IconLogo.svg';
 import Snackbar from 'react-native-snackbar';
+import FastImage from 'react-native-fast-image';
 
 function MiniOfflineSign() {
   return (
@@ -282,13 +283,13 @@ export class WaitingRating extends Component {
                                 },
                               ]}>
                               {item.data_unreview[0].product.image ? (
-                                <Image
-                                  source={{
-                                    uri:
-                                      CONFIG.BASE_URL +
-                                      item.data_unreview[0].product.image,
-                                  }}
+                                <FastImage
                                   style={styles.imageStyle}
+                                  source={{
+                                    uri: CONFIG.BASE_URL +
+                                      item.data_unreview[0].product.image,
+                                    priority: FastImage.priority.normal,
+                                  }}
                                 />
                               ) : (
                                 <DummyImage style={styles.imageStyle} />
