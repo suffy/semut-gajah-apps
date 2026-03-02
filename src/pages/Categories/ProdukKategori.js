@@ -110,6 +110,7 @@ export class ProdukKategori extends Component {
       buttonSupMul: false,
       buttonFoodBev: false,
       buttonMinyak: false,
+      buttonCategory: 0,
     };
   }
 
@@ -123,46 +124,176 @@ export class ProdukKategori extends Component {
     const {page} = this.state;
     let number;
     let category;
-    this.props.route.params.screen === 'Herbal'
+    this.props.route.params.screen === 'masukAngin'
       ? (number = 1)
-      : this.props.route.params.screen === 'HerbalNew'
+      : this.props.route.params.screen === 'masukAnginNewest'
       ? ((number = 1), (category = 'newest'))
-      : this.props.route.params.screen === 'HerbalPopular'
+      : this.props.route.params.screen === 'masukAnginPopular'
       ? ((number = 1), (category = 'popular'))
-      : // : this.props.route.params.screen === 'HerbalPromo'
+      : // : this.props.route.params.screen === 'masukAnginPromo'
       // ? ((number = 1), (category = 'promo'))
-      this.props.route.params.screen === 'HerbalRecent'
+      this.props.route.params.screen === 'masukAnginRecent'
       ? ((number = 1), (category = 'recent'))
-      : this.props.route.params.screen === 'SupMul'
+      : this.props.route.params.screen === 'obatBatuk'
       ? (number = 2)
-      : this.props.route.params.screen === 'SupMulNew'
+      : this.props.route.params.screen === 'obatBatukNewest'
       ? ((number = 2), (category = 'newest'))
-      : this.props.route.params.screen === 'SupMulPopular'
+      : this.props.route.params.screen === 'obatBatukPopular'
       ? ((number = 2), (category = 'popular'))
-      : // : this.props.route.params.screen === 'SupMulPromo'
+      : // : this.props.route.params.screen === 'obatBatukPromo'
       // ? ((number = 2), (category = 'promo'))
-      this.props.route.params.screen === 'SupMulRecent'
+      this.props.route.params.screen === 'obatBatukRecent'
       ? ((number = 2), (category = 'recent'))
-      : this.props.route.params.screen === 'FoodBev'
+      : this.props.route.params.screen === 'sariawanPanasDalam'
       ? (number = 3)
-      : this.props.route.params.screen === 'FoodBevNew'
+      : this.props.route.params.screen === 'sariawanPanasDalamNewest'
       ? ((number = 3), (category = 'newest'))
-      : this.props.route.params.screen === 'FoodBevPopular'
+      : this.props.route.params.screen === 'sariawanPanasDalamPopular'
       ? ((number = 3), (category = 'popular'))
-      : // : this.props.route.params.screen === 'FoodBevPromo'
+      : // : this.props.route.params.screen === 'sariawanPanasDalamPromo'
       // ? ((number = 3), (category = 'promo'))
-      this.props.route.params.screen === 'FoodBevRecent'
+      this.props.route.params.screen === 'sariawanPanasDalamRecent'
       ? ((number = 3), (category = 'recent'))
-      : this.props.route.params.screen === 'Minyak'
+      : this.props.route.params.screen === 'pegalLinuStamina'
       ? (number = 4)
-      : this.props.route.params.screen === 'MinyakNew'
+      : this.props.route.params.screen === 'pegalLinuStaminaNewest'
       ? ((number = 4), (category = 'newest'))
-      : this.props.route.params.screen === 'MinyakPopular'
+      : this.props.route.params.screen === 'pegalLinuStaminaPopular'
       ? ((number = 4), (category = 'popular'))
-      : // : this.props.route.params.screen === 'MinyakPromo'
+      : // : this.props.route.params.screen === 'pegalLinuStaminaPromo'
       // ? ((number = 4), (category = 'promo'))
-      this.props.route.params.screen === 'MinyakRecent'
+      this.props.route.params.screen === 'pegalLinuStaminaRecent'
       ? ((number = 4), (category = 'recent'))
+      : this.props.route.params.screen === 'produkWanita'
+      ? (number = 5)
+      : this.props.route.params.screen === 'produkWanitaNewest'
+      ? ((number = 5), (category = 'newest'))
+      : this.props.route.params.screen === 'produkWanitaPopular'
+      ? ((number = 5), (category = 'popular'))
+      : // : this.props.route.params.screen === 'produkWanitaPromo'
+      // ? ((number = 5), (category = 'promo'))
+      this.props.route.params.screen === 'produkWanitaRecent'
+      ? ((number = 5), (category = 'recent'))
+      : this.props.route.params.screen === 'permen'
+      ? (number = 6)
+      : this.props.route.params.screen === 'permenNewest'
+      ? ((number = 6), (category = 'newest'))
+      : this.props.route.params.screen === 'permenPopular'
+      ? ((number = 6), (category = 'popular'))
+      : // : this.props.route.params.screen === 'permenPromo'
+      // ? ((number = 6), (category = 'promo'))
+      this.props.route.params.screen === 'permenRecent'
+      ? ((number = 6), (category = 'recent'))
+      : this.props.route.params.screen === 'herbaMojo'
+      ? (number = 7)
+      : this.props.route.params.screen === 'herbaMojoNewest'
+      ? ((number = 7), (category = 'newest'))
+      : this.props.route.params.screen === 'herbaMojoPopular'
+      ? ((number = 7), (category = 'popular'))
+      : // : this.props.route.params.screen === 'herbaMojoPromo'
+      // ? ((number = 7), (category = 'promo'))
+      this.props.route.params.screen === 'herbaMojoRecent'
+      ? ((number = 7), (category = 'recent'))
+      : this.props.route.params.screen === 'herbana'
+      ? (number = 8)
+      : this.props.route.params.screen === 'herbanaNewest'
+      ? ((number = 8), (category = 'newest'))
+      : this.props.route.params.screen === 'herbanaPopular'
+      ? ((number = 8), (category = 'popular'))
+      : // : this.props.route.params.screen === 'herbanaPromo'
+      // ? ((number = 8), (category = 'promo'))
+      this.props.route.params.screen === 'herbanaRecent'
+      ? ((number = 8), (category = 'recent'))
+      : this.props.route.params.screen === 'madu'
+      ? (number = 9)
+      : this.props.route.params.screen === 'maduNewest'
+      ? ((number = 9), (category = 'newest'))
+      : this.props.route.params.screen === 'maduPopular'
+      ? ((number = 9), (category = 'popular'))
+      : // : this.props.route.params.screen === 'maduPromo'
+      // ? ((number = 9), (category = 'promo'))
+      this.props.route.params.screen === 'maduRecent'
+      ? ((number = 9), (category = 'recent'))
+      : this.props.route.params.screen === 'freshcare'
+      ? (number = 10)
+      : this.props.route.params.screen === 'freshcareNewest'
+      ? ((number = 10), (category = 'newest'))
+      : this.props.route.params.screen === 'freshcarePopular'
+      ? ((number = 10), (category = 'popular'))
+      : // : this.props.route.params.screen === 'freshcarePromo'
+      // ? ((number = 10), (category = 'promo'))
+      this.props.route.params.screen === 'freshcareRecent'
+      ? ((number = 10), (category = 'recent'))
+      : this.props.route.params.screen === 'hotin'
+      ? (number = 11)
+      : this.props.route.params.screen === 'hotinNewest'
+      ? ((number = 11), (category = 'newest'))
+      : this.props.route.params.screen === 'hotinPopular'
+      ? ((number = 11), (category = 'popular'))
+      : // : this.props.route.params.screen === 'hotinPromo'
+      // ? ((number = 11), (category = 'promo'))
+      this.props.route.params.screen === 'hotinRecent'
+      ? ((number = 11), (category = 'recent'))
+      : this.props.route.params.screen === 'maduTj'
+      ? (number = 12)
+      : this.props.route.params.screen === 'maduTjNewest'
+      ? ((number = 12), (category = 'newest'))
+      : this.props.route.params.screen === 'maduTjPopular'
+      ? ((number = 12), (category = 'popular'))
+      : // : this.props.route.params.screen === 'maduTjPromo'
+      // ? ((number = 12), (category = 'promo'))
+      this.props.route.params.screen === 'maduTjRecent'
+      ? ((number = 12), (category = 'recent'))
+      : this.props.route.params.screen === 'tresnojoyo'
+      ? (number = 13)
+      : this.props.route.params.screen === 'tresnojoyoNewest'
+      ? ((number = 13), (category = 'newest'))
+      : this.props.route.params.screen === 'tresnojoyoPopular'
+      ? ((number = 13), (category = 'popular'))
+      : // : this.props.route.params.screen === 'tresnojoyoPromo'
+      // ? ((number = 13), (category = 'promo'))
+      this.props.route.params.screen === 'tresnojoyoRecent'
+      ? ((number = 13), (category = 'recent'))
+      : this.props.route.params.screen === 'bebio'
+      ? (number = 14)
+      : this.props.route.params.screen === 'bebioNewest'
+      ? ((number = 14), (category = 'newest'))
+      : this.props.route.params.screen === 'bebioPopular'
+      ? ((number = 14), (category = 'popular'))
+      : // : this.props.route.params.screen === 'bebioPromo'
+      // ? ((number = 14), (category = 'promo'))
+      this.props.route.params.screen === 'bebioRecent'
+      ? ((number = 14), (category = 'recent'))
+      : this.props.route.params.screen === 'freshliving'
+      ? (number = 15)
+      : this.props.route.params.screen === 'freshlivingNewest'
+      ? ((number = 15), (category = 'newest'))
+      : this.props.route.params.screen === 'freshlivingPopular'
+      ? ((number = 15), (category = 'popular'))
+      : // : this.props.route.params.screen === 'freshlivingPromo'
+      // ? ((number = 15), (category = 'promo'))
+      this.props.route.params.screen === 'freshlivingRecent'
+      ? ((number = 15), (category = 'recent'))
+      : this.props.route.params.screen === 'mywell'
+      ? (number = 16)
+      : this.props.route.params.screen === 'mywellNewest'
+      ? ((number = 16), (category = 'newest'))
+      : this.props.route.params.screen === 'mywellPopular'
+      ? ((number = 16), (category = 'popular'))
+      : // : this.props.route.params.screen === 'mywellPromo'
+      // ? ((number = 16), (category = 'promo'))
+      this.props.route.params.screen === 'mywellRecent'
+      ? ((number = 16), (category = 'recent'))
+      : this.props.route.params.screen === 'herbal'
+      ? (number = 17)
+      : this.props.route.params.screen === 'herbalNewest'
+      ? ((number = 17), (category = 'newest'))
+      : this.props.route.params.screen === 'herbalPopular'
+      ? ((number = 17), (category = 'popular'))
+      : // : this.props.route.params.screen === 'herbalPromo'
+      // ? ((number = 17), (category = 'promo'))
+      this.props.route.params.screen === 'herbalRecent'
+      ? ((number = 17), (category = 'recent'))
       : this.props.route.params.screen === 'GeneralNew'
       ? (category = 'newest')
       : this.props.route.params.screen === 'GeneralPopular'
@@ -606,6 +737,7 @@ export class ProdukKategori extends Component {
   render() {
     const {qty, search, loadingApi, buttonChange} = this.state;
     console.log('buttonChange', search);
+    // console.log('categories', this.props.categories);
     return (
       <View style={{flex: 1, backgroundColor: 'white'}}>
         <View style={styles.container}>
@@ -719,12 +851,34 @@ export class ProdukKategori extends Component {
                             buttonSupMul: false,
                             buttonFoodBev: false,
                             buttonMinyak: false,
+                            buttonCategory: 0,
                           });
                         }}>
                         <Text style={styles.textButton}>Semua</Text>
                       </TouchableOpacity>
                     )}
-                    {this.state.buttonHerbal ? (
+                    {this.props.categories.map((item, index) => {
+                      return (
+                        <TouchableOpacity
+                          key={index}
+                          style={[
+                            styles.borderFilter,
+                            item.id == this.state.buttonCategory ? {backgroundColor: '#529F45'} : {}
+                          ]}
+                          onPress={() => {
+                            this.handleStatusChange(item.id);
+                            this.setState({
+                              buttonSemua: false,
+                              buttonCategory: item.id,
+                            });
+                          }}>
+                          <Text style={[
+                            styles.textButton, item.id == this.state.buttonCategory ? {color: '#fff'} : {}
+                          ]}>{item.name}</Text>
+                        </TouchableOpacity>
+                      );
+                    })}
+                    {/* {this.state.buttonHerbal ? (
                       <TouchableOpacity
                         style={[
                           styles.borderFilter,
@@ -840,7 +994,7 @@ export class ProdukKategori extends Component {
                           Minyak Angin dan Balsem
                         </Text>
                       </TouchableOpacity>
-                    )}
+                    )} */}
                   </ScrollView>
                 ) : (
                   // ) : this.props.route.params.screen === 'Herbal' ||
@@ -1210,6 +1364,7 @@ const mapStateToProps = state => ({
   token: state.LoginReducer.token,
   dataUser: state.LoginReducer.dataUser,
   qty: state.ShoppingCartReducer.qty,
+  categories: state.CategoryReducer.categories,
 });
 
 const mapDispatchToProps = dispatch => {
@@ -1344,7 +1499,7 @@ const styles = StyleSheet.create({
     // backgroundColor: 'red'
   },
   textButton: {
-    fontSize: hp('1.6%'),
+    fontSize: wp('2%'),
     fontFamily: 'Lato-Medium',
     textAlign: 'center',
     color: '#000',

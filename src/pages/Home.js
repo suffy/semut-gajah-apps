@@ -38,6 +38,8 @@ import {
   LoginAction,
   NotifAction,
   TopSpenderAction,
+  CategoryAction,
+  BannerAction,
 } from '../redux/Action';
 import Storage from '@react-native-async-storage/async-storage';
 import IconOffline from '../assets/icons/NetInfo.svg';
@@ -193,6 +195,7 @@ export class Home extends Component {
         },
       );
       const data = response.data.data;
+      this.props.categoryAct(data.categories[0], 'categories');
       this._isMounted &&
         this.setState({
           recomenProduct:
@@ -1870,6 +1873,9 @@ const mapDispatchToProps = dispatch => {
     },
     topSpenderAct: (value, tipe) => {
       dispatch(TopSpenderAction(value, tipe));
+    },
+    categoryAct: (value, tipe) => {
+      dispatch(CategoryAction(value, tipe));
     },
   };
 };

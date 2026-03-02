@@ -223,6 +223,13 @@ const stateHelpCare = [
   },
 ];
 
+const stateCategory = [
+  {
+    id: '',
+    name: '',
+  },
+];
+
 function LoginReducer(state = stateUser, action) {
   switch (action.type) {
     case 'SET_LOGIN':
@@ -380,6 +387,18 @@ function HelpReducer(state = stateHelpCare, action) {
   }
 }
 
+function CategoryReducer(state = stateCategory, action) {
+  switch (action.type) {
+    case 'SET_CATEGORY':
+      return {
+        ...state,
+        [action.inputType]: action.inputValue,
+      };
+    default:
+      return state;
+  }
+}
+
 const Reducer = combineReducers({
   LoginReducer,
   ProductReducer,
@@ -393,6 +412,7 @@ const Reducer = combineReducers({
   ComplaintReducer,
   HelpReducer,
   TopSpenderReducer,
+  CategoryReducer,
 });
 
 export default Reducer;

@@ -1942,7 +1942,7 @@ export class Produk extends Component {
                             onPress={() =>
                               this.props.navigation.navigate('ProdukKategori', {
                                 initial: false,
-                                screen: 'sariwanPanasDalam',
+                                screen: 'sariawanPanasDalam',
                               })
                             }
                             style={styles.buttonNext2}>
@@ -1969,7 +1969,7 @@ export class Produk extends Component {
                         data={this.state.sariawanPanasDalamAll}
                         postShoppingCart={item => this.postShoppingCart(item)}
                         qtyTotal={qtyTotalsariawanPanasDalamAll}
-                        onClickAll={() => this.onClickAll('sariwanPanasDalam')}
+                        onClickAll={() => this.onClickAll('sariawanPanasDalam')}
                       />
                     </View>
                   )}

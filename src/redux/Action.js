@@ -57,3 +57,7 @@ export const ComplaintAction = (value, tipe) => dispatch => {
 export const HelpCareAction = (value, tipe) => dispatch => {
   return dispatch({ type: 'SET_HELP_CARE', inputValue: value, inputType: tipe });
 };
+
+export const CategoryAction = (value, tipe) => dispatch => {
+  return dispatch({ type: 'SET_CATEGORY', inputValue: value, inputType: tipe });
+};
