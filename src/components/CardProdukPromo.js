@@ -159,7 +159,7 @@ export class CardProdukPromo extends Component {
                 </View>
               </View>
             )}
-            <Pressable
+            {/* <Pressable
               style={styles.buttonKeranjang}
               onPress={() => {
                 postShoppingCart(item.product);
@@ -169,7 +169,7 @@ export class CardProdukPromo extends Component {
               ) : (
                 <Text style={styles.textKeranjang}>{'Beli'}</Text>
               )}
-            </Pressable>
+            </Pressable> */}
           </TouchableOpacity>
         ))}
         {qtyTotal >= 10 ? (

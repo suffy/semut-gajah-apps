@@ -86,23 +86,25 @@ export class List extends Component {
           <View style={styles.container}>
             <View style={styles.columnTitle}>
               <Text style={styles.title}>{'Produk Promo'}</Text>
-              <TouchableOpacity
-                onPress={() => this.props.navigation.navigate('KalenderPromo')}
-                style={styles.buttonNext2}>
-                <View
-                  style={{
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    flexDirection: 'row',
-                  }}>
-                  <Text style={styles.textButtonNext2}>{'Lihat Semua'}</Text>
-                  <IconNext2
-                    fill="#529F45"
-                    width={wp('3%')}
-                    height={wp('3%')}
-                  />
-                </View>
-              </TouchableOpacity>
+              {qtyTotalPromo > 0 ? (
+                <TouchableOpacity
+                  onPress={() => this.props.navigation.navigate('KalenderPromo')}
+                  style={styles.buttonNext2}>
+                  <View
+                    style={{
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      flexDirection: 'row',
+                    }}>
+                    <Text style={styles.textButtonNext2}>{'Lihat Semua'}</Text>
+                    <IconNext2
+                      fill="#529F45"
+                      width={wp('3%')}
+                      height={wp('3%')}
+                    />
+                  </View>
+                </TouchableOpacity>
+              ) : null}
             </View>
             <ScrollView
               contentContainerStyle={{
@@ -255,7 +257,7 @@ export class List extends Component {
                 </TouchableOpacity>
                 // </View>
               ))}
-              {qtyTotalPromo > 10 ? (
+              {qtyTotalPromo > 3 ? (
                 <TouchableOpacity
                   onPress={() =>
                     this.props.navigation.navigate('KalenderPromo')
@@ -302,18 +304,18 @@ export class List extends Component {
                     }}
                     style={styles.buttonViewProdukTerbaru}>
                       <View style={styles.imagesContainer}>
-                    {item.image ? (
-                      <FastImage
-  style={styles.list}
-  source={{
-    uri: CONFIG.BASE_URL + item.image,
-    priority: FastImage.priority.normal,
-  }}
-  resizeMode={FastImage.resizeMode.contain}
-/>
-                    ) : (
-                      <DummyImage style={styles.list} />
-                    )}
+                      {item.image ? (
+                        <FastImage
+                          style={styles.list}
+                          source={{
+                            uri: CONFIG.BASE_URL + item.image,
+                            priority: FastImage.priority.normal,
+                          }}
+                          resizeMode={FastImage.resizeMode.contain}
+                        />
+                      ) : (
+                        <DummyImage style={styles.list} />
+                      )}
                     </View>
                     <View
                       style={{
@@ -445,7 +447,7 @@ export class List extends Component {
           <View style={styles.container}>
             <View style={styles.columnTitle}>
               <Text style={styles.title}>{'Produk Terbaru'}</Text>
-              {qtyTotalNew > 10 ? (
+              {qtyTotalNew > 3 ? (
                 <TouchableOpacity
                   onPress={() =>
                     this.props.navigation.navigate('ProdukKategori', {
@@ -620,7 +622,7 @@ export class List extends Component {
                 </TouchableOpacity>
                 // </View>
               ))}
-              {qtyTotalNew > 10 ? (
+              {qtyTotalNew > 3 ? (
                 <TouchableOpacity
                   onPress={() =>
                     this.props.navigation.navigate('ProdukKategori', {
@@ -646,7 +648,7 @@ export class List extends Component {
           <View style={[styles.container]}>
             <View style={styles.columnTitle}>
               <Text style={styles.title}>{'Produk Populer'}</Text>
-              {qtyTotalPopular > 10 ? (
+              {qtyTotalPopular > 3 ? (
                 <TouchableOpacity
                   onPress={() =>
                     this.props.navigation.navigate('ProdukKategori', {
@@ -819,7 +821,7 @@ export class List extends Component {
                   )} */}
                 </TouchableOpacity>
               ))}
-              {qtyTotalPopular > 10 ? (
+              {qtyTotalPopular > 3 ? (
                 <TouchableOpacity
                   onPress={() =>
                     this.props.navigation.navigate('ProdukKategori', {

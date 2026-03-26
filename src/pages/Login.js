@@ -217,6 +217,7 @@ export class Login extends Component {
         let password = 'Password not match';
         let approved = 'User not approved';
         let verified = 'User not verified';
+        let blacklist = 'User blacklist';
         if (message === user) {
           this.setState({
             alertData: 'Nomor telepon/email tidak ditemukan',
@@ -245,6 +246,11 @@ export class Login extends Component {
         } else if (message === verified) {
           this.setState({
             alertData: 'Mohon menunggu untuk verifikasi data di sistem kami',
+            modalAlert: !this.state.modalAlert,
+          });
+        } else if (message === blacklist) {
+          this.setState({
+            alertData: 'Akun anda ter-blacklist',
             modalAlert: !this.state.modalAlert,
           });
         }
@@ -516,13 +522,13 @@ export class Login extends Component {
             </Text>
           </View>
           <View style={styles.viewBottom}>
-            <TouchableOpacity
+            {/* <TouchableOpacity
               style={styles.btnDaftar}
               onPress={() => {
                 this.getRegister();
               }}>
               <Text style={styles.textBtnDaftar}>Daftar</Text>
-            </TouchableOpacity>
+            </TouchableOpacity> */}
             <TouchableOpacity
               style={styles.btnOk}
               onPress={() => this.loginHandler()}>

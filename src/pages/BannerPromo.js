@@ -46,32 +46,37 @@ export class BannerPromo extends Component {
         'TopSpender',
         this.props.topSpenderAct(item,'topSpender')
       );
-    }else{
-      if (index == 0) {
-        this.props.navigation.navigate('ProdukKategori', {
-          screen: 'HerbalPromo',
-          idPromo: item.id,
-          initial: false,
-        });
-      } else if (index == 1) {
-        this.props.navigation.navigate('ProdukKategori', {
-          screen: 'SupMulPromo',
-          idPromo: item.id,
-          initial: false,
-        });
-      } else if (index == 2) {
-        this.props.navigation.navigate('ProdukKategori', {
-          screen: 'FoodBevPromo',
-          idPromo: item.id,
-          initial: false,
-        });
-      } else if (index == 3) {
-        this.props.navigation.navigate('ProdukKategori', {
-          screen: 'MinyakPromo',
-          idPromo: item.id,
-          initial: false,
-        });
-      }
+    } else {
+      this.props.navigation.navigate('ProdukKategori', {
+        screen: 'HerbalPromo',
+        idPromo: item.id,
+        initial: false,
+      });
+      // if (index == 0) {
+      //   this.props.navigation.navigate('ProdukKategori', {
+      //     screen: 'HerbalPromo',
+      //     idPromo: item.id,
+      //     initial: false,
+      //   });
+      // } else if (index == 1) {
+      //   this.props.navigation.navigate('ProdukKategori', {
+      //     screen: 'SupMulPromo',
+      //     idPromo: item.id,
+      //     initial: false,
+      //   });
+      // } else if (index == 2) {
+      //   this.props.navigation.navigate('ProdukKategori', {
+      //     screen: 'FoodBevPromo',
+      //     idPromo: item.id,
+      //     initial: false,
+      //   });
+      // } else if (index == 3) {
+      //   this.props.navigation.navigate('ProdukKategori', {
+      //     screen: 'MinyakPromo',
+      //     idPromo: item.id,
+      //     initial: false,
+      //   });
+      // }
     }
   };
 
