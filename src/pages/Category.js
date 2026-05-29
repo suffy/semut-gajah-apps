@@ -63,7 +63,6 @@ const category = [
 ];
 
 export class Category extends Component {
-  
   render() {
     const {categories, getNavigasi} = this.props;
 
@@ -81,38 +80,43 @@ export class Category extends Component {
           <View style={styles.container}>
             <Text style={styles.judul}>{'Kategori'}</Text>
             <View style={styles.containerButton}>
-              <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
-              {chunkArray(
-                categories[0]?.sort((a, b) => a.menu_order - b.menu_order).slice(0, 100),
-                2
-              ).map((group, columnIndex) => (
-                <View key={columnIndex} style={styles.containerColumn}>
-                  {group.map((item, rowIndex) => (
-                    <TouchableWithoutFeedback key={item.id ?? rowIndex} onPress={() => getNavigasi(item)}>
-                      <View style={styles.card}>
-                        <View style={styles.viewCategory}>
-                          <FastImage
-                            style={styles.image}
-                            source={{
-                              uri: CONFIG.BASE_URL + item.icon,
-                              priority: FastImage.priority.normal,
-                            }}
-                            resizeMode={FastImage.resizeMode.contain}
-                          />
-                          <Text 
-                            numberOfLines={2}
-                            adjustsFontSizeToFit
-                            style={styles.title}
-                          >
+              <ScrollView
+                horizontal={true}
+                showsHorizontalScrollIndicator={false}>
+                {chunkArray(
+                  categories[0]
+                    ?.sort((a, b) => a.menu_order - b.menu_order)
+                    .slice(0, 100),
+                  2,
+                ).map((group, columnIndex) => (
+                  <View key={columnIndex} style={styles.containerColumn}>
+                    {group.map((item, rowIndex) => (
+                      <TouchableWithoutFeedback
+                        key={item.id ?? rowIndex}
+                        onPress={() => getNavigasi(item)}>
+                        <View style={styles.card}>
+                          <View style={styles.viewCategory}>
+                            <FastImage
+                              style={styles.image}
+                              source={{
+                                uri: CONFIG.BASE_URL + item.icon,
+                                priority: FastImage.priority.normal,
+                              }}
+                              resizeMode={FastImage.resizeMode.contain}
+                            />
+                            <Text
+                              numberOfLines={2}
+                              adjustsFontSizeToFit
+                              style={styles.title}>
                               {item.name}
-                          </Text>
+                            </Text>
+                          </View>
                         </View>
-                      </View>
-                    </TouchableWithoutFeedback>
-                  ))}
-                </View>
-              ))}
-            </ScrollView>
+                      </TouchableWithoutFeedback>
+                    ))}
+                  </View>
+                ))}
+              </ScrollView>
             </View>
           </View>
         )}
@@ -159,10 +163,11 @@ const styles = StyleSheet.create({
   judul: {
     fontSize: hp('2%'),
     fontFamily: 'Lato-Bold',
-    color: '#1F1F1F',
+    color: '#575251',
     marginTop: hp('2%'),
     // marginLeft: wp('5%'),
     marginBottom: hp('2%'),
+    fontWeight: 'bold',
   },
   title: {
     fontSize: wp('2%'), // proporsional terhadap card
@@ -192,9 +197,9 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     overflow: 'hidden',
-    paddingRight:2,
-    paddingLeft:2,
-    paddingBottom:5,
+    paddingRight: 2,
+    paddingLeft: 2,
+    paddingBottom: 5,
   },
   containerColumn: {
     flexDirection: 'column',

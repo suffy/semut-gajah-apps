@@ -892,10 +892,11 @@ const styles = StyleSheet.create({
     marginTop: wp('1%'),
   },
   title: {
-    fontSize: hp('1.7%'),
+    fontSize: hp('2%'),
     fontFamily: 'Lato-Bold',
     color: '#575251',
     paddingLeft: wp('5%'),
+    fontWeight: 'bold',
   },
   buttonNext: {
     margin: 15,

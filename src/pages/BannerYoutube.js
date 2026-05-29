@@ -101,10 +101,11 @@ export class BannerYoutube extends Component {
     try {
       const index = width - wp('15%');
       this._stopAutoPlay();
-      if (event > index * this._currentIndex+1) {
+      if (event > index * this._currentIndex + 1) {
         const result = event / index + 1;
         this.refs[SCROLLVIEW_REF]?.scrollTo({
-          x: index * parseInt(result), animated: true,
+          x: index * parseInt(result),
+          animated: true,
         });
         this._currentIndex = parseInt(result);
         this._startAutoPlay();
@@ -167,17 +168,17 @@ export class BannerYoutube extends Component {
                       resizeMode={FastImage.resizeMode.stretch}
                     />
                   </TouchableWithoutFeedback>
-                    <FastImage
-                      style={{
-                        position: 'absolute', 
-                        bottom: wp('15%'), 
-                        right: wp('32%'),
-                        width: wp('15%'),
-                        height: wp('15%'),
-                      }}
-                      source={require('../assets/images/banner_youtube/logo_youtube.png')}
-                      resizeMode={FastImage.resizeMode.contain}
-                    />
+                  <FastImage
+                    style={{
+                      position: 'absolute',
+                      bottom: wp('15%'),
+                      right: wp('32%'),
+                      width: wp('15%'),
+                      height: wp('15%'),
+                    }}
+                    source={require('../assets/images/banner_youtube/logo_youtube.png')}
+                    resizeMode={FastImage.resizeMode.contain}
+                  />
                 </View>
               );
             })}
@@ -246,11 +247,12 @@ const styles = StyleSheet.create({
     // top:hp('-50%')
   },
   title: {
-    fontSize: hp('1.7%'),
+    fontSize: hp('2%'),
     fontFamily: 'Lato-Bold',
     color: '#575251',
     paddingLeft: wp('5%'),
     paddingTop: wp('2%'),
+    fontWeight: 'bold',
   },
 });
 

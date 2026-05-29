@@ -1276,21 +1276,31 @@ export class Home extends Component {
               promo={[
                 {
                   id: 1,
+                  banner: require('../assets/images/banner_youtube/antangin_diansastro.png'),
+                  url: 'https://youtu.be/C0QvFwENJDg?si=wkA5NMXpV3SIDiy9',
+                },
+                {
+                  id: 2,
+                  banner: require('../assets/images/banner_youtube/compro_delto.png'),
+                  url: 'https://youtu.be/hLIQDZgx-ak?si=tFwnE6OT7Xm6Gya9',
+                },
+                {
+                  id: 3,
                   banner: require('../assets/images/banner_youtube/_9eqkjRg_XI.jpg'),
                   url: 'https://youtu.be/_9eqkjRg_XI',
                 },
                 {
-                  id: 2,
+                  id: 4,
                   banner: require('../assets/images/banner_youtube/CvVO1Oy7yMk.jpg'),
                   url: 'https://youtu.be/CvVO1Oy7yMk',
                 },
                 {
-                  id: 3,
+                  id: 5,
                   banner: require('../assets/images/banner_youtube/EnXtGkkqHas.jpg'),
                   url: 'https://youtu.be/EnXtGkkqHas',
                 },
                 {
-                  id: 4,
+                  id: 6,
                   banner: require('../assets/images/banner_youtube/twH4Kfa_JXA.jpg'),
                   url: 'https://youtu.be/twH4Kfa_JXA',
                 },
@@ -2034,11 +2044,12 @@ const styles = StyleSheet.create({
     marginTop: wp('1%'),
   },
   title: {
-    fontSize: hp('1.7%'),
+    fontSize: hp('2%'),
     fontFamily: 'Lato-Bold',
-    color: '#1F1F1F',
+    color: '#575251',
     // marginTop: hp('1%'),
     // marginBottom: hp('2%'),
+    fontWeight: 'bold',
   },
   buttonKeranjang: {
     backgroundColor: '#FFFFFF',

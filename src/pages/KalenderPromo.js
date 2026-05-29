@@ -643,6 +643,7 @@ export class KalenderPromo extends Component {
                         uri: CONFIG.BASE_URL + item.banner,
                         priority: FastImage.priority.normal,
                       }}
+                      resizeMode={FastImage.resizeMode.contain}
                     />
                   ) : (
                     <DummyImage style={styles.banner} />
