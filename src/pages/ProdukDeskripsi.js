@@ -16,6 +16,7 @@ import {
   RefreshControl,
   Animated,
   BackHandler,
+  useWindowDimensions,
 } from 'react-native';
 import {connect} from 'react-redux';
 import ProductsImage from './ProductsImages';
@@ -50,6 +51,7 @@ import bintang from '../assets/newIcons/iconBintang.svg';
 import bintangAbu from '../assets/newIcons/iconBintangActive.svg';
 import {Rating, AirbnbRating} from 'react-native-ratings';
 import FastImage from 'react-native-fast-image';
+import TextHtml from '../components/TextHtml';
 function MiniOfflineSign() {
   return (
     <View style={styles.offlineContainer}>
@@ -1422,9 +1424,10 @@ export class ProdukDeskripsi extends Component {
                     paddingHorizontal: wp('5%'),
                     paddingVertical: hp('1%'),
                   }}>
-                  <Text style={styles.textDeskripsi}>
-                    {this.props.item.description}
-                  </Text>
+                  <TextHtml
+                    html={this.props.item.description}
+                    style={styles.textDeskripsi}
+                  />
                 </View>
                 {this.state.recomenProduct.length > 0 && (
                   <View style={styles.container}>
