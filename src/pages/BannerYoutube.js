@@ -133,7 +133,7 @@ export class BannerYoutube extends Component {
           <ScrollView
             ref={SCROLLVIEW_REF}
             pagingEnabled={true}
-            decelerationRate={'fast'}
+            decelerationRate={'normal'}
             horizontal={true}
             showsHorizontalScrollIndicator={false}
             style={styles.scroll}
