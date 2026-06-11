@@ -46,10 +46,12 @@ export class ProductsImages extends Component {
             <React.Fragment>
               <FastImage
                 style={styles.product}
-                source={this.state.image
+                source={
+                  this.state.image
                     ? {uri: CONFIG.BASE_URL + this.state.image}
                     : null
                 }
+                resizeMode={FastImage.resizeMode.contain}
               />
             </React.Fragment>
           )}

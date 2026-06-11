@@ -50,6 +50,7 @@ export class Search extends Component {
               alignItems: 'center',
               justifyContent: 'center',
               backgroundColor: 'white',
+              marginBottom: wp('20%'),
             }}
             keyExtractor={(item, index) => `${index}`}
             data={this.props.data}
