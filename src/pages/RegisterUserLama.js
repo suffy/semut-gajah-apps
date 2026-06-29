@@ -182,9 +182,9 @@ export class RegisterUserLama extends Component {
         modalAlert: !this.state.modalAlert,
       });
       return;
-    } else if (!this.state.phone.trim()) {
+    } else if (!this.state.email.trim()) {
       this.setState({
-        alertData: 'Pastikan nomor telepon tidak ada yang kosong',
+        alertData: 'Pastikan email tidak ada yang kosong',
         modalAlert: !this.state.modalAlert,
       });
       return;
@@ -206,8 +206,8 @@ export class RegisterUserLama extends Component {
         customer_code: this.props.dataUser.customer_code,
         name: this.props.dataUser?.name,
         user_address: this.props.dataUser.user_address,
-        // email: this.state.email,
-        phone: this.state.phone,
+        email: this.state.email,
+        // phone: this.state.phone,
         password: this.state.password,
         password_confirmation: this.state.password_confirmation,
         // address: this.state.address,
@@ -282,7 +282,7 @@ export class RegisterUserLama extends Component {
                 key={index}
                 style={{
                   flexDirection: 'row',
-                  alignItems: item.kelurahan ?  'flex-start' : 'flex-end',
+                  alignItems: item.kelurahan ? 'flex-start' : 'flex-end',
                   justifyContent: 'flex-start',
                   width: wp('65%'),
                 }}>
@@ -343,7 +343,7 @@ export class RegisterUserLama extends Component {
               />
             </View> */}
             {/* <Text style={[styles.textStyle]}>{'Nomor Telepon'}</Text> */}
-            <View style={styles.posision}>
+            {/* <View style={styles.posision}>
               <View style={styles.containerInput}>
                 <TextInput
                   autoCapitalize="none"
@@ -358,6 +358,26 @@ export class RegisterUserLama extends Component {
                 />
               </View>
               <IconPhone
+                style={styles.icon}
+                width={wp('6%')}
+                height={hp('6%')}
+              />
+            </View> */}
+            <View style={styles.posision}>
+              <View style={styles.containerInput}>
+                <TextInput
+                  autoCapitalize="none"
+                  placeholder="Email"
+                  placeholderTextColor="#C1B5B2"
+                  keyboardType="email-address"
+                  style={styles.inputStyle}
+                  underlineColorAndroid="transparent"
+                  onChangeText={value =>
+                    this._isMounted && this.setState({email: value})
+                  }
+                />
+              </View>
+              <IconEmail
                 style={styles.icon}
                 width={wp('6%')}
                 height={hp('6%')}
@@ -633,8 +653,8 @@ export class RegisterUserLama extends Component {
                   <TouchableOpacity onPress={this.generate_captcha}>
                     <FastImage
                       style={{
-                        width: wp('8%'),
-                        height: hp('8%'),
+                        width: wp('6%'),
+                        height: hp('6%'),
                         resizeMode: 'contain',
                         margin: 5,
                       }}

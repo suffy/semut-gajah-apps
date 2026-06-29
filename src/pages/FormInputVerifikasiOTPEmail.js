@@ -135,7 +135,7 @@ export class FormInputVerifikasiOTPSMS extends Component {
           modalAlert: true,
           loadingApi: false,
         });
-        
+
         if (this.props.dataUser && this.props.dataUser.name_company) {
           console.log('MASUK DISTRIBUTOR', this.props.dataUser);
           const formData = JSON.stringify(this.props.dataUser);
@@ -215,12 +215,15 @@ export class FormInputVerifikasiOTPSMS extends Component {
           console.log('MASUK UMUM', this.props.dataUser);
           const formData = JSON.stringify(this.props.dataUser);
           await axios
-            .post(`${CONFIG.BASE_URL}/api/auth/register?status=2`, 
-            this.props.route.params?.dataUser, {
-              headers: {
-                'content-type': 'application/json',
+            .post(
+              `${CONFIG.BASE_URL}/api/auth/register?status=2`,
+              this.props.route.params?.dataUser,
+              {
+                headers: {
+                  'content-type': 'application/json',
+                },
               },
-            })
+            )
             .then(response => {
               // console.log(response)
               const data = response.data;

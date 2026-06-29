@@ -522,13 +522,13 @@ export class Login extends Component {
             </Text>
           </View>
           <View style={styles.viewBottom}>
-            {/* <TouchableOpacity
+            <TouchableOpacity
               style={styles.btnDaftar}
               onPress={() => {
                 this.getRegister();
               }}>
               <Text style={styles.textBtnDaftar}>Daftar</Text>
-            </TouchableOpacity> */}
+            </TouchableOpacity>
             <TouchableOpacity
               style={styles.btnOk}
               onPress={() => this.loginHandler()}>

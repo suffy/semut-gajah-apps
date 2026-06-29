@@ -184,6 +184,52 @@ export class FormInputCodeOTPOld extends Component {
     }
   };
 
+  sendOTPEmail = async () => {
+    const formData = {
+      email: this.props.dataUser.email,
+      customer_code: this.props.dataUser.customer_code,
+    };
+    this.setState({loadingApi: true});
+    try {
+      let response = await axios.post(
+        `${CONFIG.BASE_URL}/api/otp/no-auth/email`,
+        formData,
+      );
+      const data = response.data;
+      if (data !== '' && data['success'] == true) {
+        console.log('HASIL SEND OTP', data, formData);
+        this.props.loginAct(this.state.email, 'email');
+        this.props.loginAct(this.state.code, 'customer_code');
+        this.props.navigation.navigate('FormInputVerifikasiOTPEmail');
+        this.setState({loadingApi: false});
+      }
+    } catch (error) {
+      let error429 =
+        JSON.parse(JSON.stringify(error)).message ===
+        'Request failed with status code 429';
+      let errorNetwork =
+        JSON.parse(JSON.stringify(error)).message === 'Network Error';
+      let error400 =
+        JSON.parse(JSON.stringify(error)).message ===
+        'Request failed with status code 400';
+      console.log(
+        'Cek Error========================',
+        JSON.parse(JSON.stringify(error)).message,
+      );
+      if (error429) {
+        this.showSnackbarBusy();
+      } else if (errorNetwork) {
+        this.showSnackbarInet();
+      } else {
+        this.setState({
+          alertData: 'Gagal mengirim otp',
+          modalAlert: !this.state.modalAlert,
+          loadingApi: false,
+        });
+      }
+    }
+  };
+
   getCloseAlertModal() {
     this.setState({modalAlert: !this.state.modalAlert});
   }
@@ -298,7 +344,7 @@ export class FormInputCodeOTPOld extends Component {
               }}>
               {showInput ? (
                 <>
-                  <TouchableOpacity
+                  {/* <TouchableOpacity
                     style={styles.buttonWASms}
                     onPress={() => this.sendOTPSMS()}>
                     <Text style={styles.textOTP}>{'SMS'}</Text>
@@ -307,6 +353,11 @@ export class FormInputCodeOTPOld extends Component {
                     style={styles.buttonWASms}
                     onPress={() => this.sendOTPWA()}>
                     <Text style={styles.textOTP}>{'Whatsapp'}</Text>
+                  </TouchableOpacity> */}
+                  <TouchableOpacity
+                    style={styles.buttonWASms}
+                    onPress={() => this.sendOTPEmail()}>
+                    <Text style={styles.textOTP}>{'Email'}</Text>
                   </TouchableOpacity>
                 </>
               ) : (

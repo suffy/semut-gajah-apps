@@ -98,13 +98,13 @@ export class FormIdentificationUser extends Component {
 
           <View style={styles.buttonPosisi}>
             <IconIdentity width={wp('70%')} height={hp('30%')} />
-            <TouchableOpacity
+            {/* <TouchableOpacity
               style={[styles.buttonPelangganBaru, styles.buttonRadius]}
               onPress={() => {
                 this.getPermissions();
               }}>
               <Text style={styles.textPelangganBaru}>{'User Baru'}</Text>
-            </TouchableOpacity>
+            </TouchableOpacity> */}
             <TouchableOpacity
               style={[styles.buttonPelangganLama, styles.buttonRadius]}
               onPress={() => {
