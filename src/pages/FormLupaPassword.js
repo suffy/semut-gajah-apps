@@ -117,7 +117,7 @@ export class FormLupaPassword extends Component {
             });
           } else if (message == userNot) {
             this.setState({
-              alertData: 'Nomor telepon tidak ditemukan',
+              alertData: 'Email tidak ditemukan',
               modalAlert: !this.state.modalAlert,
             });
           }
@@ -205,7 +205,7 @@ export class FormLupaPassword extends Component {
             <View style={styles.containerInput}>
               <TextInput
                 autoCapitalize="none"
-                placeholder="Nomor telepon / email"
+                placeholder="Email"
                 placeholderTextColor="#A4A4A4"
                 keyboardType="email-address"
                 style={styles.inputStyle}

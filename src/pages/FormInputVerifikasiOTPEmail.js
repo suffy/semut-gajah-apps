@@ -216,8 +216,10 @@ export class FormInputVerifikasiOTPSMS extends Component {
           const formData = JSON.stringify(this.props.dataUser);
           await axios
             .post(
-              `${CONFIG.BASE_URL}/api/auth/register?status=2`,
-              this.props.route.params?.dataUser,
+              `${CONFIG.BASE_URL}/api/auth/register-user-lama`,
+              //`${CONFIG.BASE_URL}/api/auth/register?status=2`,
+              // this.props.route.params?.dataUser,
+              formData,
               {
                 headers: {
                   'content-type': 'application/json',
@@ -237,7 +239,7 @@ export class FormInputVerifikasiOTPSMS extends Component {
                 this.setState({
                   tambahan: 'VERIFIKASI SUKSES',
                   alertData:
-                    'Akun anda sudah terdaftar di sistem kami, harap menunggu konfirmasi dari admin kami untuk bisa masuk',
+                    'Akun anda sudah terdaftar di sistem kami, silahkan login dengan email dan password anda',
                   modalAlert: true,
                   loadingApi: false,
                 });

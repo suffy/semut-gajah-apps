@@ -192,7 +192,7 @@ export class Login extends Component {
       app_version: '1.1.10',
     };
     this.setState({loadingApi: true});
-    console.log(formData, 'form');
+    //console.log(formData, 'form');
     try {
       let response = await axios.post(
         `${CONFIG.BASE_URL}/api/auth/login`,
