@@ -349,7 +349,7 @@ export class FormInputVerifikasiOTPSMS extends Component {
       this.props.navigation.replace('Login');
     } else if (
       this.state.alertData ==
-      'Akun anda sudah terdaftar di sistem kami, harap menunggu konfirmasi dari admin kami untuk bisa masuk'
+      'Akun anda sudah terdaftar di sistem kami, silahkan login dengan email dan password anda'
     ) {
       this.props.navigation.replace('Login');
     }
