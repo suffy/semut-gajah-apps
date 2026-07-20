@@ -9,7 +9,7 @@ import {
   StyleSheet,
   ScrollView,
   KeyboardAvoidingView,
-  Alert,
+  Platform,
 } from 'react-native';
 import axios from 'axios';
 import Logo from '../assets/icons/Logo.svg';
@@ -39,7 +39,7 @@ export class FormEditAlamat extends Component {
     if (Text.defaultProps == null) Text.defaultProps = {};
     Text.defaultProps.allowFontScaling = false;
     this.state = {
-      address: '',
+      address: props.alamat.address,
       _isPress: false,
       provinsi: props.alamat.provinsi,
       kota: props.alamat.kota,
@@ -80,6 +80,7 @@ export class FormEditAlamat extends Component {
       } else if (!this.state.address.trim()) {
         this.setState({address: this.props.alamat.address});
         console.log('MASUK', this.props.alamat);
+
         await axios
           .post(
             `${CONFIG.BASE_URL}/api/address/${this.props.alamat.id}`,
@@ -89,7 +90,7 @@ export class FormEditAlamat extends Component {
               city: this.state.kota,
               district: this.state.kecamatan,
               subdistrict: this.state.kelurahan,
-              postcode: this.state.kodepos,
+              postal_code: this.state.kodepos,
             },
             {
               headers: {
@@ -143,7 +144,7 @@ export class FormEditAlamat extends Component {
               city: this.state.kota,
               district: this.state.kecamatan,
               subdistrict: this.state.kelurahan,
-              postcode: this.state.kodepos,
+              postal_code: this.state.kodepos,
             },
             {
               headers: {
@@ -472,10 +473,10 @@ const styles = StyleSheet.create({
   comboPassword: {
     flexDirection: 'row',
   },
-  eye: {
-    paddingTop: hp('4%'),
-    marginLeft: wp('-5%'),
-  },
+  // eye: {
+  //   paddingTop: hp('4%'),
+  //   marginLeft: wp('-5%'),
+  // },
   textLupaPassword: {
     fontFamily: 'Lato-Regular',
     fontSize: hp('1.2%'),

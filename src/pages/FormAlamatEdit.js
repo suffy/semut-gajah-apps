@@ -43,6 +43,7 @@ export class FormAlamatEdit extends Component {
       datakecamatan: 0,
       kelurahan: [],
       datakelurahan: 0,
+      datapostcode: 0,
       poscode: [],
       cek: false,
       cek2: false,
@@ -72,7 +73,6 @@ export class FormAlamatEdit extends Component {
       });
       const data = response.data.data;
       this.setState({province: data});
-      console.log(data);
     } catch (error) {
       let error429 =
         JSON.parse(JSON.stringify(error)).message ===
@@ -99,6 +99,166 @@ export class FormAlamatEdit extends Component {
     }
   };
 
+  getCity = async provinceId => {
+    try {
+      let response = await axios.get(`${CONFIG.BASE_URL}/api/location`, {
+        params: {
+          type: 'city',
+          province_id: provinceId,
+        },
+      });
+      const data = response.data.data;
+      this.setState({city: data});
+      this.setState({cek: true});
+      console.log('---> data city');
+    } catch (error) {
+      let error429 =
+        JSON.parse(JSON.stringify(error)).message ===
+        'Request failed with status code 429';
+      let errorNetwork =
+        JSON.parse(JSON.stringify(error)).message === 'Network Error';
+      let error400 =
+        JSON.parse(JSON.stringify(error)).message ===
+        'Request failed with status code 400';
+      console.log(
+        'Cek Error========================',
+        JSON.parse(JSON.stringify(error)).message,
+      );
+      if (error429) {
+        this.showSnackbarBusy();
+      } else if (errorNetwork) {
+        this.showSnackbarInet();
+      } else {
+        this.setState({
+          alertData: 'akses ke data kota gagal',
+          modalAlert: !this.state.modalAlert,
+        });
+      }
+    }
+  };
+
+  getDistrict = async cityId => {
+    try {
+      let response = await axios.get(`${CONFIG.BASE_URL}/api/location`, {
+        params: {
+          type: 'district',
+          city_id: cityId,
+        },
+      });
+      const data = response.data.data;
+      this.setState({kecamatan: data});
+      this.setState({cek2: true});
+      console.log('---> data kecamatan');
+    } catch (error) {
+      let error429 =
+        JSON.parse(JSON.stringify(error)).message ===
+        'Request failed with status code 429';
+      let errorNetwork =
+        JSON.parse(JSON.stringify(error)).message === 'Network Error';
+      let error400 =
+        JSON.parse(JSON.stringify(error)).message ===
+        'Request failed with status code 400';
+      console.log(
+        'Cek Error========================',
+        JSON.parse(JSON.stringify(error)).message,
+      );
+      if (error429) {
+        this.showSnackbarBusy();
+      } else if (errorNetwork) {
+        this.showSnackbarInet();
+      } else {
+        this.setState({
+          alertData: 'akses ke data district gagal',
+          modalAlert: !this.state.modalAlert,
+        });
+      }
+    }
+  };
+
+  getSubDistrict = async districtId => {
+    try {
+      let response = await axios.get(`${CONFIG.BASE_URL}/api/location`, {
+        params: {
+          type: 'subdistrict',
+          district_id: districtId,
+        },
+      });
+      const data = response.data.data;
+      this.setState({kelurahan: data});
+      this.setState({cek3: true});
+      console.log('---> data kelurahan');
+    } catch (error) {
+      let error429 =
+        JSON.parse(JSON.stringify(error)).message ===
+        'Request failed with status code 429';
+      let errorNetwork =
+        JSON.parse(JSON.stringify(error)).message === 'Network Error';
+      let error400 =
+        JSON.parse(JSON.stringify(error)).message ===
+        'Request failed with status code 400';
+      console.log(
+        'Cek Error========================',
+        JSON.parse(JSON.stringify(error)).message,
+      );
+      if (error429) {
+        this.showSnackbarBusy();
+      } else if (errorNetwork) {
+        this.showSnackbarInet();
+      } else {
+        this.setState({
+          alertData: 'akses ke data subdistrict gagal',
+          modalAlert: !this.state.modalAlert,
+        });
+      }
+    }
+  };
+
+  getPostalCode = async () => {
+    try {
+      let response = await axios.get(`${CONFIG.BASE_URL}/api/location`, {
+        params: {
+          type: 'postal_code',
+          province_id: this.state.dataprovince,
+          city_id: this.state.datacity,
+          district_id: this.state.datakecamatan,
+        },
+      });
+      const data = response.data.data;
+      const pos = [];
+      data.forEach(obj => {
+        if (!pos.some(o => o.postcode === obj.postcode)) {
+          pos.push({...obj});
+        }
+      });
+      this.setState({poscode: pos});
+      this.setState({cek4: true});
+      console.log('---> data poscode');
+    } catch (error) {
+      let error429 =
+        JSON.parse(JSON.stringify(error)).message ===
+        'Request failed with status code 429';
+      let errorNetwork =
+        JSON.parse(JSON.stringify(error)).message === 'Network Error';
+      let error400 =
+        JSON.parse(JSON.stringify(error)).message ===
+        'Request failed with status code 400';
+      console.log(
+        'Cek Error========================',
+        JSON.parse(JSON.stringify(error)).message,
+      );
+      if (error429) {
+        this.showSnackbarBusy();
+      } else if (errorNetwork) {
+        this.showSnackbarInet();
+      } else {
+        this.setState({
+          alertData: 'akses ke data postcode gagal',
+          modalAlert: !this.state.modalAlert,
+        });
+      }
+    }
+  };
+
   pickerProvince = async value => {
     const {province} = this.state;
     try {
@@ -112,42 +272,7 @@ export class FormAlamatEdit extends Component {
         // await this.props.loginAct(dataProvince.name, 'province');
         let data = dataProvince.name;
         this.props.provinsi(data);
-        axios
-          .get(`${CONFIG.BASE_URL}/api/location`, {
-            params: {
-              type: 'city',
-              province_id: value,
-            },
-          })
-          .then(response => {
-            const data = response.data;
-            this.setState({city: data.data});
-            this.setState({cek: true});
-          })
-          .catch(error => {
-            let error429 =
-              JSON.parse(JSON.stringify(error)).message ===
-              'Request failed with status code 429';
-            let errorNetwork =
-              JSON.parse(JSON.stringify(error)).message === 'Network Error';
-            let error400 =
-              JSON.parse(JSON.stringify(error)).message ===
-              'Request failed with status code 400';
-            console.log(
-              'Cek Error========================',
-              JSON.parse(JSON.stringify(error)).message,
-            );
-            if (error429) {
-              this.showSnackbarBusy();
-            } else if (errorNetwork) {
-              this.showSnackbarInet();
-            } else {
-              this.setState({
-                alertData: 'akses ke data kota gagal',
-                modalAlert: !this.state.modalAlert,
-              });
-            }
-          });
+        this.getCity(value);
       }
     } catch (error) {
       console.log(error);
@@ -167,42 +292,7 @@ export class FormAlamatEdit extends Component {
         // await this.props.loginAct(dataCity.name, 'city');
         let data = dataCity.name;
         this.props.kota(data);
-        axios
-          .get(`${CONFIG.BASE_URL}/api/location`, {
-            params: {
-              type: 'district',
-              city_id: value,
-            },
-          })
-          .then(response => {
-            const data = response.data;
-            this.setState({kecamatan: data.data});
-            this.setState({cek2: true});
-          })
-          .catch(error => {
-            let error429 =
-              JSON.parse(JSON.stringify(error)).message ===
-              'Request failed with status code 429';
-            let errorNetwork =
-              JSON.parse(JSON.stringify(error)).message === 'Network Error';
-            let error400 =
-              JSON.parse(JSON.stringify(error)).message ===
-              'Request failed with status code 400';
-            console.log(
-              'Cek Error========================',
-              JSON.parse(JSON.stringify(error)).message,
-            );
-            if (error429) {
-              this.showSnackbarBusy();
-            } else if (errorNetwork) {
-              this.showSnackbarInet();
-            } else {
-              this.setState({
-                alertData: 'akses ke data kecamatan gagal',
-                modalAlert: !this.state.modalAlert,
-              });
-            }
-          });
+        this.getDistrict(value);
       }
     } catch (error) {
       console.log(error);
@@ -225,42 +315,7 @@ export class FormAlamatEdit extends Component {
         // await this.props.loginAct(dataKecamatan.name, 'district');
         let data = dataKecamatan.name;
         this.props.kecamatan(data);
-        axios
-          .get(`${CONFIG.BASE_URL}/api/location`, {
-            params: {
-              type: 'subdistrict',
-              district_id: value,
-            },
-          })
-          .then(response => {
-            const data = response.data;
-            this.setState({kelurahan: data.data});
-            this.setState({cek3: true});
-          })
-          .catch(error => {
-            let error429 =
-              JSON.parse(JSON.stringify(error)).message ===
-              'Request failed with status code 429';
-            let errorNetwork =
-              JSON.parse(JSON.stringify(error)).message === 'Network Error';
-            let error400 =
-              JSON.parse(JSON.stringify(error)).message ===
-              'Request failed with status code 400';
-            console.log(
-              'Cek Error========================',
-              JSON.parse(JSON.stringify(error)).message,
-            );
-            if (error429) {
-              this.showSnackbarBusy();
-            } else if (errorNetwork) {
-              this.showSnackbarInet();
-            } else {
-              this.setState({
-                alertData: 'akses ke data kelurahan gagal',
-                modalAlert: !this.state.modalAlert,
-              });
-            }
-          });
+        this.getSubDistrict(value);
       }
     } catch (error) {
       console.log(error);
@@ -283,50 +338,7 @@ export class FormAlamatEdit extends Component {
         // await this.props.loginAct(dataKelurahan.name, 'subdistrict');
         let data = dataKelurahan.name;
         this.props.kelurahan(data);
-        axios
-          .get(`${CONFIG.BASE_URL}/api/location`, {
-            params: {
-              type: 'postal_code',
-              province_id: this.state.dataprovince,
-              city_id: this.state.datacity,
-              district_id: this.state.datakecamatan,
-            },
-          })
-          .then(response => {
-            const data = response.data.data;
-            const pos = [];
-            data.forEach(obj => {
-              if (!pos.some(o => o.postcode === obj.postcode)) {
-                pos.push({...obj});
-              }
-            });
-            this.setState({poscode: pos});
-            this.setState({cek4: true});
-          })
-          .catch(error => {
-            let error429 =
-              JSON.parse(JSON.stringify(error)).message ===
-              'Request failed with status code 429';
-            let errorNetwork =
-              JSON.parse(JSON.stringify(error)).message === 'Network Error';
-            let error400 =
-              JSON.parse(JSON.stringify(error)).message ===
-              'Request failed with status code 400';
-            console.log(
-              'Cek Error========================',
-              JSON.parse(JSON.stringify(error)).message,
-            );
-            if (error429) {
-              this.showSnackbarBusy();
-            } else if (errorNetwork) {
-              this.showSnackbarInet();
-            } else {
-              this.setState({
-                alertData: 'akses ke data kodepos gagal',
-                modalAlert: !this.state.modalAlert,
-              });
-            }
-          });
+        this.getPostalCode();
       }
     } catch (error) {
       console.log(error);
@@ -338,6 +350,9 @@ export class FormAlamatEdit extends Component {
       return;
     } else {
       // await this.props.loginAct(value, 'postcode');
+      await this.setState({
+        datapostcode: value,
+      });
       this.props.kodepos(value);
     }
   };
@@ -423,15 +438,19 @@ export class FormAlamatEdit extends Component {
                   fontFamily: 'Lato-Medium',
                   fontSize: hp('1.6%'),
                 }}
-                selectedValue={this.state.province}
+                selectedValue={this.state.dataprovince}
                 onValueChange={value => this.pickerProvince(value)}>
                 <Picker.Item
                   style={styles.pickerItem}
                   fontFamily="Lato-Medium"
                   color="#000000"
                   key={0}
-                  label={alamat.provinsi}
-                  value={alamat.provinsi}
+                  label={
+                    this.state.dataprovince != 0
+                      ? 'Pilih Provinsi'
+                      : alamat.provinsi ?? 'Pilih Provinsi'
+                  }
+                  value={'Pilih Provinsi'}
                 />
                 {this.state.province.map(province => {
                   return (
@@ -470,15 +489,19 @@ export class FormAlamatEdit extends Component {
                   fontFamily: 'Lato-Medium',
                   fontSize: hp('1.6%'),
                 }}
-                selectedValue={this.state.city}
+                selectedValue={this.state.datacity}
                 onValueChange={value => this.pickerCity(value)}>
                 <Picker.Item
                   style={styles.pickerItem}
                   fontFamily="Lato-Medium"
                   color="#000000"
                   key={0}
-                  label={alamat.kota}
-                  value={alamat.kota}
+                  label={
+                    this.state.datacity != 0
+                      ? 'Pilih Kota'
+                      : alamat.kota ?? 'Pilih Kota'
+                  }
+                  value={'Pilih Kota'}
                   enabled={this.state.cek}
                 />
                 {this.state.city.map(city => {
@@ -518,15 +541,19 @@ export class FormAlamatEdit extends Component {
                   fontFamily: 'Lato-Medium',
                   fontSize: hp('1.6%'),
                 }}
-                selectedValue={this.state.kecamatan}
+                selectedValue={this.state.datakecamatan}
                 onValueChange={value => this.pickerKecamatan(value)}>
                 <Picker.Item
                   style={styles.pickerItem}
                   fontFamily="Lato-Medium"
                   color="#000000"
                   key={0}
-                  label={alamat.kecamatan}
-                  value={alamat.kecamatan}
+                  label={
+                    this.state.datakecamatan != 0
+                      ? 'Pilih Kecamatan'
+                      : alamat.kecamatan ?? 'Pilih Kecamatan'
+                  }
+                  value={'Pilih Kecamatan'}
                   enabled={this.state.cek2}
                 />
                 {this.state.kecamatan.map(kecamatan => {
@@ -566,7 +593,7 @@ export class FormAlamatEdit extends Component {
                   fontFamily: 'Lato-Medium',
                   fontSize: hp('1.6%'),
                 }}
-                selectedValue={this.state.kelurahan}
+                selectedValue={this.state.datakelurahan}
                 onValueChange={
                   value => this.pickerKelurahan(value) //sebelumnya ini pickerPos
                 }>
@@ -575,8 +602,12 @@ export class FormAlamatEdit extends Component {
                   fontFamily="Lato-Medium"
                   color="#000000"
                   key={0}
-                  label={alamat.kelurahan}
-                  value={alamat.kelurahan}
+                  label={
+                    this.state.datakelurahan != 0
+                      ? 'Pilih Kelurahan'
+                      : alamat.kelurahan ?? 'Pilih Kelurahan'
+                  }
+                  value={'Pilih Kelurahan'}
                   enabled={this.state.cek3}
                 />
                 {this.state.kelurahan.map(kelurahan => {
@@ -616,15 +647,19 @@ export class FormAlamatEdit extends Component {
                   fontFamily: 'Lato-Medium',
                   fontSize: hp('1.6%'),
                 }}
-                selectedValue={this.state.poscode}
+                selectedValue={this.state.datapostcode}
                 onValueChange={value => this.pickerPos(value)}>
                 <Picker.Item
                   style={styles.pickerItem}
                   fontFamily="Lato-Medium"
                   color="#000000"
                   key={0}
-                  label={alamat.kode_pos}
-                  value={alamat.kode_pos}
+                  label={
+                    this.state.datapostcode != 0
+                      ? 'Pilih Kodepos'
+                      : alamat.kode_pos ?? 'Pilih Kodepos'
+                  }
+                  value={'Pilih Kodepos'}
                   enabled={this.state.cek4}
                 />
                 {this.state.poscode.map(poscode => {

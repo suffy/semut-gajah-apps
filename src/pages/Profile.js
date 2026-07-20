@@ -26,6 +26,7 @@ import IconMinyak from '../assets/newIcons/iconMinyakAngin.svg';
 import IconComplain from '../assets/newIcons/iconKomplain.svg';
 import IconHelp from '../assets/newIcons/iconBantuan.svg';
 import IconQR from '../assets/newIcons/iconQRcode.svg';
+import IconAlamat from '../assets/newIcons/iconAlamat.svg';
 import Logout from '../assets/newIcons/iconLogout.svg';
 import Size from '../components/Fontresponsive';
 import axios from 'axios';
@@ -360,6 +361,14 @@ export class Profile extends Component {
                 <IconRedeem width={wp('7%')} height={hp('6%')} />
                 <Text style={styles.textlist}>{' Redeem Reward '}</Text>
               </TouchableOpacity>
+              <TouchableOpacity
+                style={styles.posisi}
+                onPress={() => {
+                  navigation.navigate('DataAlamat');
+                }}>
+                <IconAlamat width={wp('7%')} height={hp('6%')} />
+                <Text style={styles.textlist}>{'Data Alamat'}</Text>
+              </TouchableOpacity>
             </View>
             {/* <View style={[styles.viewBg, {backgroundColor: '#FFFFFF'}]}>
               <Text style={styles.textjudul2}>{'Semua Kategori'}</Text>
@@ -428,12 +437,11 @@ export class Profile extends Component {
               </TouchableOpacity>
             </View>
             <View style={[styles.viewBg, {backgroundColor: '#FFFFFF'}]}>
-            <TouchableOpacity 
-              style={[styles.posisi]}
-              onPress={() => navigation.navigate('DataUser')}>
-                <IconSetting
-                  width={wp('7%')} height={hp('6%')} />
-                  <Text style={styles.textlist}>{'Pengaturan'}</Text>
+              <TouchableOpacity
+                style={[styles.posisi]}
+                onPress={() => navigation.navigate('DataUser')}>
+                <IconSetting width={wp('7%')} height={hp('6%')} />
+                <Text style={styles.textlist}>{'Pengaturan'}</Text>
               </TouchableOpacity>
               <TouchableOpacity
                 style={styles.posisi}
@@ -443,7 +451,7 @@ export class Profile extends Component {
                 <IconQR width={wp('7%')} height={hp('6%')} />
                 <Text style={styles.textlist}>{'Kode QR'}</Text>
               </TouchableOpacity>
-              
+
               <TouchableOpacity
                 style={[styles.posisi]}
                 onPress={() =>
