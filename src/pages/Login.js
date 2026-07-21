@@ -558,14 +558,14 @@ export class Login extends Component {
             </TouchableOpacity>
           </View> */}
         </View>
-        <Whatsapp
+        {/* <Whatsapp
           onPress={() =>
             this.setState({modalWhatsapp: !this.state.modalWhatsapp})
           }
           style={{position: 'absolute', right: 10, bottom: 20}}
           width={wp('15%')}
           height={wp('15%')}
-        />
+        /> */}
         <Modal
           animationType="fade"
           transparent={true}

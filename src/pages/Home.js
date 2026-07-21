@@ -1848,12 +1848,12 @@ export class Home extends Component {
           modalVisible={this.state.visibleModalBlack}
           getCloseAlertModal={() => this.closeModalBlacklist()}
         />
-        <Whatsapp
+        {/* <Whatsapp
           onPress={() => this.handleChatWhatsapp()}
           style={{position: 'absolute', right: 10, bottom: 60}}
           width={wp('15%')}
           height={wp('15%')}
-        />
+        /> */}
         <BottomNavigation
           copilotEvents={this.props.copilotEvents}
           navigation={this.props.navigation}

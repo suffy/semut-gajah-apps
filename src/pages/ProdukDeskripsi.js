@@ -1297,6 +1297,10 @@ export class ProdukDeskripsi extends Component {
                           jumpValue={0.5}
                           onFinishRating={this.ratingCompleted}
                         />
+                        <Text
+                          style={[styles.nameProduct, {fontSize: hp('2%')}]}>
+                          {this.props.item?.kodeprod}
+                        </Text>
                       </View>
                     </View>
                     <View
@@ -2142,7 +2146,7 @@ const styles = StyleSheet.create({
   textDeskripsi: {
     color: '#575251',
   },
-  btnAction:{
+  btnAction: {
     paddingHorizontal: hp('1%'),
     paddingVertical: hp('1%'),
     backgroundColor: '#F4F4F4',
