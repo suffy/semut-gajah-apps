@@ -126,6 +126,7 @@ export class ProdukDeskripsi extends Component {
       loadingApi: true,
       visibleModalBlack: false,
       varianProduct: [],
+      moreTitle: false,
     };
   }
   postShoppingCart = async item => {
@@ -1269,7 +1270,14 @@ export class ProdukDeskripsi extends Component {
                         paddingLeft: wp('5%'),
                         paddingBottom: hp('1.5%'),
                       }}>
-                      <Text style={[styles.nameProduct]} numberOfLines={2}>
+                      <Text
+                        style={[styles.nameProduct]}
+                        numberOfLines={this.state.moreTitle ? 0 : 2}
+                        onPress={() => {
+                          this.setState(prevSate => ({
+                            moreTitle: !prevSate.moreTitle,
+                          }));
+                        }}>
                         {this.props.item.name}
                       </Text>
                       <View

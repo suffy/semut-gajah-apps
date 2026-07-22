@@ -78,7 +78,12 @@ export class Category extends Component {
       <View>
         {categories?.length > 0 && (
           <View style={styles.container}>
-            <Text style={styles.judul}>{'Kategori'}</Text>
+            <View style={styles.columnTitle}>
+              <Text style={styles.judul}>{'Kategori'}</Text>
+              <Text style={[styles.judul, {fontSize: hp('1.5%')}]}>
+                {'Geser Untuk Lihat >'}
+              </Text>
+            </View>
             <View style={styles.containerButton}>
               <ScrollView
                 horizontal={true}
@@ -128,7 +133,7 @@ export class Category extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    width: wp('100%'),
+    //width: wp('100%'),
     flexDirection: 'column',
     backgroundColor: '#FFF',
     marginBottom: 5,
@@ -168,6 +173,11 @@ const styles = StyleSheet.create({
     // marginLeft: wp('5%'),
     marginBottom: hp('2%'),
     fontWeight: 'bold',
+  },
+  columnTitle: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
   },
   title: {
     fontSize: wp('2%'), // proporsional terhadap card
