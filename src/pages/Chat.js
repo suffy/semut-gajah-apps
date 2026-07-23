@@ -42,7 +42,6 @@ const list = [
     name: '',
     image: '',
     price_sell: '',
-    
   },
 ];
 
@@ -150,7 +149,9 @@ class Chat extends React.Component {
       if (count > 0) {
         return (
           <View style={styles.counter}>
-            <Text style={styles.counterText}>{count > 100 ? "99+" : count}</Text>
+            <Text style={styles.counterText}>
+              {count > 100 ? '99+' : count}
+            </Text>
           </View>
         );
       } else {
@@ -187,6 +188,7 @@ class Chat extends React.Component {
       //     this.callback(data[0].chat_id);
       //   }, 5000);
       // }
+      console.log('data---->', data);
       this.callback(data[0].chat_id);
       this.setState({chat: data});
       this.setIntervalTime = setInterval(() => {
@@ -394,6 +396,7 @@ class Chat extends React.Component {
   };
   render() {
     const {qty, refreshing, search, chat} = this.state;
+
     return (
       <View style={{backgroundColor: '#F4F4F4', flex: 1}}>
         <View style={styles.container2}>
@@ -410,7 +413,9 @@ class Chat extends React.Component {
               color: 'grey',
             }}>
             {'Terakhir dilihat :'}
-            {moment(chat[0]?.last_login).fromNow()}
+            {chat[0]?.last_login
+              ? moment(chat[0]?.last_login).fromNow()
+              : ` ${chat[0]?.name} Offline`}
           </Text>
           <View style={styles.iconKanan}>
             <TouchableOpacity
