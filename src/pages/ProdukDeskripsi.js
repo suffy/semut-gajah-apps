@@ -39,6 +39,7 @@ import Storage from '@react-native-async-storage/async-storage';
 import IconBack from '../assets/icons/backArrow.svg';
 import IconCart from '../assets/icons/Keranjang.svg';
 import IconInfo from '../assets/newIcons/iconInfo.svg';
+import IconSubscribe from '../assets/newIcons/iconShopingBag.svg';
 import Snackbar from 'react-native-snackbar';
 import {Picker} from '@react-native-picker/picker';
 import IconChat from '../assets/newIcons/chatActive.svg';
@@ -1225,29 +1226,10 @@ export class ProdukDeskripsi extends Component {
                   </TouchableOpacity>
                   <TouchableOpacity
                     onPress={() => {
-                      this.postShoppingCart(this.props.item);
+                      this.props.navigation.navigate('Subscribe');
                     }}
                     style={styles.btnAction}>
-                    {this.props.item.cart != null ? (
-                      <View
-                        style={{
-                          backgroundColor: '#51AF3E',
-                          height: hp('2.5%'),
-                          width: hp('2.5%'),
-                          borderRadius: hp('1.25%'),
-                          alignItems: 'center',
-                          justifyContent: 'center',
-                          position: 'absolute',
-                          zIndex: 1,
-                          top: 5,
-                          right: 5,
-                        }}>
-                        <Text style={{color: '#FFF', fontSize: hp('1.2%')}}>
-                          {this.props?.item?.cart?.qty}
-                        </Text>
-                      </View>
-                    ) : null}
-                    <IconCart2 width={hp('4%')} height={hp('4%')} />
+                    <IconSubscribe width={hp('4%')} height={hp('4%')} />
                   </TouchableOpacity>
                 </View>
                 <ProductVarian
@@ -1351,9 +1333,31 @@ export class ProdukDeskripsi extends Component {
                               {marginLeft: wp('5%')},
                             ]}
                             onPress={() =>
-                              this.props.navigation.navigate('Subscribe')
+                              this.postShoppingCart(this.props.item)
                             }>
-                            <Text style={styles.textSubscribe}>Langganan</Text>
+                            {/*this.props.item.cart != null ? (
+                              <View
+                                style={{
+                                  backgroundColor: '#51AF3E',
+                                  height: hp('2.5%'),
+                                  width: hp('2.5%'),
+                                  borderRadius: hp('1.25%'),
+                                  alignItems: 'center',
+                                  justifyContent: 'center',
+                                  position: 'absolute',
+                                  zIndex: 1,
+                                  top: 5,
+                                  right: 5,
+                                }}>
+                                <Text
+                                  style={{color: '#FFF', fontSize: hp('1.2%')}}>
+                                  {this.props?.item?.cart?.qty}
+                                </Text>
+                              </View>
+                            ) : null*/}
+                            <Text style={styles.textSubscribe}>
+                              + Keranjang
+                            </Text>
                           </TouchableOpacity>
                         </View>
                       ) : (
@@ -1386,9 +1390,31 @@ export class ProdukDeskripsi extends Component {
                               {marginLeft: wp('5%')},
                             ]}
                             onPress={() =>
-                              this.props.navigation.navigate('Subscribe')
+                              this.postShoppingCart(this.props.item)
                             }>
-                            <Text style={styles.textSubscribe}>Langganan</Text>
+                            {/*this.props.item.cart != null ? (
+                              <View
+                                style={{
+                                  backgroundColor: '#51AF3E',
+                                  height: hp('2.5%'),
+                                  width: hp('2.5%'),
+                                  borderRadius: hp('1.25%'),
+                                  alignItems: 'center',
+                                  justifyContent: 'center',
+                                  position: 'absolute',
+                                  zIndex: 1,
+                                  top: 5,
+                                  right: 5,
+                                }}>
+                                <Text
+                                  style={{color: '#FFF', fontSize: hp('1.2%')}}>
+                                  {this.props?.item?.cart?.qty}
+                                </Text>
+                              </View>
+                            ) : null*/}
+                            <Text style={styles.textSubscribe}>
+                              + Keranjang
+                            </Text>
                           </TouchableOpacity>
                         </View>
                       )}

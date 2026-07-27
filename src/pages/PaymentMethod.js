@@ -1297,8 +1297,9 @@ export class PaymentMethod extends Component {
                     //   this.setState({disableButton: false});
                     // }}
                   >
-                    <IconBayar width={wp('7%')} height={wp('9%')} />
-                    <Text style={styles.textBayar}>{'Pesan'}</Text>
+                    <Text style={styles.textBayar}>
+                      <LoadingApi />
+                    </Text>
                   </TouchableOpacity>
                 ) : (
                   <TouchableOpacity
