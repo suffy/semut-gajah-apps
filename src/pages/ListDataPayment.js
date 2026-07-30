@@ -931,7 +931,7 @@ export class ListDataPayment extends Component {
                                   fontFamily: 'Lato-Medium',
                                 },
                               ]}>
-                              {'Barang diproses'}
+                              {'Barang sedang dikirim'}
                             </Text>
                           </View>
                         ) : null}

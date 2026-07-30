@@ -486,7 +486,7 @@ export class TransactionDetail extends Component {
                 ) : null}
                 {order.status == 3 && order.status_faktur == 'F' ? (
                   <Text style={[styles.textEdit, {textAlign: 'right'}]}>
-                    {'Barang Diproses'}
+                    {'Barang sedang dikirim'}
                   </Text>
                 ) : null}
                 {order.status == 4 && order.status_faktur == 'F' ? (
